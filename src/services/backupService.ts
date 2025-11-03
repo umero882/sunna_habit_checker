@@ -3,7 +3,7 @@
  * Handles backing up and restoring user data to/from cloud storage (Supabase Storage)
  */
 
-import * as FileSystem from 'expo-file-system';
+import { Paths, File } from 'expo-file-system';
 import { supabase, getCurrentUser } from './supabase';
 import { format } from 'date-fns';
 import { createLogger } from '../utils/logger';
@@ -26,7 +26,7 @@ export interface BackupData {
   user_id: string;
   prayer_logs: any[];
   sunnah_logs: any[];
-  quran_progress: any[];
+  quran_plans: any[];
   user_profile: any;
   settings: any;
 }
@@ -60,7 +60,7 @@ const fetchUserData = async (): Promise<Omit<BackupData, 'version' | 'created_at
       *,
       sunnah_habits (
         name,
-        category,
+        category_id,
         description
       )
     `
@@ -70,20 +70,20 @@ const fetchUserData = async (): Promise<Omit<BackupData, 'version' | 'created_at
 
   if (sunnahError) throw sunnahError;
 
-  // Fetch quran progress
-  const { data: quranProgress, error: quranError } = await supabase
-    .from('quran_progress')
+  // Fetch quran plans
+  const { data: quranPlans, error: quranError } = await supabase
+    .from('quran_plans')
     .select('*')
     .eq('user_id', user.id)
-    .order('last_read_at', { ascending: false });
+    .order('updated_at', { ascending: false });
 
   if (quranError) throw quranError;
 
   // Fetch user profile
   const { data: userProfile, error: profileError } = await supabase
-    .from('profiles')
+    .from('user_profiles')
     .select('*')
-    .eq('id', user.id)
+    .eq('user_id', user.id)
     .single();
 
   if (profileError && profileError.code !== 'PGRST116') {
@@ -93,7 +93,7 @@ const fetchUserData = async (): Promise<Omit<BackupData, 'version' | 'created_at
 
   // Fetch user settings (if you have a settings table)
   const { data: settings, error: settingsError } = await supabase
-    .from('user_settings')
+    .from('settings')
     .select('*')
     .eq('user_id', user.id)
     .single();
@@ -106,7 +106,7 @@ const fetchUserData = async (): Promise<Omit<BackupData, 'version' | 'created_at
     user_id: user.id,
     prayer_logs: prayerLogs || [],
     sunnah_logs: sunnahLogs || [],
-    quran_progress: quranProgress || [],
+    quran_plans: quranPlans || [],
     user_profile: userProfile || null,
     settings: settings || null,
   };
@@ -144,19 +144,14 @@ export const createBackup = async (backupName?: string): Promise<BackupMetadata>
       ? `${cleanBackupName}_${timestamp}.json`
       : `backup_${timestamp}.json`;
 
-    // Save to local file first
-    const fileUri = `${(FileSystem as any).documentDirectory}${filename}`;
-    await FileSystem.writeAsStringAsync(fileUri, backupJson, {
-      encoding: (FileSystem as any).EncodingType.UTF8,
-    });
+    // Save to local file first using new API
+    const file = new File(Paths.document, filename);
+    await file.write(backupJson);
 
-    // Read the file as base64 for upload
-    const base64Data = await FileSystem.readAsStringAsync(fileUri, {
-      encoding: (FileSystem as any).EncodingType.Base64,
-    });
-
-    // Convert base64 to Uint8Array for Supabase
-    const binaryData = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
+    // Read the file as text and convert to binary for upload
+    const fileText = await file.text();
+    const encoder = new TextEncoder();
+    const binaryData = encoder.encode(fileText);
 
     // Upload to Supabase Storage
     const storagePath = `${user.id}/${filename}`;
@@ -191,7 +186,7 @@ export const createBackup = async (backupName?: string): Promise<BackupMetadata>
     }
 
     // Clean up local file
-    await FileSystem.deleteAsync(fileUri, { idempotent: true });
+    await file.delete();
 
     logger.info(`Backup created: ${filename}`);
 
@@ -310,15 +305,15 @@ export const restoreBackup = async (backupId: string): Promise<void> => {
       if (sunnahError) throw sunnahError;
     }
 
-    // Restore quran progress
-    if (backupData.quran_progress && backupData.quran_progress.length > 0) {
-      // Delete existing quran progress
-      await supabase.from('quran_progress').delete().eq('user_id', user.id);
+    // Restore quran plans
+    if (backupData.quran_plans && backupData.quran_plans.length > 0) {
+      // Delete existing quran plans
+      await supabase.from('quran_plans').delete().eq('user_id', user.id);
 
-      // Insert backup quran progress
-      const { error: quranError } = await supabase.from('quran_progress').insert(
-        backupData.quran_progress.map(progress => ({
-          ...progress,
+      // Insert backup quran plans
+      const { error: quranError } = await supabase.from('quran_plans').insert(
+        backupData.quran_plans.map(plan => ({
+          ...plan,
           user_id: user.id,
         }))
       );
@@ -328,9 +323,9 @@ export const restoreBackup = async (backupId: string): Promise<void> => {
 
     // Restore user profile
     if (backupData.user_profile) {
-      const { error: profileError } = await supabase.from('profiles').upsert({
+      const { error: profileError } = await supabase.from('user_profiles').upsert({
         ...backupData.user_profile,
-        id: user.id,
+        user_id: user.id,
       });
 
       if (profileError) throw profileError;
@@ -338,7 +333,7 @@ export const restoreBackup = async (backupId: string): Promise<void> => {
 
     // Restore settings
     if (backupData.settings) {
-      const { error: settingsError } = await supabase.from('user_settings').upsert({
+      const { error: settingsError } = await supabase.from('settings').upsert({
         ...backupData.settings,
         user_id: user.id,
       });
@@ -445,21 +440,19 @@ export const downloadBackupFile = async (backupId: string): Promise<string> => {
     // Save to local file
     // Clean the filename to prevent path issues
     const cleanFilename = metadata.backup_name.replace(/[^a-zA-Z0-9._-]/g, '_');
-    const fileUri = `${(FileSystem as any).documentDirectory}${cleanFilename}`;
-    const backupText = await fileData.text();
 
-    // Validate the fileUri before writing
-    if (!fileUri || !fileUri.includes('.json')) {
-      throw new Error('Invalid backup file path generated');
+    // Validate the filename
+    if (!cleanFilename || !cleanFilename.includes('.json')) {
+      throw new Error('Invalid backup filename generated');
     }
 
-    await FileSystem.writeAsStringAsync(fileUri, backupText, {
-      encoding: (FileSystem as any).EncodingType.UTF8,
-    });
+    const file = new File(Paths.document, cleanFilename);
+    const backupText = await fileData.text();
+    await file.write(backupText);
 
-    logger.info(`Backup downloaded: ${cleanFilename} to ${fileUri}`);
+    logger.info(`Backup downloaded: ${cleanFilename} to ${file.uri}`);
 
-    return fileUri;
+    return file.uri;
   } catch (error: any) {
     logger.error('Error downloading backup:', error);
     throw error;

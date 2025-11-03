@@ -2,7 +2,7 @@
  * useKhushuTracking Hook Tests
  */
 
-import { renderHook, waitFor } from '@testing-library/react-native';
+import { renderHook, waitFor, act } from '@testing-library/react-native';
 import { useKhushuTracking } from '../useKhushuTracking';
 import { supabase } from '../../services/supabase';
 
@@ -87,7 +87,9 @@ describe('useKhushuTracking', () => {
     });
 
     // Save a new khushu level (60 on 0-100 scale = 3 on 1-5 scale)
-    await result.current.saveKhushuLevel(60);
+    await act(async () => {
+      await result.current.saveKhushuLevel(60);
+    });
 
     await waitFor(() => {
       expect(result.current.isSaving).toBe(false);

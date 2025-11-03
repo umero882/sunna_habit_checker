@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import { NextPrayerCard } from '../NextPrayerCard';
 import type { NextPrayerInfo, PrayerName } from '../../../types';
 
@@ -97,7 +97,7 @@ describe('NextPrayerCard', () => {
     expect(getByText('hours')).toBeTruthy();
 
     // Fast-forward time by 1 second using act
-    await waitFor(() => {
+    await act(async () => {
       jest.advanceTimersByTime(1000);
     });
 

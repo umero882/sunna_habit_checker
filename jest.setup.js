@@ -53,6 +53,33 @@ jest.mock('expo-location', () => ({
   getCurrentPositionAsync: jest.fn(),
 }));
 
+// Mock expo-notifications
+jest.mock('expo-notifications', () => ({
+  setNotificationHandler: jest.fn(),
+  scheduleNotificationAsync: jest.fn().mockResolvedValue('notification-id'),
+  cancelScheduledNotificationAsync: jest.fn().mockResolvedValue(undefined),
+  cancelAllScheduledNotificationsAsync: jest.fn().mockResolvedValue(undefined),
+  getAllScheduledNotificationsAsync: jest.fn().mockResolvedValue([]),
+  getPermissionsAsync: jest.fn().mockResolvedValue({ status: 'granted' }),
+  requestPermissionsAsync: jest.fn().mockResolvedValue({ status: 'granted' }),
+  AndroidImportance: {
+    MAX: 5,
+    HIGH: 4,
+    DEFAULT: 3,
+    LOW: 2,
+    MIN: 1,
+  },
+}));
+
+// Mock Expo AppRegistry
+jest.mock('expo', () => ({
+  registerRootComponent: jest.fn(),
+  AppRegistry: {
+    registerComponent: jest.fn(),
+    getAppKeys: jest.fn(() => []),
+  },
+}));
+
 // Mock @supabase/supabase-js
 jest.mock('@supabase/supabase-js', () => ({
   createClient: jest.fn(() => ({
@@ -160,3 +187,14 @@ jest.mock('@tanstack/react-query', () => {
     })),
   };
 });
+
+// Mock react-native AppRegistry and other problematic modules
+jest.mock('react-native/Libraries/ReactNative/AppRegistry', () => ({
+  registerComponent: jest.fn(),
+  getAppKeys: jest.fn(() => []),
+  unmountApplicationComponentAtRootTag: jest.fn(),
+  registerRunnable: jest.fn(),
+  registerSection: jest.fn(),
+  registerHeadlessTask: jest.fn(),
+  startHeadlessTask: jest.fn(),
+}));
