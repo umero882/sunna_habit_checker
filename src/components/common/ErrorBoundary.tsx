@@ -105,22 +105,14 @@ export class ErrorBoundary extends Component<Props, State> {
             {__DEV__ && this.state.error && (
               <View style={styles.debugContainer}>
                 <Text style={styles.debugTitle}>Error Details (Dev Only):</Text>
-                <Text style={styles.debugText}>
-                  {this.state.error.toString()}
-                </Text>
+                <Text style={styles.debugText}>{this.state.error.toString()}</Text>
                 {this.state.errorInfo && (
-                  <Text style={styles.debugStack}>
-                    {this.state.errorInfo.componentStack}
-                  </Text>
+                  <Text style={styles.debugStack}>{this.state.errorInfo.componentStack}</Text>
                 )}
               </View>
             )}
 
-            <TouchableOpacity
-              style={styles.button}
-              onPress={this.handleReset}
-              activeOpacity={0.7}
-            >
+            <TouchableOpacity style={styles.button} onPress={this.handleReset} activeOpacity={0.7}>
               <Text style={styles.buttonText}>Try Again</Text>
             </TouchableOpacity>
 

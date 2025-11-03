@@ -88,7 +88,7 @@ export function useGreeting(
       const newGreeting = getGreetingForHour(now.getHours(), locale);
 
       // Only update state if greeting actually changed (prevents unnecessary re-renders)
-      setGreetingData((prev) => {
+      setGreetingData(prev => {
         if (prev.type !== newGreeting.type) {
           return newGreeting;
         }

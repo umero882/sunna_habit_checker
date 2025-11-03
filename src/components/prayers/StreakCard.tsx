@@ -25,17 +25,17 @@ export const StreakCard: React.FC<StreakCardProps> = ({ streak }) => {
   // Get motivational message based on streak
   const getStreakMessage = () => {
     if (currentStreak === 0) {
-      return "Start your streak today!";
+      return 'Start your streak today!';
     } else if (currentStreak === 1) {
-      return "Great start! Keep going!";
+      return 'Great start! Keep going!';
     } else if (currentStreak < 7) {
-      return "Building momentum!";
+      return 'Building momentum!';
     } else if (currentStreak < 30) {
-      return "Excellent consistency!";
+      return 'Excellent consistency!';
     } else if (currentStreak < 100) {
-      return "Mashallah! Amazing dedication!";
+      return 'Mashallah! Amazing dedication!';
     } else {
-      return "Subhanallah! Exceptional commitment!";
+      return 'Subhanallah! Exceptional commitment!';
     }
   };
 
@@ -67,10 +67,14 @@ export const StreakCard: React.FC<StreakCardProps> = ({ streak }) => {
           <View style={styles.streakIconContainer}>
             <Ionicons name="trophy" size={32} color={theme.colors.warning} />
           </View>
-          <Text style={[styles.streakNumber, { color: theme.colors.warning }]}>{longestStreak}</Text>
+          <Text style={[styles.streakNumber, { color: theme.colors.warning }]}>
+            {longestStreak}
+          </Text>
           <Text style={styles.streakLabel}>Personal Best</Text>
           <Text style={styles.streakSubLabel}>
-            {longestStreak === currentStreak && currentStreak > 0 ? 'Active now!' : 'Longest streak'}
+            {longestStreak === currentStreak && currentStreak > 0
+              ? 'Active now!'
+              : 'Longest streak'}
           </Text>
         </View>
       </View>
@@ -97,12 +101,7 @@ export const StreakCard: React.FC<StreakCardProps> = ({ streak }) => {
             />
           )}
           {currentStreak >= 7 && currentStreak < 30 && (
-            <MilestoneProgress
-              current={currentStreak}
-              target={30}
-              label="One Month"
-              icon="medal"
-            />
+            <MilestoneProgress current={currentStreak} target={30} label="One Month" icon="medal" />
           )}
           {currentStreak >= 30 && currentStreak < 100 && (
             <MilestoneProgress

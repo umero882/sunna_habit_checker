@@ -24,7 +24,6 @@ import { createLogger } from '../utils/logger';
 
 const logger = createLogger('useSunnahStats');
 
-
 export interface SunnahDayStats {
   date: string;
   totalHabits: number;
@@ -179,7 +178,8 @@ export const useSunnahStats = (options: UseSunnahStatsOptions = {}) => {
     endDate: Date
   ): SunnahWeeklyStats => {
     const weekLogs = logs.filter(
-      log => log.date >= format(startDate, 'yyyy-MM-dd') && log.date <= format(endDate, 'yyyy-MM-dd')
+      log =>
+        log.date >= format(startDate, 'yyyy-MM-dd') && log.date <= format(endDate, 'yyyy-MM-dd')
     );
 
     const daysInWeek = 7;
@@ -228,10 +228,7 @@ export const useSunnahStats = (options: UseSunnahStatsOptions = {}) => {
   ): SunnahMonthlyStats => {
     const today = new Date();
     const monthStart = format(new Date(today.getFullYear(), today.getMonth(), 1), 'yyyy-MM-dd');
-    const monthEnd = format(
-      new Date(today.getFullYear(), today.getMonth() + 1, 0),
-      'yyyy-MM-dd'
-    );
+    const monthEnd = format(new Date(today.getFullYear(), today.getMonth() + 1, 0), 'yyyy-MM-dd');
 
     const totalPossible = habits.length * daysInMonth;
     const habitsLogged = logs.length;
@@ -335,7 +332,9 @@ export const useSunnahStats = (options: UseSunnahStatsOptions = {}) => {
       } else {
         const currentDate = new Date(uniqueDates[i]);
         const prevDate = new Date(uniqueDates[i - 1]);
-        const diffDays = Math.round((prevDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24));
+        const diffDays = Math.round(
+          (prevDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24)
+        );
 
         if (diffDays === 1) {
           tempStreak++;
@@ -348,9 +347,9 @@ export const useSunnahStats = (options: UseSunnahStatsOptions = {}) => {
     longestStreak = Math.max(longestStreak, tempStreak);
 
     // Recent milestones
-    const recentMilestones = [...milestones].sort(
-      (a, b) => new Date(b.achieved_at).getTime() - new Date(a.achieved_at).getTime()
-    ).slice(0, 5);
+    const recentMilestones = [...milestones]
+      .sort((a, b) => new Date(b.achieved_at).getTime() - new Date(a.achieved_at).getTime())
+      .slice(0, 5);
 
     return {
       weeklyCompletion: weeklyStats.completionPercentage,
@@ -376,7 +375,15 @@ export const useSunnahStats = (options: UseSunnahStatsOptions = {}) => {
   ): { date: string; count: number; level: number }[] => {
     return dailyStats.map(day => {
       const level =
-        day.completion >= 75 ? 4 : day.completion >= 50 ? 3 : day.completion >= 25 ? 2 : day.completion > 0 ? 1 : 0;
+        day.completion >= 75
+          ? 4
+          : day.completion >= 50
+            ? 3
+            : day.completion >= 25
+              ? 2
+              : day.completion > 0
+                ? 1
+                : 0;
 
       return {
         date: day.date,

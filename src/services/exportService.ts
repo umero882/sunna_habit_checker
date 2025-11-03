@@ -21,32 +21,34 @@ const convertToCSV = (data: any[], headers: string[]): string => {
 
   // Create data rows
   const dataRows = data.map(row => {
-    return headers.map(header => {
-      const value = row[header];
+    return headers
+      .map(header => {
+        const value = row[header];
 
-      // Handle null/undefined
-      if (value === null || value === undefined) {
-        return '';
-      }
+        // Handle null/undefined
+        if (value === null || value === undefined) {
+          return '';
+        }
 
-      // Handle arrays (convert to JSON string)
-      if (Array.isArray(value)) {
-        return `"${JSON.stringify(value).replace(/"/g, '""')}"`;
-      }
+        // Handle arrays (convert to JSON string)
+        if (Array.isArray(value)) {
+          return `"${JSON.stringify(value).replace(/"/g, '""')}"`;
+        }
 
-      // Handle objects (convert to JSON string)
-      if (typeof value === 'object') {
-        return `"${JSON.stringify(value).replace(/"/g, '""')}"`;
-      }
+        // Handle objects (convert to JSON string)
+        if (typeof value === 'object') {
+          return `"${JSON.stringify(value).replace(/"/g, '""')}"`;
+        }
 
-      // Handle strings with commas or quotes
-      const stringValue = String(value);
-      if (stringValue.includes(',') || stringValue.includes('"') || stringValue.includes('\n')) {
-        return `"${stringValue.replace(/"/g, '""')}"`;
-      }
+        // Handle strings with commas or quotes
+        const stringValue = String(value);
+        if (stringValue.includes(',') || stringValue.includes('"') || stringValue.includes('\n')) {
+          return `"${stringValue.replace(/"/g, '""')}"`;
+        }
 
-      return stringValue;
-    }).join(',');
+        return stringValue;
+      })
+      .join(',');
   });
 
   return [headerRow, ...dataRows].join('\n');
@@ -55,17 +57,16 @@ const convertToCSV = (data: any[], headers: string[]): string => {
 /**
  * Export prayer logs to CSV
  */
-export const exportPrayerLogs = async (
-  startDate?: string,
-  endDate?: string
-): Promise<string> => {
+export const exportPrayerLogs = async (startDate?: string, endDate?: string): Promise<string> => {
   try {
     const user = await getCurrentUser();
     if (!user) {
       throw new Error('User not authenticated');
     }
 
-    logger.info(`📊 Fetching prayer logs for user ${user.id}${startDate ? ` from ${startDate} to ${endDate}` : ' (all time)'}`);
+    logger.info(
+      `📊 Fetching prayer logs for user ${user.id}${startDate ? ` from ${startDate} to ${endDate}` : ' (all time)'}`
+    );
 
     // Build query
     let query = supabase
@@ -130,27 +131,28 @@ export const exportPrayerLogs = async (
 /**
  * Export Sunnah habit logs to CSV
  */
-export const exportSunnahLogs = async (
-  startDate?: string,
-  endDate?: string
-): Promise<string> => {
+export const exportSunnahLogs = async (startDate?: string, endDate?: string): Promise<string> => {
   try {
     const user = await getCurrentUser();
     if (!user) {
       throw new Error('User not authenticated');
     }
 
-    logger.info(`📊 Fetching Sunnah logs for user ${user.id}${startDate ? ` from ${startDate} to ${endDate}` : ' (all time)'}`);
+    logger.info(
+      `📊 Fetching Sunnah logs for user ${user.id}${startDate ? ` from ${startDate} to ${endDate}` : ' (all time)'}`
+    );
 
     // Build query - join with habits to get habit names
     let query = supabase
       .from('sunnah_logs')
-      .select(`
+      .select(
+        `
         *,
         sunnah_habits (
           name
         )
-      `)
+      `
+      )
       .eq('user_id', user.id)
       .order('date', { ascending: false })
       .order('logged_at', { ascending: false });
@@ -284,10 +286,7 @@ export const exportQuranProgress = async (): Promise<string> => {
 /**
  * Export all data (prayers, Sunnah, Quran) to separate CSV files and share as ZIP
  */
-export const exportAllData = async (
-  startDate?: string,
-  endDate?: string
-): Promise<string[]> => {
+export const exportAllData = async (startDate?: string, endDate?: string): Promise<string[]> => {
   try {
     const fileUris: string[] = [];
     const errors: string[] = [];
@@ -324,17 +323,14 @@ export const exportAllData = async (
 
     if (fileUris.length === 0) {
       // Provide detailed error message
-      const dateRangeText = startDate && endDate
-        ? `between ${startDate} and ${endDate}`
-        : 'in your account';
+      const dateRangeText =
+        startDate && endDate ? `between ${startDate} and ${endDate}` : 'in your account';
 
-      const errorDetails = errors.length > 0
-        ? `\n\nDetails:\n${errors.join('\n')}`
-        : '';
+      const errorDetails = errors.length > 0 ? `\n\nDetails:\n${errors.join('\n')}` : '';
 
       throw new Error(
         `No data available to export ${dateRangeText}. ` +
-        `Try selecting a different date range or add some data first.${errorDetails}`
+          `Try selecting a different date range or add some data first.${errorDetails}`
       );
     }
 
@@ -370,7 +366,9 @@ export const shareFile = async (fileUri: string): Promise<void> => {
     const canShare = await Sharing.isAvailableAsync();
 
     if (!canShare) {
-      throw new Error('Sharing is not available on this device. The file has been saved locally at: ' + fileUri);
+      throw new Error(
+        'Sharing is not available on this device. The file has been saved locally at: ' + fileUri
+      );
     }
 
     // Determine mime type based on file extension

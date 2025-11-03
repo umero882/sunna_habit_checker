@@ -4,13 +4,7 @@
  */
 
 import React, { useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../../constants/theme';
 import { useSunnahHabits } from '../../hooks/useSunnahHabits';
@@ -39,11 +33,7 @@ const TIER_INFO = [
     color: theme.colors.secondary[600],
     description:
       'An enhanced practice that aligns with how the Companions of the Prophet (may Allah be pleased with them) practiced this Sunnah.',
-    benefits: [
-      'Deepen understanding',
-      'Increase spiritual rewards',
-      'Follow exemplary models',
-    ],
+    benefits: ['Deepen understanding', 'Increase spiritual rewards', 'Follow exemplary models'],
     example: 'Praying Fajr in congregation at the masjid',
   },
   {
@@ -54,11 +44,7 @@ const TIER_INFO = [
     color: theme.colors.primary[600],
     description:
       'The complete and comprehensive way the Prophet Muhammad ﷺ practiced this Sunnah, representing the highest level of adherence.',
-    benefits: [
-      'Achieve spiritual excellence',
-      'Maximize rewards',
-      'Embody prophetic character',
-    ],
+    benefits: ['Achieve spiritual excellence', 'Maximize rewards', 'Embody prophetic character'],
     example: 'Praying Fajr in first row, arriving early, praying sunnah prayers',
   },
 ];
@@ -75,9 +61,7 @@ export const BenchmarksTab: React.FC = () => {
   // Calculate user's progress across levels
   const getProgressStats = () => {
     const totalHabits = habits.length;
-    const basicCount = habits.filter(
-      h => h.todayLog && h.todayLog.level === 'basic'
-    ).length;
+    const basicCount = habits.filter(h => h.todayLog && h.todayLog.level === 'basic').length;
     const companionCount = habits.filter(
       h => h.todayLog && h.todayLog.level === 'companion'
     ).length;
@@ -107,12 +91,11 @@ export const BenchmarksTab: React.FC = () => {
         <Text style={styles.introIcon}>🎯</Text>
         <Text style={styles.introTitle}>The 3-Tier Benchmark System</Text>
         <Text style={styles.introText}>
-          Each Sunnah habit offers three levels of practice, allowing you to gradually
-          increase your commitment and reap greater spiritual rewards.
+          Each Sunnah habit offers three levels of practice, allowing you to gradually increase your
+          commitment and reap greater spiritual rewards.
         </Text>
         <Text style={styles.introQuote}>
-          "The most beloved deed to Allah is the most regular and constant even if it were
-          little."
+          "The most beloved deed to Allah is the most regular and constant even if it were little."
         </Text>
         <Text style={styles.introSource}>- Prophet Muhammad ﷺ (Bukhari & Muslim)</Text>
       </View>
@@ -123,29 +106,19 @@ export const BenchmarksTab: React.FC = () => {
           <Text style={styles.sectionTitle}>Your Progress Today</Text>
           <View style={styles.progressStats}>
             <View style={styles.progressStat}>
-              <View
-                style={[styles.progressDot, { backgroundColor: theme.colors.info }]}
-              />
+              <View style={[styles.progressDot, { backgroundColor: theme.colors.info }]} />
               <Text style={styles.progressStatLabel}>Basic</Text>
               <Text style={styles.progressStatValue}>{stats.basicCount}</Text>
             </View>
             <View style={styles.progressStat}>
               <View
-                style={[
-                  styles.progressDot,
-                  { backgroundColor: theme.colors.secondary[600] },
-                ]}
+                style={[styles.progressDot, { backgroundColor: theme.colors.secondary[600] }]}
               />
               <Text style={styles.progressStatLabel}>Companion</Text>
               <Text style={styles.progressStatValue}>{stats.companionCount}</Text>
             </View>
             <View style={styles.progressStat}>
-              <View
-                style={[
-                  styles.progressDot,
-                  { backgroundColor: theme.colors.primary[600] },
-                ]}
-              />
+              <View style={[styles.progressDot, { backgroundColor: theme.colors.primary[600] }]} />
               <Text style={styles.progressStatLabel}>Prophetic</Text>
               <Text style={styles.progressStatValue}>{stats.propheticCount}</Text>
             </View>
@@ -164,15 +137,11 @@ export const BenchmarksTab: React.FC = () => {
           <View key={tier.level} style={styles.tierCard}>
             {/* Tier Header */}
             <View style={styles.tierHeader}>
-              <View
-                style={[styles.tierIconContainer, { backgroundColor: `${tier.color}15` }]}
-              >
+              <View style={[styles.tierIconContainer, { backgroundColor: `${tier.color}15` }]}>
                 <Text style={styles.tierEmoji}>{tier.icon}</Text>
               </View>
               <View style={styles.tierHeaderText}>
-                <Text style={[styles.tierTitle, { color: tier.color }]}>
-                  {tier.title}
-                </Text>
+                <Text style={[styles.tierTitle, { color: tier.color }]}>{tier.title}</Text>
                 <Text style={styles.tierSubtitle}>{tier.subtitle}</Text>
               </View>
             </View>
@@ -215,29 +184,29 @@ export const BenchmarksTab: React.FC = () => {
           <View style={styles.tipItem}>
             <Text style={styles.tipNumber}>1</Text>
             <Text style={styles.tipText}>
-              <Text style={styles.tipBold}>Start Small:</Text> Master the Basic level
-              before moving to Companion level
+              <Text style={styles.tipBold}>Start Small:</Text> Master the Basic level before moving
+              to Companion level
             </Text>
           </View>
           <View style={styles.tipItem}>
             <Text style={styles.tipNumber}>2</Text>
             <Text style={styles.tipText}>
-              <Text style={styles.tipBold}>Be Consistent:</Text> Regular practice at any
-              level is better than sporadic higher-level practice
+              <Text style={styles.tipBold}>Be Consistent:</Text> Regular practice at any level is
+              better than sporadic higher-level practice
             </Text>
           </View>
           <View style={styles.tipItem}>
             <Text style={styles.tipNumber}>3</Text>
             <Text style={styles.tipText}>
-              <Text style={styles.tipBold}>Track Progress:</Text> Log your daily practice
-              to see your spiritual growth over time
+              <Text style={styles.tipBold}>Track Progress:</Text> Log your daily practice to see
+              your spiritual growth over time
             </Text>
           </View>
           <View style={styles.tipItem}>
             <Text style={styles.tipNumber}>4</Text>
             <Text style={styles.tipText}>
-              <Text style={styles.tipBold}>Seek Knowledge:</Text> Learn the wisdom behind
-              each Sunnah to increase motivation
+              <Text style={styles.tipBold}>Seek Knowledge:</Text> Learn the wisdom behind each
+              Sunnah to increase motivation
             </Text>
           </View>
         </View>
@@ -248,8 +217,8 @@ export const BenchmarksTab: React.FC = () => {
         <Text style={styles.rewardsIcon}>⭐</Text>
         <Text style={styles.rewardsTitle}>Remember the Rewards</Text>
         <Text style={styles.rewardsText}>
-          Every level of practice brings immense reward from Allah. Don't underestimate the
-          value of even the Basic level - consistency in small actions is beloved to Allah.
+          Every level of practice brings immense reward from Allah. Don't underestimate the value of
+          even the Basic level - consistency in small actions is beloved to Allah.
         </Text>
       </View>
 

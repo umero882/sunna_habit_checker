@@ -16,9 +16,7 @@ import {
 } from 'react-native';
 
 // Suppress VirtualizedList warning for Victory charts
-LogBox.ignoreLogs([
-  'VirtualizedLists should never be nested',
-]);
+LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 import {
   Settings,
   Bell,
@@ -78,8 +76,18 @@ type NavigationProp = StackNavigationProp<RootStackParamList, 'Main'>;
 
 export const ProfileScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp>();
-  const { settings, isLoading: settingsLoading, error: settingsError, updateSettings } = useUserSettings();
-  const { profile, isLoading: profileLoading, error: profileError, refetch: refetchProfile } = useProfile();
+  const {
+    settings,
+    isLoading: settingsLoading,
+    error: settingsError,
+    updateSettings,
+  } = useUserSettings();
+  const {
+    profile,
+    isLoading: profileLoading,
+    error: profileError,
+    refetch: refetchProfile,
+  } = useProfile();
   const [exportModalVisible, setExportModalVisible] = useState(false);
   const [editProfileModalVisible, setEditProfileModalVisible] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
@@ -100,28 +108,24 @@ export const ProfileScreen: React.FC = () => {
 
   // Handle sign out
   const handleSignOut = () => {
-    Alert.alert(
-      'Sign Out',
-      'Are you sure you want to sign out?',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Sign Out',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              setIsSigningOut(true);
-              await supabase.auth.signOut();
-            } catch (error) {
-              logger.error('Error signing out:', error);
-              Alert.alert('Error', 'Failed to sign out. Please try again.');
-            } finally {
-              setIsSigningOut(false);
-            }
-          },
+    Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Sign Out',
+        style: 'destructive',
+        onPress: async () => {
+          try {
+            setIsSigningOut(true);
+            await supabase.auth.signOut();
+          } catch (error) {
+            logger.error('Error signing out:', error);
+            Alert.alert('Error', 'Failed to sign out. Please try again.');
+          } finally {
+            setIsSigningOut(false);
+          }
         },
-      ]
-    );
+      },
+    ]);
   };
 
   // Handle delete account
@@ -136,30 +140,26 @@ export const ProfileScreen: React.FC = () => {
           style: 'destructive',
           onPress: () => {
             // Second confirmation
-            Alert.alert(
-              'Final Confirmation',
-              'Type "DELETE" to confirm account deletion.',
-              [
-                { text: 'Cancel', style: 'cancel' },
-                {
-                  text: 'Confirm Delete',
-                  style: 'destructive',
-                  onPress: async () => {
-                    try {
-                      // TODO: Implement account deletion via Supabase RPC
-                      Alert.alert(
-                        'Account Deletion',
-                        'Please contact support to delete your account.',
-                        [{ text: 'OK' }]
-                      );
-                    } catch (error) {
-                      logger.error('Error deleting account:', error);
-                      Alert.alert('Error', 'Failed to delete account. Please try again.');
-                    }
-                  },
+            Alert.alert('Final Confirmation', 'Type "DELETE" to confirm account deletion.', [
+              { text: 'Cancel', style: 'cancel' },
+              {
+                text: 'Confirm Delete',
+                style: 'destructive',
+                onPress: async () => {
+                  try {
+                    // TODO: Implement account deletion via Supabase RPC
+                    Alert.alert(
+                      'Account Deletion',
+                      'Please contact support to delete your account.',
+                      [{ text: 'OK' }]
+                    );
+                  } catch (error) {
+                    logger.error('Error deleting account:', error);
+                    Alert.alert('Error', 'Failed to delete account. Please try again.');
+                  }
                 },
-              ]
-            );
+              },
+            ]);
           },
         },
       ]
@@ -168,55 +168,43 @@ export const ProfileScreen: React.FC = () => {
 
   // Handle language selection
   const handleLanguageChange = () => {
-    Alert.alert(
-      'Select Language',
-      '',
-      [
-        {
-          text: 'English',
-          onPress: () => updateSettings({ locale: 'en' as Locale }),
-        },
-        {
-          text: 'العربية (Arabic)',
-          onPress: () => updateSettings({ locale: 'ar' as Locale }),
-        },
-        { text: 'Cancel', style: 'cancel' },
-      ]
-    );
+    Alert.alert('Select Language', '', [
+      {
+        text: 'English',
+        onPress: () => updateSettings({ locale: 'en' as Locale }),
+      },
+      {
+        text: 'العربية (Arabic)',
+        onPress: () => updateSettings({ locale: 'ar' as Locale }),
+      },
+      { text: 'Cancel', style: 'cancel' },
+    ]);
   };
 
   // Handle madhhab selection
   const handleMadhhabChange = () => {
-    Alert.alert(
-      'Select Madhhab (for Asr prayer)',
-      '',
-      [
-        {
-          text: 'Standard',
-          onPress: () => updateSettings({ madhhab: 'Standard' as Madhhab }),
-        },
-        {
-          text: 'Hanafi',
-          onPress: () => updateSettings({ madhhab: 'Hanafi' as Madhhab }),
-        },
-        { text: 'Cancel', style: 'cancel' },
-      ]
-    );
+    Alert.alert('Select Madhhab (for Asr prayer)', '', [
+      {
+        text: 'Standard',
+        onPress: () => updateSettings({ madhhab: 'Standard' as Madhhab }),
+      },
+      {
+        text: 'Hanafi',
+        onPress: () => updateSettings({ madhhab: 'Hanafi' as Madhhab }),
+      },
+      { text: 'Cancel', style: 'cancel' },
+    ]);
   };
 
   // Handle prayer calc method selection
   const handlePrayerCalcMethodChange = () => {
-    Alert.alert(
-      'Prayer Calculation Method',
-      'Select your preferred method',
-      [
-        ...PRAYER_CALC_METHODS.map((method) => ({
-          text: method.label,
-          onPress: () => updateSettings({ prayerCalcMethod: method.value }),
-        })),
-        { text: 'Cancel', style: 'cancel' },
-      ]
-    );
+    Alert.alert('Prayer Calculation Method', 'Select your preferred method', [
+      ...PRAYER_CALC_METHODS.map(method => ({
+        text: method.label,
+        onPress: () => updateSettings({ prayerCalcMethod: method.value }),
+      })),
+      { text: 'Cancel', style: 'cancel' },
+    ]);
   };
 
   // Handle reset onboarding
@@ -305,7 +293,7 @@ export const ProfileScreen: React.FC = () => {
           description="Show Islamic dates alongside Gregorian"
           value={settings?.hijriEnabled ?? false}
           icon={<Calendar size={20} color={theme.colors.gray[600]} />}
-          onToggle={(value) => updateSettings({ hijriEnabled: value })}
+          onToggle={value => updateSettings({ hijriEnabled: value })}
         />
         <SettingRow
           type="select"
@@ -318,7 +306,7 @@ export const ProfileScreen: React.FC = () => {
           type="select"
           label="Prayer Calculation Method"
           value={
-            PRAYER_CALC_METHODS.find((m) => m.value === settings?.prayerCalcMethod)?.label ||
+            PRAYER_CALC_METHODS.find(m => m.value === settings?.prayerCalcMethod)?.label ||
             'Muslim World League'
           }
           icon={<Settings size={20} color={theme.colors.gray[600]} />}
@@ -330,7 +318,7 @@ export const ProfileScreen: React.FC = () => {
           description="Show motivational points for good deeds"
           value={settings?.barakahPointsEnabled ?? false}
           icon={<Zap size={20} color={theme.colors.gray[600]} />}
-          onToggle={(value) => updateSettings({ barakahPointsEnabled: value })}
+          onToggle={value => updateSettings({ barakahPointsEnabled: value })}
         />
       </SettingsSection>
 
@@ -353,7 +341,7 @@ export const ProfileScreen: React.FC = () => {
           description="Enable prayer and habit reminders"
           value={settings?.notificationsEnabled ?? true}
           icon={<Bell size={20} color={theme.colors.gray[600]} />}
-          onToggle={(value) => updateSettings({ notificationsEnabled: value })}
+          onToggle={value => updateSettings({ notificationsEnabled: value })}
         />
       </SettingsSection>
 
@@ -379,8 +367,8 @@ export const ProfileScreen: React.FC = () => {
         />
         <View style={styles.privacyInfo}>
           <Text style={styles.privacyText}>
-            🔒 All your worship data is private and encrypted. No leaderboards, no comparisons
-            with others. Your deeds are between you and Allah.
+            🔒 All your worship data is private and encrypted. No leaderboards, no comparisons with
+            others. Your deeds are between you and Allah.
           </Text>
         </View>
       </SettingsSection>
@@ -435,10 +423,7 @@ export const ProfileScreen: React.FC = () => {
       </View>
 
       {/* Export Modal */}
-      <ExportDataModal
-        visible={exportModalVisible}
-        onClose={() => setExportModalVisible(false)}
-      />
+      <ExportDataModal visible={exportModalVisible} onClose={() => setExportModalVisible(false)} />
 
       {/* Edit Profile Modal */}
       <EditProfileModal

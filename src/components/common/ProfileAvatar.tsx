@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { createLogger } from '../../utils/logger';
@@ -14,6 +14,7 @@ const logger = createLogger('ProfileAvatar');
 import { theme } from '../../constants/theme';
 import { useProfile } from '../../hooks/useProfile';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type NavigationProp = BottomTabNavigationProp<any>;
 
 interface ProfileAvatarProps {
@@ -55,7 +56,7 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
       initials: getUserInitials(),
       willShowImage: !!(avatarUrl && !imageError),
     });
-  }, [profile, avatarUrl, imageError]);
+  }, [profile, avatarUrl, imageError, getUserInitials]);
 
   return (
     <TouchableOpacity
@@ -82,7 +83,7 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
               borderRadius: size / 2,
             },
           ]}
-          onError={(e) => {
+          onError={e => {
             logger.error('Image load error:', e.nativeEvent.error);
             setImageError(true);
           }}

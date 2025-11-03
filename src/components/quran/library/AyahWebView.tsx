@@ -59,13 +59,15 @@ export const AyahWebView: React.FC<AyahWebViewProps> = ({
       return withoutDiacritics.length >= 2 && /[\u0600-\u06FF]/.test(word);
     });
 
-    const wordsHTML = words.map((word, index) => {
-      // Add space after each word except the last
-      const space = index < words.length - 1 ? ' ' : '';
-      // Pre-highlight first word if this is a playing ayah
-      const highlightClass = (isPlaying && index === 0) ? ' word-highlighted' : '';
-      return `<span id="word-${index}" class="arabic-word${highlightClass}">${word}${space}</span>`;
-    }).join('');
+    const wordsHTML = words
+      .map((word, index) => {
+        // Add space after each word except the last
+        const space = index < words.length - 1 ? ' ' : '';
+        // Pre-highlight first word if this is a playing ayah
+        const highlightClass = isPlaying && index === 0 ? ' word-highlighted' : '';
+        return `<span id="word-${index}" class="arabic-word${highlightClass}">${word}${space}</span>`;
+      })
+      .join('');
 
     return `
       <!DOCTYPE html>
@@ -128,11 +130,15 @@ export const AyahWebView: React.FC<AyahWebViewProps> = ({
           ${wordsHTML}
           <span class="ayah-number">۝${ayah.number}</span>
         </div>
-        ${showTranslation && ayah.translation ? `
+        ${
+          showTranslation && ayah.translation
+            ? `
           <div class="translation">
             ${ayah.translation}
           </div>
-        ` : ''}
+        `
+            : ''
+        }
       </body>
       </html>
     `;
@@ -154,7 +160,7 @@ export const AyahWebView: React.FC<AyahWebViewProps> = ({
           height: document.body.scrollHeight
         }));
       `}
-      onMessage={(event) => {
+      onMessage={event => {
         try {
           const data = JSON.parse(event.nativeEvent.data);
           if (data.height) {

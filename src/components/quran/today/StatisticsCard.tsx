@@ -61,9 +61,7 @@ export const StatisticsCard: React.FC<StatisticsCardProps> = ({ stats }) => {
         <View style={styles.progressBarContainer}>
           <View style={[styles.progressBar, { width: `${stats.completionPercentage}%` }]} />
         </View>
-        <Text style={styles.progressText}>
-          {stats.surahsCompleted} of 114 Surahs completed
-        </Text>
+        <Text style={styles.progressText}>{stats.surahsCompleted} of 114 Surahs completed</Text>
       </View>
 
       {/* Streak Cards */}
@@ -151,8 +149,8 @@ export const StatisticsCard: React.FC<StatisticsCardProps> = ({ stats }) => {
             {stats.currentStreak >= 7
               ? '🌟 Amazing consistency! Keep up the great work!'
               : stats.currentStreak >= 3
-              ? '💪 Great momentum! You\'re building a strong habit!'
-              : '✨ You\'re on a roll! Keep reading every day!'}
+                ? "💪 Great momentum! You're building a strong habit!"
+                : "✨ You're on a roll! Keep reading every day!"}
           </Text>
         </View>
       )}

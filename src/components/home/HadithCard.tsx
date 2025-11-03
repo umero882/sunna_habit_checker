@@ -15,10 +15,7 @@ export interface HadithCardProps {
   onLearnMore?: () => void;
 }
 
-export const HadithCard: React.FC<HadithCardProps> = ({
-  hadith,
-  onLearnMore,
-}) => {
+export const HadithCard: React.FC<HadithCardProps> = ({ hadith, onLearnMore }) => {
   const [showArabic, setShowArabic] = useState(false);
 
   return (
@@ -31,13 +28,8 @@ export const HadithCard: React.FC<HadithCardProps> = ({
         </View>
 
         {hadith.textArabic && (
-          <TouchableOpacity
-            onPress={() => setShowArabic(!showArabic)}
-            style={styles.toggleButton}
-          >
-            <Text style={styles.toggleText}>
-              {showArabic ? 'EN' : 'AR'}
-            </Text>
+          <TouchableOpacity onPress={() => setShowArabic(!showArabic)} style={styles.toggleButton}>
+            <Text style={styles.toggleText}>{showArabic ? 'EN' : 'AR'}</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -61,10 +53,7 @@ export const HadithCard: React.FC<HadithCardProps> = ({
       {/* Actions */}
       <View style={styles.actions}>
         {onLearnMore && (
-          <TouchableOpacity
-            onPress={onLearnMore}
-            style={styles.learnMoreButton}
-          >
+          <TouchableOpacity onPress={onLearnMore} style={styles.learnMoreButton}>
             <Text style={styles.learnMoreText}>Learn More</Text>
             <Ionicons name="arrow-forward" size={14} color={theme.colors.primary[600]} />
           </TouchableOpacity>

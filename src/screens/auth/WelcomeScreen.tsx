@@ -15,10 +15,7 @@ interface WelcomeScreenProps {
   onSignUp: () => void;
 }
 
-export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
-  onSignIn,
-  onSignUp,
-}) => {
+export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onSignIn, onSignUp }) => {
   const { t } = useTranslation();
 
   return (
@@ -60,9 +57,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
 
         {/* Footer */}
         <View style={styles.footer}>
-          <Text style={styles.footerText}>
-            May Allah make consistency easy for you
-          </Text>
+          <Text style={styles.footerText}>May Allah make consistency easy for you</Text>
         </View>
       </View>
     </SafeAreaView>

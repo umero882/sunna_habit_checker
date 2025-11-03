@@ -46,7 +46,9 @@ interface UpdateQuranPreferencesParams {
  * Fetch user Quran preferences from Supabase
  */
 const fetchQuranPreferences = async (): Promise<QuranPreferences | null> => {
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     throw new Error('User not authenticated');
@@ -95,8 +97,12 @@ const fetchQuranPreferences = async (): Promise<QuranPreferences | null> => {
 /**
  * Update user Quran preferences in Supabase
  */
-const updateQuranPreferences = async (params: UpdateQuranPreferencesParams): Promise<QuranPreferences> => {
-  const { data: { user } } = await supabase.auth.getUser();
+const updateQuranPreferences = async (
+  params: UpdateQuranPreferencesParams
+): Promise<QuranPreferences> => {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     throw new Error('User not authenticated');
@@ -108,7 +114,8 @@ const updateQuranPreferences = async (params: UpdateQuranPreferencesParams): Pro
   };
 
   if (params.translation !== undefined) updateData.translation = params.translation;
-  if (params.showTransliteration !== undefined) updateData.show_transliteration = params.showTransliteration;
+  if (params.showTransliteration !== undefined)
+    updateData.show_transliteration = params.showTransliteration;
   if (params.fontSize !== undefined) updateData.font_size = params.fontSize;
   if (params.theme !== undefined) updateData.theme = params.theme;
   if (params.reciter !== undefined) updateData.reciter = params.reciter;
@@ -122,13 +129,16 @@ const updateQuranPreferences = async (params: UpdateQuranPreferencesParams): Pro
   // Use upsert to create if doesn't exist or update if exists
   const { data, error } = await supabase
     .from('user_quran_preferences')
-    .upsert({
-      user_id: user.id,
-      ...updateData,
-    }, {
-      onConflict: 'user_id',
-      ignoreDuplicates: false
-    })
+    .upsert(
+      {
+        user_id: user.id,
+        ...updateData,
+      },
+      {
+        onConflict: 'user_id',
+        ignoreDuplicates: false,
+      }
+    )
     .select()
     .single();
 
@@ -196,7 +206,7 @@ export const useQuranPreferences = () => {
   // Update preferences mutation
   const updateMutation = useMutation({
     mutationFn: updateQuranPreferences,
-    onMutate: async (newPreferences) => {
+    onMutate: async newPreferences => {
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: ['quranPreferences'] });
 
@@ -204,7 +214,7 @@ export const useQuranPreferences = () => {
       const previousPreferences = queryClient.getQueryData<QuranPreferences>(['quranPreferences']);
 
       // Optimistically update to the new value
-      queryClient.setQueryData<QuranPreferences>(['quranPreferences'], (old) => {
+      queryClient.setQueryData<QuranPreferences>(['quranPreferences'], old => {
         if (!old) return old;
         return { ...old, ...newPreferences };
       });
@@ -237,14 +247,14 @@ export const useQuranPreferences = () => {
   const updateDailyGoal = (mode: 'pages' | 'ayahs' | 'time', value: number) => {
     return updateMutation.mutateAsync({
       dailyGoalMode: mode,
-      dailyGoalValue: value
+      dailyGoalValue: value,
     });
   };
 
   const updateReadingPosition = (surah: number, ayah: number) => {
     return updateMutation.mutateAsync({
       lastSurah: surah,
-      lastAyah: ayah
+      lastAyah: ayah,
     });
   };
 

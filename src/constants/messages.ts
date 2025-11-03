@@ -9,7 +9,7 @@
  */
 export const JAMAAH_CONGRATULATIONS = [
   'MashAllah! Jamaah prayer earns 27× reward!',
-  'Excellent! You\'re following the Sunnah of praying in congregation!',
+  "Excellent! You're following the Sunnah of praying in congregation!",
   'Barakah increased! Jamaah brings immense blessings!',
   'Wonderful! Keep up the blessed habit of praying together!',
   'Amazing! Congregation prayer is beloved to Allah!',
@@ -34,7 +34,8 @@ export const ALONE_ENCOURAGEMENT = [
  * Source: Sahih al-Bukhari 645, Sahih Muslim 650
  */
 export const JAMAAH_HADITH = {
-  textEnglish: 'The Prophet (ﷺ) said: "Prayer in congregation is twenty-seven times superior to prayer offered by a person alone."',
+  textEnglish:
+    'The Prophet (ﷺ) said: "Prayer in congregation is twenty-seven times superior to prayer offered by a person alone."',
   source: 'Sahih al-Bukhari',
   reference: '645',
 } as const;

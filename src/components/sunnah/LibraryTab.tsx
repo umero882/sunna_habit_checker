@@ -34,7 +34,8 @@ const CATEGORY_ICONS: Record<SunnahCategoryName, string> = {
 };
 
 export const LibraryTab: React.FC = () => {
-  const { habits, categories, isLoading, error, logHabit, pinHabit, unpinHabit, refresh } = useSunnahHabits({ autoLoad: false });
+  const { habits, categories, isLoading, error, logHabit, pinHabit, unpinHabit, refresh } =
+    useSunnahHabits({ autoLoad: false });
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -144,10 +145,7 @@ export const LibraryTab: React.FC = () => {
         >
           {/* All Categories */}
           <TouchableOpacity
-            style={[
-              styles.categoryChip,
-              selectedCategory === null && styles.categoryChipActive,
-            ]}
+            style={[styles.categoryChip, selectedCategory === null && styles.categoryChipActive]}
             onPress={() => handleCategorySelect(null)}
           >
             <Ionicons
@@ -221,8 +219,7 @@ export const LibraryTab: React.FC = () => {
               {categories.find(c => c.id === selectedCategory)?.name} Habits
             </Text>
             <Text style={styles.sectionSubtitle}>
-              {filteredHabits.length} habit{filteredHabits.length !== 1 ? 's' : ''} in this
-              category
+              {filteredHabits.length} habit{filteredHabits.length !== 1 ? 's' : ''} in this category
             </Text>
             <View style={styles.habitsList}>
               {filteredHabits.map(habit => (
@@ -271,14 +268,8 @@ export const LibraryTab: React.FC = () => {
                   style={styles.viewAllButton}
                   onPress={() => handleCategorySelect(category.id)}
                 >
-                  <Text style={styles.viewAllText}>
-                    View all {categoryHabits.length} habits
-                  </Text>
-                  <Ionicons
-                    name="chevron-forward"
-                    size={16}
-                    color={theme.colors.primary[600]}
-                  />
+                  <Text style={styles.viewAllText}>View all {categoryHabits.length} habits</Text>
+                  <Ionicons name="chevron-forward" size={16} color={theme.colors.primary[600]} />
                 </TouchableOpacity>
               )}
             </View>
@@ -290,9 +281,7 @@ export const LibraryTab: React.FC = () => {
           <View style={styles.emptyState}>
             <Text style={styles.emptyStateIcon}>📚</Text>
             <Text style={styles.emptyStateTitle}>No Habits Found</Text>
-            <Text style={styles.emptyStateText}>
-              There are no habits in this category yet.
-            </Text>
+            <Text style={styles.emptyStateText}>There are no habits in this category yet.</Text>
           </View>
         )}
 

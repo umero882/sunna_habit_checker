@@ -41,9 +41,7 @@ export const WelcomeScreen: React.FC = () => {
 
           <View style={styles.featureCard}>
             <Ionicons name="book-outline" size={32} color={theme.colors.white} />
-            <Text style={styles.featureText}>
-              {t('onboarding.welcome.feature2', 'Read Quran')}
-            </Text>
+            <Text style={styles.featureText}>{t('onboarding.welcome.feature2', 'Read Quran')}</Text>
           </View>
 
           <View style={styles.featureCard}>

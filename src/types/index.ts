@@ -102,7 +102,7 @@ export interface PrayerTimes {
 
 export interface PrayerLog {
   id: string;
-  user_id: string;  // snake_case to match database
+  user_id: string; // snake_case to match database
   date: string; // ISO date
   prayer: PrayerName | OptionalPrayer;
   status: PrayerStatus;
@@ -466,7 +466,14 @@ export interface JournalEntry {
 // ============= Sunnah Habits & Benchmarks =============
 
 export type SunnahLevel = 'basic' | 'companion' | 'prophetic';
-export type SunnahCategoryName = 'Prayer' | 'Dhikr' | 'Charity' | 'Quran' | 'Fasting' | 'Lifestyle' | 'Social';
+export type SunnahCategoryName =
+  | 'Prayer'
+  | 'Dhikr'
+  | 'Charity'
+  | 'Quran'
+  | 'Fasting'
+  | 'Lifestyle'
+  | 'Social';
 
 export interface SunnahCategory {
   id: string;

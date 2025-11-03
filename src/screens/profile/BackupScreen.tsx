@@ -53,10 +53,7 @@ export const BackupScreen: React.FC = () => {
   const loadBackups = async () => {
     try {
       setIsLoading(true);
-      const [backupList, backupStats] = await Promise.all([
-        listBackups(),
-        getBackupStats(),
-      ]);
+      const [backupList, backupStats] = await Promise.all([listBackups(), getBackupStats()]);
       setBackups(backupList);
       setStats(backupStats);
     } catch (error: any) {
@@ -184,11 +181,7 @@ export const BackupScreen: React.FC = () => {
       // Try to share the file
       try {
         await shareFile(fileUri);
-        Alert.alert(
-          'Success',
-          'Backup file downloaded successfully!',
-          [{ text: 'OK' }]
-        );
+        Alert.alert('Success', 'Backup file downloaded successfully!', [{ text: 'OK' }]);
       } catch (shareError: any) {
         // If sharing fails, show the file location
         logger.warn('Sharing failed, file saved locally:', shareError);
@@ -293,7 +286,7 @@ export const BackupScreen: React.FC = () => {
             </Text>
           </View>
         ) : (
-          backups.map((backup) => (
+          backups.map(backup => (
             <View key={backup.id} style={styles.backupCard}>
               <View style={styles.backupHeader}>
                 <View style={styles.backupIcon}>
@@ -359,18 +352,14 @@ export const BackupScreen: React.FC = () => {
       <View style={styles.infoCard}>
         <Ionicons name="information-circle-outline" size={24} color={theme.colors.info} />
         <Text style={styles.infoTitle}>About Backups</Text>
-        <Text style={styles.infoText}>
-          • Backups are stored securely in the cloud
-        </Text>
+        <Text style={styles.infoText}>• Backups are stored securely in the cloud</Text>
         <Text style={styles.infoText}>
           • All your prayers, Sunnah habits, and Quran progress are included
         </Text>
         <Text style={styles.infoText}>
           • Restore on any device by logging in with the same account
         </Text>
-        <Text style={styles.infoText}>
-          • Create regular backups to prevent data loss
-        </Text>
+        <Text style={styles.infoText}>• Create regular backups to prevent data loss</Text>
       </View>
     </ScrollView>
   );

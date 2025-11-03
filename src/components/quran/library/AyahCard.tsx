@@ -49,18 +49,8 @@ export const AyahCard: React.FC<AyahCardProps> = ({
       >
         {/* Ayah Number Badge */}
         <View style={styles.numberContainer}>
-          <View
-            style={[
-              styles.numberBadge,
-              isPlaying && styles.numberBadgePlaying,
-            ]}
-          >
-            <Text
-              style={[
-                styles.numberText,
-                isPlaying && styles.numberTextPlaying,
-              ]}
-            >
+          <View style={[styles.numberBadge, isPlaying && styles.numberBadgePlaying]}>
+            <Text style={[styles.numberText, isPlaying && styles.numberTextPlaying]}>
               {ayah.number}
             </Text>
           </View>
@@ -100,13 +90,9 @@ export const AyahCard: React.FC<AyahCardProps> = ({
 
           {/* Metadata */}
           <View style={styles.metadataContainer}>
-            {ayah.page && (
-              <Text style={styles.metadataText}>Page {ayah.page}</Text>
-            )}
+            {ayah.page && <Text style={styles.metadataText}>Page {ayah.page}</Text>}
             {ayah.juz && ayah.page && <Text style={styles.metadataDot}>•</Text>}
-            {ayah.juz && (
-              <Text style={styles.metadataText}>Juz {ayah.juz}</Text>
-            )}
+            {ayah.juz && <Text style={styles.metadataText}>Juz {ayah.juz}</Text>}
           </View>
         </View>
 
@@ -114,7 +100,7 @@ export const AyahCard: React.FC<AyahCardProps> = ({
         {onBookmarkToggle && (
           <TouchableOpacity
             style={styles.bookmarkButton}
-            onPress={(e) => {
+            onPress={e => {
               e.stopPropagation();
               onBookmarkToggle();
             }}

@@ -73,7 +73,13 @@ interface UsePrayerLogsState {
 }
 
 interface UsePrayerLogsReturn extends UsePrayerLogsState {
-  logPrayer: (prayer: PrayerName, status: PrayerStatus, jamaah?: boolean, notes?: string, fridaySunnah?: string[]) => Promise<void>;
+  logPrayer: (
+    prayer: PrayerName,
+    status: PrayerStatus,
+    jamaah?: boolean,
+    notes?: string,
+    fridaySunnah?: string[]
+  ) => Promise<void>;
   updatePrayerLog: (logId: string, updates: Partial<PrayerLog>) => Promise<void>;
   deletePrayerLog: (logId: string) => Promise<void>;
   getLogForPrayer: (prayer: PrayerName, date?: string) => PrayerLog | undefined;
@@ -118,12 +124,12 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
 
   fetchLogsRef.current = async () => {
     logger.debug('=== fetchLogs called ===');
-    setState((prev) => ({ ...prev, isLoading: true, error: null }));
+    setState(prev => ({ ...prev, isLoading: true, error: null }));
 
     try {
       const user = await getCurrentUser();
       if (!user) {
-        setState((prev) => ({
+        setState(prev => ({
           ...prev,
           logs: [],
           isLoading: false,
@@ -137,14 +143,14 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
         .select('*')
         .eq('user_id', user.id)
         .eq('date', date)
-        .order('created_at', { ascending: false});
+        .order('created_at', { ascending: false });
 
       if (error) {
         throw error;
       }
 
       logger.debug('=== fetchLogs data received ===', data);
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         logs: data || [],
         isLoading: false,
@@ -153,7 +159,7 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
       logger.debug('=== fetchLogs state updated ===');
     } catch (error: any) {
       logger.error('Error fetching prayer logs:', error);
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         error: error.message || 'Failed to fetch prayer logs',
         isLoading: false,
@@ -192,7 +198,7 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
             table: 'prayer_logs',
             filter: `user_id=eq.${user.id}`,
           },
-          (payload) => {
+          payload => {
             logger.debug('Prayer log changed:', payload);
             // Use ref to avoid dependency on fetchLogs
             fetchLogsRef.current();
@@ -215,8 +221,14 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
    * Log a prayer with status
    */
   const logPrayer = useCallback(
-    async (prayer: PrayerName, status: PrayerStatus, jamaah?: boolean, notes?: string, fridaySunnah?: string[]): Promise<void> => {
-      setState((prev) => ({ ...prev, isSyncing: true, error: null }));
+    async (
+      prayer: PrayerName,
+      status: PrayerStatus,
+      jamaah?: boolean,
+      notes?: string,
+      fridaySunnah?: string[]
+    ): Promise<void> => {
+      setState(prev => ({ ...prev, isSyncing: true, error: null }));
 
       try {
         const user = await getCurrentUser();
@@ -282,9 +294,10 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
         if (existingLogs && existingLogs.length > 1) {
           logger.debug('⚠️ Multiple duplicates found! Cleaning up...');
           // Keep the most recent one, delete others
-          const sortedLogs = existingLogs.sort((a, b) =>
-            new Date(b.updated_at || b.created_at || 0).getTime() -
-            new Date(a.updated_at || a.created_at || 0).getTime()
+          const sortedLogs = existingLogs.sort(
+            (a, b) =>
+              new Date(b.updated_at || b.created_at || 0).getTime() -
+              new Date(a.updated_at || a.created_at || 0).getTime()
           );
           const logsToDelete = sortedLogs.slice(1); // All except the first (most recent)
 
@@ -295,12 +308,10 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
 
         // Use upsert with unique constraint on (user_id, date, prayer)
         // This ensures we never have duplicates
-        const { error: upsertError } = await supabase
-          .from('prayer_logs')
-          .upsert(upsertData, {
-            onConflict: 'user_id,date,prayer',
-            ignoreDuplicates: false, // Update existing records
-          });
+        const { error: upsertError } = await supabase.from('prayer_logs').upsert(upsertData, {
+          onConflict: 'user_id,date,prayer',
+          ignoreDuplicates: false, // Update existing records
+        });
 
         if (upsertError) throw upsertError;
 
@@ -316,10 +327,10 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
           );
         }
 
-        setState((prev) => ({ ...prev, isSyncing: false }));
+        setState(prev => ({ ...prev, isSyncing: false }));
       } catch (error: any) {
         logger.error('Error logging prayer:', error);
-        setState((prev) => ({
+        setState(prev => ({
           ...prev,
           error: error.message || 'Failed to log prayer',
           isSyncing: false,
@@ -335,7 +346,7 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
    */
   const updatePrayerLog = useCallback(
     async (logId: string, updates: Partial<PrayerLog>): Promise<void> => {
-      setState((prev) => ({ ...prev, isSyncing: true, error: null }));
+      setState(prev => ({ ...prev, isSyncing: true, error: null }));
 
       try {
         const { error } = await supabase
@@ -351,10 +362,10 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
         // Refresh logs
         await fetchLogs();
 
-        setState((prev) => ({ ...prev, isSyncing: false }));
+        setState(prev => ({ ...prev, isSyncing: false }));
       } catch (error: any) {
         logger.error('Error updating prayer log:', error);
-        setState((prev) => ({
+        setState(prev => ({
           ...prev,
           error: error.message || 'Failed to update prayer log',
           isSyncing: false,
@@ -370,7 +381,7 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
    */
   const deletePrayerLog = useCallback(
     async (logId: string): Promise<void> => {
-      setState((prev) => ({ ...prev, isSyncing: true, error: null }));
+      setState(prev => ({ ...prev, isSyncing: true, error: null }));
 
       try {
         const { error } = await supabase.from('prayer_logs').delete().eq('id', logId);
@@ -380,10 +391,10 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
         // Refresh logs
         await fetchLogs();
 
-        setState((prev) => ({ ...prev, isSyncing: false }));
+        setState(prev => ({ ...prev, isSyncing: false }));
       } catch (error: any) {
         logger.error('Error deleting prayer log:', error);
-        setState((prev) => ({
+        setState(prev => ({
           ...prev,
           error: error.message || 'Failed to delete prayer log',
           isSyncing: false,
@@ -400,7 +411,7 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
   const getLogForPrayer = useCallback(
     (prayer: PrayerName, logDate?: string): PrayerLog | undefined => {
       const targetDate = logDate || date;
-      return state.logs.find((log) => log.prayer === prayer && log.date === targetDate);
+      return state.logs.find(log => log.prayer === prayer && log.date === targetDate);
     },
     [state.logs, date]
   );
@@ -410,7 +421,7 @@ export const usePrayerLogs = (options: UsePrayerLogsOptions = {}): UsePrayerLogs
    */
   const getTodayLogs = useCallback((): PrayerLog[] => {
     const today = format(new Date(), 'yyyy-MM-dd');
-    return state.logs.filter((log) => log.date === today);
+    return state.logs.filter(log => log.date === today);
   }, [state.logs]);
 
   /**
@@ -453,10 +464,7 @@ export const usePrayerStats = (startDate?: string, endDate?: string) => {
         const user = await getCurrentUser();
         if (!user) return;
 
-        let query = supabase
-          .from('prayer_logs')
-          .select('status')
-          .eq('user_id', user.id);
+        let query = supabase.from('prayer_logs').select('status').eq('user_id', user.id);
 
         if (startDate) {
           query = query.gte('date', startDate);
@@ -470,10 +478,10 @@ export const usePrayerStats = (startDate?: string, endDate?: string) => {
         if (error) throw error;
 
         const total = data?.length || 0;
-        const onTime = data?.filter((log) => log.status === 'onTime').length || 0;
-        const delayed = data?.filter((log) => log.status === 'delayed').length || 0;
-        const missed = data?.filter((log) => log.status === 'missed').length || 0;
-        const qadaa = data?.filter((log) => log.status === 'qadaa').length || 0;
+        const onTime = data?.filter(log => log.status === 'onTime').length || 0;
+        const delayed = data?.filter(log => log.status === 'delayed').length || 0;
+        const missed = data?.filter(log => log.status === 'missed').length || 0;
+        const qadaa = data?.filter(log => log.status === 'qadaa').length || 0;
         const completionRate = total > 0 ? ((onTime + delayed) / total) * 100 : 0;
 
         setStats({

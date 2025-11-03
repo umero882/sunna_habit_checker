@@ -8,10 +8,10 @@
  * Format from quran-align: [wordStartIdx, wordEndIdx, startMs, endMs]
  */
 export interface WordSegment {
-  wordStartIndex: number;  // Starting word index (inclusive)
-  wordEndIndex: number;    // Ending word index (exclusive)
-  startMs: number;         // Start time in milliseconds
-  endMs: number;           // End time in milliseconds
+  wordStartIndex: number; // Starting word index (inclusive)
+  wordEndIndex: number; // Ending word index (exclusive)
+  startMs: number; // Start time in milliseconds
+  endMs: number; // End time in milliseconds
 }
 
 /**

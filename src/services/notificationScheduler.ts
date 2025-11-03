@@ -363,12 +363,12 @@ export const getScheduledNotifications = async () => {
  */
 export const setupNotificationListeners = () => {
   // Handle notification received while app is in foreground
-  const foregroundSubscription = Notifications.addNotificationReceivedListener((notification) => {
+  const foregroundSubscription = Notifications.addNotificationReceivedListener(notification => {
     logger.debug('Notification received in foreground:', notification);
   });
 
   // Handle notification response (user tapped on notification)
-  const responseSubscription = Notifications.addNotificationResponseReceivedListener((response) => {
+  const responseSubscription = Notifications.addNotificationResponseReceivedListener(response => {
     logger.debug('Notification tapped:', response);
     const data = response.notification.request.content.data;
 
@@ -439,14 +439,16 @@ export const sendStreakCelebration = async (milestone: StreakMilestone): Promise
           milestoneType: milestone.type,
           streakDays: milestone.streakDays,
         },
-        ...( Platform.OS === 'android' && {
+        ...(Platform.OS === 'android' && {
           channelId: 'achievements',
         }),
       },
       trigger: null, // Send immediately
     });
 
-    logger.debug(`Streak celebration sent: ${milestone.type} ${milestone.name} - ${milestone.streakDays} days`);
+    logger.debug(
+      `Streak celebration sent: ${milestone.type} ${milestone.name} - ${milestone.streakDays} days`
+    );
   } catch (error) {
     logger.error('Error sending streak celebration:', error);
   }

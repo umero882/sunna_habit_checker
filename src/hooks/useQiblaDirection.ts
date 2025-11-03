@@ -156,7 +156,7 @@ export const useQiblaDirection = (): UseQiblaDirectionReturn => {
 
           // Recalculate Qibla offset
           if (qiblaData) {
-            setQiblaData((prev) =>
+            setQiblaData(prev =>
               prev
                 ? {
                     ...prev,

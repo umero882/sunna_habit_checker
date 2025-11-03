@@ -64,7 +64,9 @@ export const pickImageFromGallery = async (): Promise<string | null> => {
     const hasPermission = await requestMediaLibraryPermissions();
 
     if (!hasPermission) {
-      throw new Error('Permission to access media library was denied. Please enable it in your device settings.');
+      throw new Error(
+        'Permission to access media library was denied. Please enable it in your device settings.'
+      );
     }
 
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -94,7 +96,9 @@ export const takePhoto = async (): Promise<string | null> => {
     const hasPermission = await requestCameraPermissions();
 
     if (!hasPermission) {
-      throw new Error('Permission to access camera was denied. Please enable it in your device settings.');
+      throw new Error(
+        'Permission to access camera was denied. Please enable it in your device settings.'
+      );
     }
 
     const result = await ImagePicker.launchCameraAsync({
@@ -183,15 +187,11 @@ export const uploadProfilePhoto = async (imageUri: string): Promise<UploadResult
 
     // Delete old avatar if exists
     try {
-      const { data: oldFiles } = await supabase.storage
-        .from(AVATAR_BUCKET)
-        .list(user.id);
+      const { data: oldFiles } = await supabase.storage.from(AVATAR_BUCKET).list(user.id);
 
       if (oldFiles && oldFiles.length > 0) {
         const filesToDelete = oldFiles.map(file => `${user.id}/${file.name}`);
-        await supabase.storage
-          .from(AVATAR_BUCKET)
-          .remove(filesToDelete);
+        await supabase.storage.from(AVATAR_BUCKET).remove(filesToDelete);
         logger.info(`🗑️ Deleted ${filesToDelete.length} old avatar(s)`);
       }
     } catch (deleteError: any) {
@@ -215,9 +215,7 @@ export const uploadProfilePhoto = async (imageUri: string): Promise<UploadResult
     logger.info(`✅ Upload successful: ${data.path}`);
 
     // Get public URL
-    const { data: urlData } = supabase.storage
-      .from(AVATAR_BUCKET)
-      .getPublicUrl(data.path);
+    const { data: urlData } = supabase.storage.from(AVATAR_BUCKET).getPublicUrl(data.path);
 
     const publicUrl = urlData.publicUrl;
 

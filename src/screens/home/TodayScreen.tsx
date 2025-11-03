@@ -4,7 +4,16 @@
  */
 
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, RefreshControl, ActivityIndicator, TouchableOpacity, Platform } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  RefreshControl,
+  ActivityIndicator,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { theme } from '../../constants/theme';
@@ -27,7 +36,13 @@ export const TodayScreen: React.FC = () => {
   const [refreshing, setRefreshing] = React.useState(false);
 
   // Get location data
-  const { coordinates, city, isLoading: locationLoading, error: locationError, requestPermission } = useLocation();
+  const {
+    coordinates,
+    city,
+    isLoading: locationLoading,
+    error: locationError,
+    requestPermission,
+  } = useLocation();
 
   // Get prayer times based on location
   const {
@@ -59,7 +74,12 @@ export const TodayScreen: React.FC = () => {
     setRefreshing(false);
   }, [refreshPrayerTimes]);
 
-  const handleLogPrayer = async (prayer: PrayerName, status: PrayerStatus, jamaah?: boolean, fridaySunnah?: string[]) => {
+  const handleLogPrayer = async (
+    prayer: PrayerName,
+    status: PrayerStatus,
+    jamaah?: boolean,
+    fridaySunnah?: string[]
+  ) => {
     try {
       await logPrayer(prayer, status, jamaah, undefined, fridaySunnah);
     } catch (error) {
@@ -90,12 +110,14 @@ export const TodayScreen: React.FC = () => {
         {/* Greeting Header */}
         <View style={styles.header}>
           <Text style={styles.greeting}>{t('home.assalamuAlaikum')}</Text>
-          <Text style={styles.date}>{new Date().toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}</Text>
+          <Text style={styles.date}>
+            {new Date().toLocaleDateString('en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </Text>
         </View>
 
         {/* Next Prayer Card */}
@@ -117,22 +139,15 @@ export const TodayScreen: React.FC = () => {
           ) : locationError ? (
             <View style={styles.errorContainer}>
               <Text style={styles.errorText}>Location permission required</Text>
-              <TouchableOpacity
-                style={styles.permissionButton}
-                onPress={requestPermission}
-              >
+              <TouchableOpacity style={styles.permissionButton} onPress={requestPermission}>
                 <Text style={styles.permissionButtonText}>Enable Location</Text>
               </TouchableOpacity>
             </View>
           ) : nextPrayer ? (
             <>
               <View style={styles.prayerInfo}>
-                <Text style={styles.prayerName}>
-                  {t(`prayers.${nextPrayer.name}`)}
-                </Text>
-                <Text style={styles.prayerTime}>
-                  {getPrayerTimeFormatted(nextPrayer.name)}
-                </Text>
+                <Text style={styles.prayerName}>{t(`prayers.${nextPrayer.name}`)}</Text>
+                <Text style={styles.prayerTime}>{getPrayerTimeFormatted(nextPrayer.name)}</Text>
               </View>
               <View style={styles.countdown}>
                 <Text style={styles.countdownText}>{nextPrayer.timeRemaining}</Text>
@@ -148,15 +163,11 @@ export const TodayScreen: React.FC = () => {
         <View style={styles.prayersSection}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>{t('prayers.prayerTimes')}</Text>
-            {city && (
-              <Text style={styles.locationText}>
-                📍 {city}
-              </Text>
-            )}
+            {city && <Text style={styles.locationText}>📍 {city}</Text>}
           </View>
 
           <View style={styles.prayersList}>
-            {(['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'] as PrayerName[]).map((prayer) => {
+            {(['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'] as PrayerName[]).map(prayer => {
               const log = getLogForPrayer(prayer);
               // Safely handle jamaah value: only pass if log exists and jamaah is not null
               const jamaahValue = log && log.jamaah !== null ? log.jamaah : undefined;
@@ -167,7 +178,9 @@ export const TodayScreen: React.FC = () => {
                   time={prayerTimes ? getPrayerTimeFormatted(prayer) : '--:--'}
                   status={log?.status}
                   jamaah={jamaahValue}
-                  onLog={(status, jamaah, fridaySunnah) => handleLogPrayer(prayer, status, jamaah, fridaySunnah)}
+                  onLog={(status, jamaah, fridaySunnah) =>
+                    handleLogPrayer(prayer, status, jamaah, fridaySunnah)
+                  }
                   disabled={!prayerTimes || isSyncing}
                 />
               );
@@ -184,9 +197,7 @@ export const TodayScreen: React.FC = () => {
         {/* Quick Log Habits */}
         <Card style={styles.card}>
           <Text style={styles.cardTitle}>Today's Habits</Text>
-          <Text style={styles.emptyText}>
-            Start tracking your Sunnah habits
-          </Text>
+          <Text style={styles.emptyText}>Start tracking your Sunnah habits</Text>
         </Card>
 
         {/* What's Next Suggestion */}
@@ -196,10 +207,7 @@ export const TodayScreen: React.FC = () => {
             <Text style={styles.suggestion}>
               📍 Enable location services to see accurate prayer times for your area
             </Text>
-            <TouchableOpacity
-              style={styles.actionButton}
-              onPress={requestPermission}
-            >
+            <TouchableOpacity style={styles.actionButton} onPress={requestPermission}>
               <Text style={styles.actionButtonText}>Enable Location</Text>
             </TouchableOpacity>
           </Card>

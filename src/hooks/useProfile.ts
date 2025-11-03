@@ -56,7 +56,10 @@ interface ProfileStats {
  * Fetch user profile data from Supabase Auth and user_profiles table
  */
 const fetchUserProfile = async (): Promise<UserProfile> => {
-  const { data: { user }, error } = await supabase.auth.getUser();
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
 
   if (error || !user) {
     throw new Error('User not authenticated');
@@ -158,23 +161,14 @@ export const useProfile = () => {
   });
 
   // Get stats from existing hooks
-  const {
-    stats: prayerStatsData,
-    isLoading: isLoadingPrayer,
-  } = usePrayerStats();
+  const { stats: prayerStatsData, isLoading: isLoadingPrayer } = usePrayerStats();
 
-  const {
-    stats: sunnahStatsData,
-    isLoading: isLoadingSunnah,
-  } = useSunnahStats();
+  const { stats: sunnahStatsData, isLoading: isLoadingSunnah } = useSunnahStats();
 
-  const {
-    progress: quranProgress,
-    isLoading: isLoadingQuran,
-  } = useQuranProgress();
+  const { progress: quranProgress, isLoading: isLoadingQuran } = useQuranProgress();
 
   // Aggregate all stats
-  let stats: ProfileStats | undefined = undefined;
+  let stats: ProfileStats | undefined;
 
   if (profile) {
     stats = {

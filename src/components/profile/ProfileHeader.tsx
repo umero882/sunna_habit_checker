@@ -17,24 +17,24 @@ const logger = createLogger('ProfileHeader');
 // Rotating hadiths (will show different one each day)
 const dailyHadiths = [
   {
-    text: "The strong believer is better and more beloved to Allah than the weak believer, while there is good in both.",
-    reference: "Sahih Muslim 2664",
+    text: 'The strong believer is better and more beloved to Allah than the weak believer, while there is good in both.',
+    reference: 'Sahih Muslim 2664',
   },
   {
     text: "Whoever says 'SubhanAllah' (Glory be to Allah) 100 times, a thousand good deeds are recorded for him and a thousand bad deeds are wiped away.",
-    reference: "Sahih Muslim 2073",
+    reference: 'Sahih Muslim 2073',
   },
   {
-    text: "The most beloved deed to Allah is the most regular and constant even if it were little.",
-    reference: "Sahih al-Bukhari 6464",
+    text: 'The most beloved deed to Allah is the most regular and constant even if it were little.',
+    reference: 'Sahih al-Bukhari 6464',
   },
   {
-    text: "Allah does not look at your appearance or wealth, but rather He looks at your hearts and actions.",
-    reference: "Sahih Muslim 2564",
+    text: 'Allah does not look at your appearance or wealth, but rather He looks at your hearts and actions.',
+    reference: 'Sahih Muslim 2564',
   },
   {
-    text: "Take advantage of five before five: your youth before your old age, your health before your illness, your wealth before your poverty, your free time before your work, and your life before your death.",
-    reference: "Al-Hakim",
+    text: 'Take advantage of five before five: your youth before your old age, your health before your illness, your wealth before your poverty, your free time before your work, and your life before your death.',
+    reference: 'Al-Hakim',
   },
 ];
 
@@ -83,12 +83,15 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ onEditPress }) => 
             <Image
               source={{ uri: profile.metadata.avatar_url }}
               style={styles.avatar}
-              onError={(e) => {
+              onError={e => {
                 logger.error('ProfileHeader Image load error:', e.nativeEvent.error);
                 setImageError(true);
               }}
               onLoad={() => {
-                logger.info('ProfileHeader Image loaded successfully:', profile.metadata?.avatar_url);
+                logger.info(
+                  'ProfileHeader Image loaded successfully:',
+                  profile.metadata?.avatar_url
+                );
               }}
             />
           ) : (
@@ -106,11 +109,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ onEditPress }) => 
         </View>
 
         {onEditPress && (
-          <TouchableOpacity
-            style={styles.editButton}
-            onPress={onEditPress}
-            activeOpacity={0.7}
-          >
+          <TouchableOpacity style={styles.editButton} onPress={onEditPress} activeOpacity={0.7}>
             <Edit size={20} color={theme.colors.primary[600]} />
           </TouchableOpacity>
         )}

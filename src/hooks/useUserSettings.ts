@@ -30,7 +30,9 @@ interface UpdateSettingsParams {
  * Fetch user settings from Supabase
  */
 const fetchUserSettings = async (): Promise<UserSettings | null> => {
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     throw new Error('User not authenticated');
@@ -79,7 +81,9 @@ const fetchUserSettings = async (): Promise<UserSettings | null> => {
  * Update user settings in Supabase
  */
 const updateUserSettings = async (params: UpdateSettingsParams): Promise<UserSettings> => {
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     throw new Error('User not authenticated');
@@ -95,11 +99,14 @@ const updateUserSettings = async (params: UpdateSettingsParams): Promise<UserSet
   if (params.madhhab !== undefined) updateData.madhhab = params.madhhab;
   if (params.asrMethod !== undefined) updateData.asr_method = params.asrMethod;
   if (params.hijriEnabled !== undefined) updateData.hijri_enabled = params.hijriEnabled;
-  if (params.barakahPointsEnabled !== undefined) updateData.barakah_points_enabled = params.barakahPointsEnabled;
-  if (params.notificationsEnabled !== undefined) updateData.notifications_enabled = params.notificationsEnabled;
+  if (params.barakahPointsEnabled !== undefined)
+    updateData.barakah_points_enabled = params.barakahPointsEnabled;
+  if (params.notificationsEnabled !== undefined)
+    updateData.notifications_enabled = params.notificationsEnabled;
   if (params.quietHoursStart !== undefined) updateData.quiet_hours_start = params.quietHoursStart;
   if (params.quietHoursEnd !== undefined) updateData.quiet_hours_end = params.quietHoursEnd;
-  if (params.prayerCalcMethod !== undefined) updateData.prayer_calc_method = params.prayerCalcMethod;
+  if (params.prayerCalcMethod !== undefined)
+    updateData.prayer_calc_method = params.prayerCalcMethod;
   if (params.prayerOffsets !== undefined) updateData.prayer_offsets = params.prayerOffsets;
 
   const { data, error } = await supabase
@@ -167,7 +174,7 @@ export const useUserSettings = () => {
   // Update settings mutation
   const updateMutation = useMutation({
     mutationFn: updateUserSettings,
-    onMutate: async (newSettings) => {
+    onMutate: async newSettings => {
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: ['userSettings'] });
 
@@ -175,7 +182,7 @@ export const useUserSettings = () => {
       const previousSettings = queryClient.getQueryData<UserSettings>(['userSettings']);
 
       // Optimistically update to the new value
-      queryClient.setQueryData<UserSettings>(['userSettings'], (old) => {
+      queryClient.setQueryData<UserSettings>(['userSettings'], old => {
         if (!old) return old;
         return { ...old, ...newSettings };
       });
@@ -224,7 +231,7 @@ export const useUserSettings = () => {
   const updateQuietHours = (start: string, end: string) => {
     return updateMutation.mutateAsync({
       quietHoursStart: start,
-      quietHoursEnd: end
+      quietHoursEnd: end,
     });
   };
 

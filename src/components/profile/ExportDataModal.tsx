@@ -37,11 +37,9 @@ export const ExportDataModal: React.FC<ExportDataModalProps> = ({ visible, onClo
       // PDF export using expo-print (client-side)
       await sharePDFReport(selectedPeriod);
 
-      Alert.alert(
-        'Success',
-        'Your spiritual progress report has been generated and shared!',
-        [{ text: 'OK', onPress: onClose }]
-      );
+      Alert.alert('Success', 'Your spiritual progress report has been generated and shared!', [
+        { text: 'OK', onPress: onClose },
+      ]);
     } catch (error: any) {
       logger.error('Error exporting data:', error);
       Alert.alert(
@@ -89,19 +87,14 @@ export const ExportDataModal: React.FC<ExportDataModalProps> = ({ visible, onClo
           <Text style={styles.sectionLabel}>Select Period</Text>
           <View style={styles.periodContainer}>
             <TouchableOpacity
-              style={[
-                styles.periodButton,
-                selectedPeriod === 'week' && styles.periodButtonActive,
-              ]}
+              style={[styles.periodButton, selectedPeriod === 'week' && styles.periodButtonActive]}
               onPress={() => setSelectedPeriod('week')}
               disabled={isExporting}
             >
               <Calendar
                 size={20}
                 color={
-                  selectedPeriod === 'week'
-                    ? theme.colors.primary[600]
-                    : theme.colors.gray[600]
+                  selectedPeriod === 'week' ? theme.colors.primary[600] : theme.colors.gray[600]
                 }
               />
               <Text
@@ -115,19 +108,14 @@ export const ExportDataModal: React.FC<ExportDataModalProps> = ({ visible, onClo
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={[
-                styles.periodButton,
-                selectedPeriod === 'month' && styles.periodButtonActive,
-              ]}
+              style={[styles.periodButton, selectedPeriod === 'month' && styles.periodButtonActive]}
               onPress={() => setSelectedPeriod('month')}
               disabled={isExporting}
             >
               <Calendar
                 size={20}
                 color={
-                  selectedPeriod === 'month'
-                    ? theme.colors.primary[600]
-                    : theme.colors.gray[600]
+                  selectedPeriod === 'month' ? theme.colors.primary[600] : theme.colors.gray[600]
                 }
               />
               <Text
@@ -143,11 +131,7 @@ export const ExportDataModal: React.FC<ExportDataModalProps> = ({ visible, onClo
 
           {/* Action Buttons */}
           <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.cancelButton}
-              onPress={onClose}
-              disabled={isExporting}
-            >
+            <TouchableOpacity style={styles.cancelButton} onPress={onClose} disabled={isExporting}>
               <Text style={styles.cancelButtonText}>Cancel</Text>
             </TouchableOpacity>
 
@@ -159,9 +143,7 @@ export const ExportDataModal: React.FC<ExportDataModalProps> = ({ visible, onClo
               {isExporting ? (
                 <ActivityIndicator size="small" color={theme.colors.background.primary} />
               ) : (
-                <Text style={styles.exportButtonText}>
-                  Generate PDF
-                </Text>
+                <Text style={styles.exportButtonText}>Generate PDF</Text>
               )}
             </TouchableOpacity>
           </View>

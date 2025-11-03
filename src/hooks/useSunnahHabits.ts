@@ -175,9 +175,7 @@ export function useSunnahHabits(options: UseSunnahHabitsOptions = {}): UseSunnah
   );
 
   // Get recommended habits (filter from all habits)
-  const recommendedHabits = habits.filter(habit =>
-    recommendedHabitIds.includes(habit.id)
-  );
+  const recommendedHabits = habits.filter(habit => recommendedHabitIds.includes(habit.id));
 
   return {
     habits,

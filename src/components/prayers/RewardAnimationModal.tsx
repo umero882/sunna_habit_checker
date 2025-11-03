@@ -8,8 +8,16 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Modal, Animated } from 'react-native';
 import { theme } from '../../constants/theme';
 import { BARAKAH_POINTS, JAMAAH_MULTIPLIER } from '../../constants/points';
-import { getRandomJamaahMessage, getRandomAloneMessage, JAMAAH_HADITH } from '../../constants/messages';
-import { usePointsAnimation, useScaleAnimation, useFadeAnimation } from '../../hooks/usePointsAnimation';
+import {
+  getRandomJamaahMessage,
+  getRandomAloneMessage,
+  JAMAAH_HADITH,
+} from '../../constants/messages';
+import {
+  usePointsAnimation,
+  useScaleAnimation,
+  useFadeAnimation,
+} from '../../hooks/usePointsAnimation';
 
 interface RewardAnimationModalProps {
   /** Whether modal is visible */
@@ -56,9 +64,12 @@ export const RewardAnimationModal: React.FC<RewardAnimationModalProps> = ({
       startMultiplier();
 
       // Auto-dismiss after duration
-      const dismissTimeout = setTimeout(() => {
-        onComplete();
-      }, isJamaah ? 3000 : 2000); // Longer for Jamaah to enjoy the animation
+      const dismissTimeout = setTimeout(
+        () => {
+          onComplete();
+        },
+        isJamaah ? 3000 : 2000
+      ); // Longer for Jamaah to enjoy the animation
 
       return () => clearTimeout(dismissTimeout);
     }
@@ -87,12 +98,7 @@ export const RewardAnimationModal: React.FC<RewardAnimationModalProps> = ({
   const totalPoints = isJamaah ? basePoints * JAMAAH_MULTIPLIER : basePoints;
 
   return (
-    <Modal
-      visible={visible}
-      transparent
-      animationType="none"
-      onRequestClose={onComplete}
-    >
+    <Modal visible={visible} transparent animationType="none" onRequestClose={onComplete}>
       <Animated.View style={[styles.overlay, { opacity: fadeValue }]}>
         <Animated.View
           style={[
@@ -127,9 +133,7 @@ export const RewardAnimationModal: React.FC<RewardAnimationModalProps> = ({
 
           {/* Animated Multiplier */}
           <View style={styles.multiplierContainer}>
-            <Animated.Text style={styles.multiplierNumber}>
-              {multiplierText}
-            </Animated.Text>
+            <Animated.Text style={styles.multiplierNumber}>{multiplierText}</Animated.Text>
             <Text style={styles.multiplierSymbol}>×</Text>
           </View>
 
@@ -142,7 +146,12 @@ export const RewardAnimationModal: React.FC<RewardAnimationModalProps> = ({
 
           {/* Message */}
           <View style={styles.messageContainer}>
-            <Text style={[styles.message, { color: isJamaah ? theme.colors.primary[700] : theme.colors.text.primary }]}>
+            <Text
+              style={[
+                styles.message,
+                { color: isJamaah ? theme.colors.primary[700] : theme.colors.text.primary },
+              ]}
+            >
               {message}
             </Text>
           </View>

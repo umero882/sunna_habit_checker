@@ -6,16 +6,11 @@
 
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
-import {
-  ReciterTimingData,
-  AyahTiming,
-  WordSegment,
-} from '../types/wordTiming';
+import { ReciterTimingData, AyahTiming, WordSegment } from '../types/wordTiming';
 
 import { createLogger } from '../utils/logger';
 
 const logger = createLogger('wordTimingService');
-
 
 const DB_NAME = 'quran-timing.db';
 
@@ -63,7 +58,7 @@ class WordTimingService {
           if (asset.localUri) {
             await FileSystem.copyAsync({
               from: asset.localUri,
-              to: dbPath
+              to: dbPath,
             });
             logger.debug('✅ Database copied successfully');
           } else {
@@ -89,11 +84,7 @@ class WordTimingService {
    */
   isTimingAvailable(reciter: string): boolean {
     // List of reciters with timing data in the database
-    const availableReciters = [
-      'ar.alafasy',
-      'ar.husary',
-      'ar.husarymujawwad',
-    ];
+    const availableReciters = ['ar.alafasy', 'ar.husary', 'ar.husarymujawwad'];
     return availableReciters.includes(reciter);
   }
 
@@ -101,11 +92,7 @@ class WordTimingService {
    * Get the list of reciters with timing data available
    */
   getAvailableReciters(): string[] {
-    return [
-      'ar.alafasy',
-      'ar.husary',
-      'ar.husarymujawwad',
-    ];
+    return ['ar.alafasy', 'ar.husary', 'ar.husarymujawwad'];
   }
 
   /**
@@ -183,10 +170,7 @@ class WordTimingService {
   /**
    * Find the current word index based on audio position
    */
-  getCurrentWordIndex(
-    segments: WordSegment[],
-    positionMs: number
-  ): number {
+  getCurrentWordIndex(segments: WordSegment[], positionMs: number): number {
     for (let i = 0; i < segments.length; i++) {
       const segment = segments[i];
       if (positionMs >= segment.startMs && positionMs < segment.endMs) {

@@ -10,7 +10,12 @@ import { supabase } from '../services/supabase';
 import { SurahMeta } from '../types';
 
 // Today Tab Components
-import { DailyGoalCard, CurrentReadingCard, QuickLogButton, StatisticsCard } from '../components/quran/today';
+import {
+  DailyGoalCard,
+  CurrentReadingCard,
+  QuickLogButton,
+  StatisticsCard,
+} from '../components/quran/today';
 
 // Hooks
 import { useQuranStatistics } from '../hooks/useQuranStatistics';
@@ -50,14 +55,17 @@ export const QuranScreen: React.FC = () => {
     const initialize = async () => {
       try {
         // Get current user
-        const { data: { user }, error } = await supabase.auth.getUser();
+        const {
+          data: { user },
+          error,
+        } = await supabase.auth.getUser();
         if (error) {
           logger.error('Failed to get user:', error);
         } else if (user) {
           setUserId(user.id);
         }
       } catch (error) {
-        logger.error('Failed to initialize Qur\'an module:', error);
+        logger.error("Failed to initialize Qur'an module:", error);
       }
     };
 
@@ -144,10 +152,7 @@ export const QuranScreen: React.FC = () => {
               <Text style={styles.sectionTitle}>Recent Bookmarks</Text>
             </View>
             <View style={styles.bookmarksContainer}>
-              <BookmarksListView
-                userId={userId}
-                onBookmarkPress={onBookmarkPress}
-              />
+              <BookmarksListView userId={userId} onBookmarkPress={onBookmarkPress} />
             </View>
           </View>
         </View>
@@ -162,9 +167,7 @@ export const QuranScreen: React.FC = () => {
         style={[styles.tab, activeTab === 'today' && styles.tabActive]}
         onPress={() => setActiveTab('today')}
       >
-        <Text style={[styles.tabText, activeTab === 'today' && styles.tabTextActive]}>
-          Today
-        </Text>
+        <Text style={[styles.tabText, activeTab === 'today' && styles.tabTextActive]}>Today</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -235,7 +238,7 @@ export const QuranScreen: React.FC = () => {
             surahNumber={selectedSurah.number}
             initialAyah={initialAyah}
             userId={userId || undefined}
-            onSurahChange={(newSurahNumber) => {
+            onSurahChange={newSurahNumber => {
               // When continuous play moves to next surah
               const nextSurah = require('../constants/quran').SURAHS.find(
                 (s: SurahMeta) => s.number === newSurahNumber

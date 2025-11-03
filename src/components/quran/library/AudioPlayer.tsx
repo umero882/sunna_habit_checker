@@ -28,12 +28,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   onPositionChange,
   onSurahComplete,
 }) => {
-  const {
-    reciter,
-    reciterInfo,
-    setReciter,
-    availableReciters,
-  } = useReciterPreference(userId);
+  const { reciter, reciterInfo, setReciter, availableReciters } = useReciterPreference(userId);
 
   const {
     isPlaying,
@@ -149,10 +144,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     // Compact Player
     return (
       <View style={styles.compactContainer}>
-        <TouchableOpacity
-          style={styles.expandButton}
-          onPress={() => setIsExpanded(true)}
-        >
+        <TouchableOpacity style={styles.expandButton} onPress={() => setIsExpanded(true)}>
           <Text style={styles.expandIcon}>▲</Text>
         </TouchableOpacity>
 
@@ -166,9 +158,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
               {nextAyah && autoPlayAyahs && ` → ${nextAyah}`}
             </Text>
           )}
-          {!isPlaying && autoPlayAyahs && (
-            <Text style={styles.compactSubtitle}>Auto-play ON</Text>
-          )}
+          {!isPlaying && autoPlayAyahs && <Text style={styles.compactSubtitle}>Auto-play ON</Text>}
         </View>
 
         <TouchableOpacity
@@ -179,9 +169,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           {isLoading ? (
             <ActivityIndicator size="small" color={theme.colors.text.inverse} />
           ) : (
-            <Text style={styles.compactPlayIcon}>
-              {isPlaying ? '⏸' : '▶'}
-            </Text>
+            <Text style={styles.compactPlayIcon}>{isPlaying ? '⏸' : '▶'}</Text>
           )}
         </TouchableOpacity>
       </View>
@@ -192,10 +180,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   return (
     <View style={styles.expandedContainer}>
       {/* Collapse Button */}
-      <TouchableOpacity
-        style={styles.collapseButton}
-        onPress={() => setIsExpanded(false)}
-      >
+      <TouchableOpacity style={styles.collapseButton} onPress={() => setIsExpanded(false)}>
         <Text style={styles.collapseIcon}>▼</Text>
       </TouchableOpacity>
 
@@ -218,25 +203,16 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       {/* Controls */}
       <View style={styles.controlsContainer}>
         {/* Speed Control */}
-        <TouchableOpacity
-          style={styles.speedButton}
-          onPress={handleSpeedChange}
-        >
+        <TouchableOpacity style={styles.speedButton} onPress={handleSpeedChange}>
           <Text style={styles.speedText}>{playbackSpeed}x</Text>
         </TouchableOpacity>
 
         {/* Play/Pause */}
-        <TouchableOpacity
-          style={styles.playButton}
-          onPress={handlePlayPause}
-          disabled={isLoading}
-        >
+        <TouchableOpacity style={styles.playButton} onPress={handlePlayPause} disabled={isLoading}>
           {isLoading ? (
             <ActivityIndicator size="large" color={theme.colors.text.inverse} />
           ) : (
-            <Text style={styles.playIcon}>
-              {isPlaying ? '⏸' : '▶'}
-            </Text>
+            <Text style={styles.playIcon}>{isPlaying ? '⏸' : '▶'}</Text>
           )}
         </TouchableOpacity>
 
@@ -246,10 +222,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           onPress={stop}
           disabled={!isPlaying && !audioState}
         >
-          <Text style={[
-            styles.stopIcon,
-            (!isPlaying && !audioState) && styles.stopIconDisabled,
-          ]}>
+          <Text style={[styles.stopIcon, !isPlaying && !audioState && styles.stopIconDisabled]}>
             ⏹
           </Text>
         </TouchableOpacity>
@@ -259,16 +232,11 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       <View style={styles.additionalControls}>
         {/* Auto-play Ayahs Toggle */}
         <TouchableOpacity
-          style={[
-            styles.continuousPlayButton,
-            autoPlayAyahs && styles.continuousPlayButtonActive,
-          ]}
+          style={[styles.continuousPlayButton, autoPlayAyahs && styles.continuousPlayButtonActive]}
           onPress={handleToggleAutoPlay}
         >
           <Text style={styles.continuousPlayIcon}>▶️</Text>
-          <Text style={styles.continuousPlayText}>
-            {autoPlayAyahs ? 'Auto-play' : 'Manual'}
-          </Text>
+          <Text style={styles.continuousPlayText}>{autoPlayAyahs ? 'Auto-play' : 'Manual'}</Text>
         </TouchableOpacity>
       </View>
 
@@ -280,9 +248,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
               Ayah {currentPlayingAyah} of {totalAyahs}
             </Text>
             {nextAyah && autoPlayAyahs && (
-              <Text style={styles.nextAyahText}>
-                Next: Ayah {nextAyah}
-              </Text>
+              <Text style={styles.nextAyahText}>Next: Ayah {nextAyah}</Text>
             )}
           </View>
         )}
@@ -295,9 +261,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         activeOpacity={0.7}
       >
         <Text style={styles.reciterLabel}>Reciter:</Text>
-        <Text style={styles.reciterNameText}>
-          {reciterInfo?.name || 'Loading...'}
-        </Text>
+        <Text style={styles.reciterNameText}>{reciterInfo?.name || 'Loading...'}</Text>
         <Text style={styles.changeReciterText}>Tap to change</Text>
       </TouchableOpacity>
 

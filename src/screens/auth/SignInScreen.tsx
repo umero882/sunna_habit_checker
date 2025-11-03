@@ -119,9 +119,7 @@ export const SignInScreen: React.FC<Props> = ({ navigation }) => {
               accessibilityRole="button"
               accessibilityLabel={t('auth.forgotPassword')}
             >
-              <Text style={styles.forgotPassword}>
-                {t('auth.forgotPassword')}
-              </Text>
+              <Text style={styles.forgotPassword}>{t('auth.forgotPassword')}</Text>
             </TouchableOpacity>
 
             {/* Sign In Button */}

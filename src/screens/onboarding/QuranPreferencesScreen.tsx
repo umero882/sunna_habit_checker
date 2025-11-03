@@ -34,7 +34,8 @@ const DAILY_GOALS = [
 
 export const QuranPreferencesScreen: React.FC = () => {
   const { t } = useTranslation();
-  const { goToNextStep, goToPreviousStep, skipCurrentStep, currentStepIndex, totalSteps } = useOnboarding();
+  const { goToNextStep, goToPreviousStep, skipCurrentStep, currentStepIndex, totalSteps } =
+    useOnboarding();
   const { updatePreferences, isUpdating } = useQuranPreferences();
 
   const [selectedReciter, setSelectedReciter] = useState('ar.alafasy'); // Default to Mishary
@@ -43,7 +44,8 @@ export const QuranPreferencesScreen: React.FC = () => {
   const handleNext = async () => {
     try {
       // Get display name for analytics
-      const reciterDisplayName = RECITERS.find(r => r.id === selectedReciter)?.displayName || selectedReciter;
+      const reciterDisplayName =
+        RECITERS.find(r => r.id === selectedReciter)?.displayName || selectedReciter;
 
       // Track preferences change
       trackQuranPreferencesChanged(reciterDisplayName, selectedGoal);
@@ -83,7 +85,7 @@ export const QuranPreferencesScreen: React.FC = () => {
             {t('onboarding.quranPreferences.reciterTitle', 'Choose Reciter')}
           </Text>
 
-          {RECITERS.map((reciter) => (
+          {RECITERS.map(reciter => (
             <TouchableOpacity
               key={reciter.id}
               style={[
@@ -97,7 +99,12 @@ export const QuranPreferencesScreen: React.FC = () => {
                 {selectedReciter === reciter.id && <View style={styles.radioInner} />}
               </View>
               <Text style={styles.optionText}>{reciter.name}</Text>
-              <Ionicons name="musical-notes" size={20} color={theme.colors.white} style={{ opacity: 0.6 }} />
+              <Ionicons
+                name="musical-notes"
+                size={20}
+                color={theme.colors.white}
+                style={{ opacity: 0.6 }}
+              />
             </TouchableOpacity>
           ))}
         </View>
@@ -108,13 +115,10 @@ export const QuranPreferencesScreen: React.FC = () => {
             {t('onboarding.quranPreferences.goalTitle', 'Daily Reading Goal')}
           </Text>
 
-          {DAILY_GOALS.map((goal) => (
+          {DAILY_GOALS.map(goal => (
             <TouchableOpacity
               key={goal.pages}
-              style={[
-                styles.optionCard,
-                selectedGoal === goal.pages && styles.optionCardSelected,
-              ]}
+              style={[styles.optionCard, selectedGoal === goal.pages && styles.optionCardSelected]}
               onPress={() => setSelectedGoal(goal.pages)}
               activeOpacity={0.7}
             >

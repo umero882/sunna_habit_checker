@@ -69,9 +69,7 @@ export const SettingRow: React.FC<SettingRowProps> = ({
       case 'select':
         return (
           <View style={styles.navigationRight}>
-            {value && typeof value === 'string' && (
-              <Text style={styles.valueText}>{value}</Text>
-            )}
+            {value && typeof value === 'string' && <Text style={styles.valueText}>{value}</Text>}
             <ChevronRight size={20} color={theme.colors.gray[400]} />
           </View>
         );
@@ -91,10 +89,7 @@ export const SettingRow: React.FC<SettingRowProps> = ({
 
   return (
     <TouchableOpacity
-      style={[
-        styles.container,
-        disabled && styles.disabled,
-      ]}
+      style={[styles.container, disabled && styles.disabled]}
       onPress={handlePress}
       disabled={!isInteractive || type === 'toggle'}
       activeOpacity={isInteractive ? 0.7 : 1}
@@ -104,9 +99,7 @@ export const SettingRow: React.FC<SettingRowProps> = ({
         <View style={styles.textContainer}>
           <Text style={[styles.label, disabled && styles.disabledText]}>{label}</Text>
           {description && (
-            <Text style={[styles.description, disabled && styles.disabledText]}>
-              {description}
-            </Text>
+            <Text style={[styles.description, disabled && styles.disabledText]}>{description}</Text>
           )}
         </View>
       </View>

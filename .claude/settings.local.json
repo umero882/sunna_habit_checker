@@ -43,7 +43,13 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: Sunnah Habit Checker - Production Ready\n\n✨ Features:\n- Prayer time tracking with multiple calculation methods\n- Quran reader with word-by-word audio synchronization\n- Sunnah habit tracking system\n- User profile management with photo upload\n- Onboarding flow for new users\n- Data export/backup functionality\n- Qibla compass\n- Bilingual support (English/Arabic with RTL)\n\n🔧 Technical Setup:\n- TypeScript with strict mode (100% type-safe)\n- ESLint + Prettier configured\n- Path aliases configured (@/components, @/hooks, etc.)\n- Logger utility replacing console.logs\n- GitHub Actions CI/CD pipeline\n- Pre-commit hooks with Husky + lint-staged\n- Jest testing framework configured\n- EAS Build configuration ready\n\n🏗️ Architecture:\n- React Native with Expo SDK 54\n- Supabase backend with Row-Level Security\n- React Query for server state management\n- SQLite for offline Quran data\n- Comprehensive error handling with ErrorBoundary\n\n📚 Documentation:\n- Production readiness test report\n- Setup guides and quick starts\n- Feature implementation docs\n- Troubleshooting guides\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git push:*)",
-      "Bash(del nul 2)"
+      "Bash(del nul 2)",
+      "Bash(git commit:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(npm run lint:fix:*)",
+      "Bash(lint-output.txt)",
+      "Bash(echo:*)",
+      "Bash(npm run format:*)"
     ],
     "deny": [],
     "ask": []

@@ -27,11 +27,7 @@ export const SurahCard: React.FC<SurahCardProps> = ({ surah, onPress }) => {
     checkCache();
   }, [surah.number, isSurahCached]);
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={onPress}
-      activeOpacity={0.7}
-    >
+    <TouchableOpacity style={styles.container} onPress={onPress} activeOpacity={0.7}>
       {/* Number Badge */}
       <View style={styles.numberBadge}>
         <Text style={styles.numberText}>{surah.number}</Text>

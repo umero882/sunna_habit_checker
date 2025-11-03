@@ -63,9 +63,14 @@ export function gregorianToHijri(date: Date): HijriDate {
   let y = year + 4800 - a;
   let m = month + 12 * a - 3;
 
-  let jdn = day + Math.floor((153 * m + 2) / 5) + 365 * y +
-            Math.floor(y / 4) - Math.floor(y / 100) +
-            Math.floor(y / 400) - 32045;
+  let jdn =
+    day +
+    Math.floor((153 * m + 2) / 5) +
+    365 * y +
+    Math.floor(y / 4) -
+    Math.floor(y / 100) +
+    Math.floor(y / 400) -
+    32045;
 
   // Convert JDN to Hijri
   // Islamic calendar epoch (July 16, 622 CE)
@@ -76,15 +81,15 @@ export function gregorianToHijri(date: Date): HijriDate {
   const n = Math.floor((l - 1) / 10631);
   const l2 = l - 10631 * n + 354;
 
-  const j = Math.floor((10985 - l2) / 5316) *
-            Math.floor((50 * l2) / 17719) +
-            Math.floor(l2 / 5670) *
-            Math.floor((43 * l2) / 15238);
+  const j =
+    Math.floor((10985 - l2) / 5316) * Math.floor((50 * l2) / 17719) +
+    Math.floor(l2 / 5670) * Math.floor((43 * l2) / 15238);
 
-  const l3 = l2 - Math.floor((30 - j) / 15) *
-             Math.floor((17719 * j) / 50) -
-             Math.floor(j / 16) *
-             Math.floor((15238 * j) / 43) + 29;
+  const l3 =
+    l2 -
+    Math.floor((30 - j) / 15) * Math.floor((17719 * j) / 50) -
+    Math.floor(j / 16) * Math.floor((15238 * j) / 43) +
+    29;
 
   const hijriMonth = Math.floor((24 * l3) / 709);
   const hijriDay = l3 - Math.floor((709 * hijriMonth) / 24);
@@ -113,10 +118,7 @@ export function gregorianToHijri(date: Date): HijriDate {
  * formatHijriDate({ day: 15, month: 9, year: 1446, ... }, 'ar')
  * // Returns: "15 رمضان 1446"
  */
-export function formatHijriDate(
-  hijriDate: HijriDate,
-  locale: 'ar' | 'en' = 'en'
-): string {
+export function formatHijriDate(hijriDate: HijriDate, locale: 'ar' | 'en' = 'en'): string {
   const monthName = locale === 'ar' ? hijriDate.monthNameAr : hijriDate.monthNameEn;
 
   if (locale === 'ar') {
@@ -138,10 +140,7 @@ export function formatHijriDate(
  * formatGregorianDate(new Date('2025-10-31'), 'en')
  * // Returns: "October 31, 2025"
  */
-export function formatGregorianDate(
-  date: Date,
-  locale: 'ar' | 'en' = 'en'
-): string {
+export function formatGregorianDate(date: Date, locale: 'ar' | 'en' = 'en'): string {
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',

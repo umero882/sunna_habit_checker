@@ -24,15 +24,8 @@ interface PlannerTabProps {
 }
 
 export const PlannerTab: React.FC<PlannerTabProps> = ({ userId }) => {
-  const {
-    activePlan,
-    plans,
-    isLoading,
-    error,
-    createPlan,
-    updatePlan,
-    deletePlan,
-  } = useReadingPlan(userId);
+  const { activePlan, plans, isLoading, error, createPlan, updatePlan, deletePlan } =
+    useReadingPlan(userId);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -45,24 +38,20 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({ userId }) => {
   };
 
   const handleDeletePlan = (plan: QuranPlan) => {
-    Alert.alert(
-      'Delete Plan',
-      `Are you sure you want to delete "${plan.name}"?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await deletePlan(plan.id);
-            } catch (error) {
-              Alert.alert('Error', 'Failed to delete plan. Please try again.');
-            }
-          },
+    Alert.alert('Delete Plan', `Are you sure you want to delete "${plan.name}"?`, [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Delete',
+        style: 'destructive',
+        onPress: async () => {
+          try {
+            await deletePlan(plan.id);
+          } catch (error) {
+            Alert.alert('Error', 'Failed to delete plan. Please try again.');
+          }
         },
-      ]
-    );
+      },
+    ]);
   };
 
   const handleToggleActive = async (plan: QuranPlan) => {
@@ -83,9 +72,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({ userId }) => {
       <View style={styles.emptyContainer}>
         <Text style={styles.emptyIcon}>🔒</Text>
         <Text style={styles.emptyTitle}>Sign in Required</Text>
-        <Text style={styles.emptyText}>
-          Please sign in to create and manage reading plans
-        </Text>
+        <Text style={styles.emptyText}>Please sign in to create and manage reading plans</Text>
       </View>
     );
   }
@@ -109,9 +96,9 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({ userId }) => {
     );
   }
 
-  const activePlans = plans.filter((p) => p.active && !p.completed_at);
-  const completedPlans = plans.filter((p) => p.completed_at);
-  const inactivePlans = plans.filter((p) => !p.active && !p.completed_at);
+  const activePlans = plans.filter(p => p.active && !p.completed_at);
+  const completedPlans = plans.filter(p => p.completed_at);
+  const inactivePlans = plans.filter(p => !p.active && !p.completed_at);
 
   return (
     <View style={styles.container}>
@@ -130,10 +117,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({ userId }) => {
                 : `${plans.length} plan${plans.length !== 1 ? 's' : ''} total`}
             </Text>
           </View>
-          <TouchableOpacity
-            style={styles.createButton}
-            onPress={() => setIsModalVisible(true)}
-          >
+          <TouchableOpacity style={styles.createButton} onPress={() => setIsModalVisible(true)}>
             <Text style={styles.createButtonIcon}>+</Text>
           </TouchableOpacity>
         </View>
@@ -144,16 +128,14 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({ userId }) => {
             <Text style={styles.emptyStateIcon}>📚</Text>
             <Text style={styles.emptyStateTitle}>No Reading Plans Yet</Text>
             <Text style={styles.emptyStateText}>
-              Create a plan to track your Qur'an reading progress and stay
-              motivated on your spiritual journey.
+              Create a plan to track your Qur'an reading progress and stay motivated on your
+              spiritual journey.
             </Text>
             <TouchableOpacity
               style={styles.emptyStateButton}
               onPress={() => setIsModalVisible(true)}
             >
-              <Text style={styles.emptyStateButtonText}>
-                Create Your First Plan
-              </Text>
+              <Text style={styles.emptyStateButtonText}>Create Your First Plan</Text>
             </TouchableOpacity>
           </View>
         ) : (
@@ -162,12 +144,8 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({ userId }) => {
             {activePlans.length > 0 && (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Active Plan</Text>
-                {activePlans.map((plan) => (
-                  <PlanCard
-                    key={plan.id}
-                    plan={plan}
-                    onDelete={() => handleDeletePlan(plan)}
-                  />
+                {activePlans.map(plan => (
+                  <PlanCard key={plan.id} plan={plan} onDelete={() => handleDeletePlan(plan)} />
                 ))}
               </View>
             )}
@@ -176,7 +154,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({ userId }) => {
             {inactivePlans.length > 0 && (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Inactive Plans</Text>
-                {inactivePlans.map((plan) => (
+                {inactivePlans.map(plan => (
                   <PlanCard
                     key={plan.id}
                     plan={plan}
@@ -190,15 +168,9 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({ userId }) => {
             {/* Completed Plans */}
             {completedPlans.length > 0 && (
               <View style={styles.section}>
-                <Text style={styles.sectionTitle}>
-                  Completed Plans ({completedPlans.length})
-                </Text>
-                {completedPlans.map((plan) => (
-                  <PlanCard
-                    key={plan.id}
-                    plan={plan}
-                    onDelete={() => handleDeletePlan(plan)}
-                  />
+                <Text style={styles.sectionTitle}>Completed Plans ({completedPlans.length})</Text>
+                {completedPlans.map(plan => (
+                  <PlanCard key={plan.id} plan={plan} onDelete={() => handleDeletePlan(plan)} />
                 ))}
               </View>
             )}
@@ -210,21 +182,15 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({ userId }) => {
           <Text style={styles.tipsTitle}>💡 Reading Tips</Text>
           <View style={styles.tipItem}>
             <Text style={styles.tipBullet}>•</Text>
-            <Text style={styles.tipText}>
-              Start with small, achievable daily targets
-            </Text>
+            <Text style={styles.tipText}>Start with small, achievable daily targets</Text>
           </View>
           <View style={styles.tipItem}>
             <Text style={styles.tipBullet}>•</Text>
-            <Text style={styles.tipText}>
-              Read with understanding - quality over quantity
-            </Text>
+            <Text style={styles.tipText}>Read with understanding - quality over quantity</Text>
           </View>
           <View style={styles.tipItem}>
             <Text style={styles.tipBullet}>•</Text>
-            <Text style={styles.tipText}>
-              Choose a consistent time each day for reading
-            </Text>
+            <Text style={styles.tipText}>Choose a consistent time each day for reading</Text>
           </View>
         </View>
       </ScrollView>

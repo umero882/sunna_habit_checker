@@ -13,7 +13,8 @@ import { theme } from '../../constants/theme';
 
 export const FeaturesQuranScreen: React.FC = () => {
   const { t } = useTranslation();
-  const { goToNextStep, goToPreviousStep, skipCurrentStep, currentStepIndex, totalSteps } = useOnboarding();
+  const { goToNextStep, goToPreviousStep, skipCurrentStep, currentStepIndex, totalSteps } =
+    useOnboarding();
 
   return (
     <View style={{ flex: 1, backgroundColor: 'rgba(156, 39, 176, 0.95)' }}>

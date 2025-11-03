@@ -88,7 +88,7 @@ const TileItem: React.FC<TileItemProps> = ({ tile }) => (
   </TouchableOpacity>
 );
 
-export const QuickActionTiles: React.FC<QuickActionTilesProps> = (props) => {
+export const QuickActionTiles: React.FC<QuickActionTilesProps> = props => {
   const tiles = props.tiles || defaultTiles(props);
 
   return (
@@ -99,7 +99,7 @@ export const QuickActionTiles: React.FC<QuickActionTilesProps> = (props) => {
       </View>
 
       <View style={styles.grid}>
-        {tiles.map((tile) => (
+        {tiles.map(tile => (
           <TileItem key={tile.id} tile={tile} />
         ))}
       </View>

@@ -74,16 +74,14 @@ export const useBookmarks = (userId?: string): UseBookmarksReturn => {
       if (!userId) throw new Error('User ID required');
 
       try {
-        const { error: insertError } = await supabase
-          .from('quran_bookmarks')
-          .insert([
-            {
-              user_id: userId,
-              surah_number: surahNumber,
-              ayah_number: ayahNumber,
-              note: note || null,
-            },
-          ]);
+        const { error: insertError } = await supabase.from('quran_bookmarks').insert([
+          {
+            user_id: userId,
+            surah_number: surahNumber,
+            ayah_number: ayahNumber,
+            note: note || null,
+          },
+        ]);
 
         if (insertError) throw insertError;
 
@@ -129,9 +127,7 @@ export const useBookmarks = (userId?: string): UseBookmarksReturn => {
    */
   const isBookmarked = useCallback(
     (surahNumber: number, ayahNumber: number): boolean => {
-      return bookmarks.some(
-        (b) => b.surah_number === surahNumber && b.ayah_number === ayahNumber
-      );
+      return bookmarks.some(b => b.surah_number === surahNumber && b.ayah_number === ayahNumber);
     },
     [bookmarks]
   );

@@ -85,7 +85,9 @@ export function useTodayStats(date?: Date): UseTodayStatsReturn {
   } = useQuery({
     queryKey: ['quranReadingLogs'],
     queryFn: async (): Promise<QuranReadingLog[]> => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       if (!user) return [];
 
       const { data, error } = await supabase
@@ -157,7 +159,8 @@ export function useTodayStats(date?: Date): UseTodayStatsReturn {
       dailyStats.sunnah = {
         habitsCompleted,
         totalHabits,
-        completionPercentage: totalHabits > 0 ? Math.round((habitsCompleted / totalHabits) * 100) : 0,
+        completionPercentage:
+          totalHabits > 0 ? Math.round((habitsCompleted / totalHabits) * 100) : 0,
       };
 
       return dailyStats;
@@ -170,12 +173,7 @@ export function useTodayStats(date?: Date): UseTodayStatsReturn {
 
   // Refresh all data
   const refresh = useCallback(async () => {
-    await Promise.all([
-      refreshLogs(),
-      refreshSunnah(),
-      refetchQuranLogs(),
-      refetchQuranPrefs(),
-    ]);
+    await Promise.all([refreshLogs(), refreshSunnah(), refetchQuranLogs(), refetchQuranPrefs()]);
     // TODO: Refresh Charity data when hook available
     // Note: isLoading and error are derived from source hooks,
     // so they will update automatically when those hooks refresh

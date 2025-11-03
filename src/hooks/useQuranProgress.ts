@@ -48,7 +48,7 @@ export const useQuranProgress = (userId?: string): UseQuranProgressReturn => {
       }
 
       // Get unique dates
-      const uniqueDates = [...new Set(data.map((log) => log.date))].sort().reverse();
+      const uniqueDates = [...new Set(data.map(log => log.date))].sort().reverse();
 
       // Calculate current streak
       let currentStreak = 0;
@@ -58,7 +58,10 @@ export const useQuranProgress = (userId?: string): UseQuranProgressReturn => {
       // Check if user read today or yesterday (to allow for continuation)
       if (uniqueDates[0] === today || uniqueDates[0] === yesterday) {
         currentStreak = 1;
-        let checkDate = uniqueDates[0] === today ? yesterday : format(subDays(new Date(uniqueDates[0]), 1), 'yyyy-MM-dd');
+        let checkDate =
+          uniqueDates[0] === today
+            ? yesterday
+            : format(subDays(new Date(uniqueDates[0]), 1), 'yyyy-MM-dd');
 
         for (let i = 1; i < uniqueDates.length; i++) {
           if (uniqueDates[i] === checkDate) {
@@ -123,10 +126,7 @@ export const useQuranProgress = (userId?: string): UseQuranProgressReturn => {
       // Calculate totals
       // Round page totals since old logs may have decimal values, but pages should be integers
       const totalPagesRead = Math.round(data.reduce((sum, log) => sum + (log.pages_read || 0), 0));
-      const totalVersesRead = data.reduce(
-        (sum, log) => sum + (log.to_ayah - log.from_ayah + 1),
-        0
-      );
+      const totalVersesRead = data.reduce((sum, log) => sum + (log.to_ayah - log.from_ayah + 1), 0);
       const totalMinutes = data.reduce((sum, log) => sum + (log.duration_minutes || 0), 0);
 
       // Get streaks
@@ -142,7 +142,7 @@ export const useQuranProgress = (userId?: string): UseQuranProgressReturn => {
       const lastReadDate = lastLog?.date;
 
       // Count completed surahs (simplified - would need more logic for actual completion)
-      const surahSet = new Set(data.map((log) => log.surah_number));
+      const surahSet = new Set(data.map(log => log.surah_number));
       const surahsCompleted = surahSet.size;
 
       return {
@@ -182,7 +182,7 @@ export const useQuranProgress = (userId?: string): UseQuranProgressReturn => {
         // Group by date
         const statsByDate = new Map<string, QuranDailyStats>();
 
-        data?.forEach((log) => {
+        data?.forEach(log => {
           const existing = statsByDate.get(log.date);
 
           if (existing) {
@@ -240,10 +240,7 @@ export const useQuranProgress = (userId?: string): UseQuranProgressReturn => {
     setError(null);
 
     try {
-      const [progressData, weeklyData] = await Promise.all([
-        calculateProgress(),
-        getWeeklyStats(),
-      ]);
+      const [progressData, weeklyData] = await Promise.all([calculateProgress(), getWeeklyStats()]);
 
       setProgress(progressData);
       setDailyStats(weeklyData);

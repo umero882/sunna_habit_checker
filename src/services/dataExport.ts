@@ -64,7 +64,9 @@ export interface ExportData {
  * Fetch all user data for the specified period
  */
 export const fetchExportData = async (period: ExportPeriod): Promise<ExportData> => {
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     throw new Error('User not authenticated');
@@ -72,14 +74,8 @@ export const fetchExportData = async (period: ExportPeriod): Promise<ExportData>
 
   // Calculate date range
   const now = new Date();
-  const startDate =
-    period === 'week'
-      ? startOfWeek(now, { weekStartsOn: 1 })
-      : startOfMonth(now);
-  const endDate =
-    period === 'week'
-      ? endOfWeek(now, { weekStartsOn: 1 })
-      : endOfMonth(now);
+  const startDate = period === 'week' ? startOfWeek(now, { weekStartsOn: 1 }) : startOfMonth(now);
+  const endDate = period === 'week' ? endOfWeek(now, { weekStartsOn: 1 }) : endOfMonth(now);
 
   const startDateStr = format(startDate, 'yyyy-MM-dd');
   const endDateStr = format(endDate, 'yyyy-MM-dd');
@@ -103,10 +99,12 @@ export const fetchExportData = async (period: ExportPeriod): Promise<ExportData>
   // Fetch Sunnah data
   const { data: sunnahLogs } = await supabase
     .from('sunnah_logs')
-    .select(`
+    .select(
+      `
       *,
       sunnah_habits (name, name_ar)
-    `)
+    `
+    )
     .eq('user_id', user.id)
     .gte('date', startDateStr)
     .lte('date', endDateStr);
@@ -130,9 +128,9 @@ export const fetchExportData = async (period: ExportPeriod): Promise<ExportData>
   // Process prayer data
   const prayerStats = {
     totalLogged: prayerLogs?.length || 0,
-    onTime: prayerLogs?.filter((log) => log.status === 'on_time').length || 0,
-    delayed: prayerLogs?.filter((log) => log.status === 'delayed').length || 0,
-    missed: prayerLogs?.filter((log) => log.status === 'missed').length || 0,
+    onTime: prayerLogs?.filter(log => log.status === 'on_time').length || 0,
+    delayed: prayerLogs?.filter(log => log.status === 'delayed').length || 0,
+    missed: prayerLogs?.filter(log => log.status === 'missed').length || 0,
     percentage: 0,
     breakdown: {} as Record<string, { onTime: number; total: number }>,
   };
@@ -143,9 +141,9 @@ export const fetchExportData = async (period: ExportPeriod): Promise<ExportData>
 
   // Calculate prayer breakdown by name
   const prayers = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
-  prayers.forEach((prayer) => {
-    const prayerCount = prayerLogs?.filter((log) => log.prayer === prayer) || [];
-    const onTimeCount = prayerCount.filter((log) => log.status === 'on_time').length;
+  prayers.forEach(prayer => {
+    const prayerCount = prayerLogs?.filter(log => log.prayer === prayer) || [];
+    const onTimeCount = prayerCount.filter(log => log.status === 'on_time').length;
     prayerStats.breakdown[prayer] = {
       onTime: onTimeCount,
       total: prayerCount.length,
@@ -167,14 +165,14 @@ export const fetchExportData = async (period: ExportPeriod): Promise<ExportData>
 
   // Process Sunnah data
   const sunnahByLevel = {
-    basic: sunnahLogs?.filter((log) => log.level === 'basic').length || 0,
-    companion: sunnahLogs?.filter((log) => log.level === 'companion').length || 0,
-    prophetic: sunnahLogs?.filter((log) => log.level === 'prophetic').length || 0,
+    basic: sunnahLogs?.filter(log => log.level === 'basic').length || 0,
+    companion: sunnahLogs?.filter(log => log.level === 'companion').length || 0,
+    prophetic: sunnahLogs?.filter(log => log.level === 'prophetic').length || 0,
   };
 
   // Calculate top 5 Sunnah habits
   const habitCounts = new Map<string, number>();
-  sunnahLogs?.forEach((log) => {
+  sunnahLogs?.forEach(log => {
     const habitName = log.sunnah_habits?.name || 'Unknown';
     habitCounts.set(habitName, (habitCounts.get(habitName) || 0) + 1);
   });
@@ -194,9 +192,9 @@ export const fetchExportData = async (period: ExportPeriod): Promise<ExportData>
   const charityStats = {
     totalEntries: charityEntries?.length || 0,
     types: {
-      money: charityEntries?.filter((entry) => entry.kind === 'money').length || 0,
-      time: charityEntries?.filter((entry) => entry.kind === 'time').length || 0,
-      kindDeeds: charityEntries?.filter((entry) => entry.kind === 'kind_deed').length || 0,
+      money: charityEntries?.filter(entry => entry.kind === 'money').length || 0,
+      time: charityEntries?.filter(entry => entry.kind === 'time').length || 0,
+      kindDeeds: charityEntries?.filter(entry => entry.kind === 'kind_deed').length || 0,
     },
   };
 
@@ -428,7 +426,7 @@ const generateReportHTML = (data: ExportData): string => {
     <ul class="habit-list">
       ${data.sunnah.topHabits
         .map(
-          (habit) => `
+          habit => `
         <li class="habit-item">
           <span>${habit.name}</span>
           <strong>${habit.count}x</strong>
@@ -503,7 +501,9 @@ export const sharePDFReport = async (period: ExportPeriod): Promise<void> => {
     const isAvailable = await Sharing.isAvailableAsync();
     if (!isAvailable) {
       logger.warn('Sharing not available, file saved at:', pdfUri);
-      throw new Error(`Sharing is not available on this device. Your PDF report has been saved to: ${pdfUri}`);
+      throw new Error(
+        `Sharing is not available on this device. Your PDF report has been saved to: ${pdfUri}`
+      );
     }
 
     // Share the PDF

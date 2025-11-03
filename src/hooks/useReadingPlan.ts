@@ -53,7 +53,7 @@ export const useReadingPlan = (userId?: string): UseReadingPlanReturn => {
       setPlans(data || []);
 
       // Find active plan
-      const active = data?.find((plan) => plan.active);
+      const active = data?.find(plan => plan.active);
       setActivePlan(active || null);
     } catch (err) {
       logger.error('Error fetching plans:', err);
@@ -66,101 +66,104 @@ export const useReadingPlan = (userId?: string): UseReadingPlanReturn => {
   /**
    * Create a new reading plan
    */
-  const createPlan = useCallback(async (plan: Partial<QuranPlan>) => {
-    if (!userId) throw new Error('User ID required');
+  const createPlan = useCallback(
+    async (plan: Partial<QuranPlan>) => {
+      if (!userId) throw new Error('User ID required');
 
-    try {
-      // Deactivate other plans if this is active
-      if (plan.active) {
-        await supabase
+      try {
+        // Deactivate other plans if this is active
+        if (plan.active) {
+          await supabase
+            .from('quran_plans')
+            .update({ active: false })
+            .eq('user_id', userId)
+            .eq('active', true);
+        }
+
+        const { data, error: insertError } = await supabase
           .from('quran_plans')
-          .update({ active: false })
-          .eq('user_id', userId)
-          .eq('active', true);
+          .insert([
+            {
+              user_id: userId,
+              ...plan,
+              started_at: new Date().toISOString(),
+            },
+          ])
+          .select()
+          .single();
+
+        if (insertError) throw insertError;
+
+        // Refetch plans
+        await fetchPlans();
+
+        logger.debug('Plan created successfully');
+      } catch (err) {
+        logger.error('Error creating plan:', err);
+        throw err;
       }
-
-      const { data, error: insertError } = await supabase
-        .from('quran_plans')
-        .insert([
-          {
-            user_id: userId,
-            ...plan,
-            started_at: new Date().toISOString(),
-          },
-        ])
-        .select()
-        .single();
-
-      if (insertError) throw insertError;
-
-      // Refetch plans
-      await fetchPlans();
-
-      logger.debug('Plan created successfully');
-    } catch (err) {
-      logger.error('Error creating plan:', err);
-      throw err;
-    }
-  }, [userId, fetchPlans]);
+    },
+    [userId, fetchPlans]
+  );
 
   /**
    * Update an existing plan
    */
-  const updatePlan = useCallback(async (planId: string, updates: Partial<QuranPlan>) => {
-    try {
-      const { error: updateError } = await supabase
-        .from('quran_plans')
-        .update({
-          ...updates,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', planId);
+  const updatePlan = useCallback(
+    async (planId: string, updates: Partial<QuranPlan>) => {
+      try {
+        const { error: updateError } = await supabase
+          .from('quran_plans')
+          .update({
+            ...updates,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', planId);
 
-      if (updateError) throw updateError;
+        if (updateError) throw updateError;
 
-      await fetchPlans();
-      logger.debug('Plan updated successfully');
-    } catch (err) {
-      logger.error('Error updating plan:', err);
-      throw err;
-    }
-  }, [fetchPlans]);
+        await fetchPlans();
+        logger.debug('Plan updated successfully');
+      } catch (err) {
+        logger.error('Error updating plan:', err);
+        throw err;
+      }
+    },
+    [fetchPlans]
+  );
 
   /**
    * Delete a plan
    */
-  const deletePlan = useCallback(async (planId: string) => {
-    try {
-      const { error: deleteError } = await supabase
-        .from('quran_plans')
-        .delete()
-        .eq('id', planId);
+  const deletePlan = useCallback(
+    async (planId: string) => {
+      try {
+        const { error: deleteError } = await supabase.from('quran_plans').delete().eq('id', planId);
 
-      if (deleteError) throw deleteError;
+        if (deleteError) throw deleteError;
 
-      await fetchPlans();
-      logger.debug('Plan deleted successfully');
-    } catch (err) {
-      logger.error('Error deleting plan:', err);
-      throw err;
-    }
-  }, [fetchPlans]);
+        await fetchPlans();
+        logger.debug('Plan deleted successfully');
+      } catch (err) {
+        logger.error('Error deleting plan:', err);
+        throw err;
+      }
+    },
+    [fetchPlans]
+  );
 
   /**
    * Log a reading session
    */
-  const logReading = useCallback(async (log: Partial<QuranReadingLog>) => {
-    if (!userId) throw new Error('User ID required');
+  const logReading = useCallback(
+    async (log: Partial<QuranReadingLog>) => {
+      if (!userId) throw new Error('User ID required');
 
-    try {
-      // Ensure pages_read is rounded to integer if provided (database constraint)
-      const pagesRead = log.pages_read !== undefined
-        ? Math.round(log.pages_read)
-        : undefined;
+      try {
+        // Ensure pages_read is rounded to integer if provided (database constraint)
+        const pagesRead = log.pages_read !== undefined ? Math.round(log.pages_read) : undefined;
 
-      const { error: insertError } = await supabase
-        .from('quran_reading_logs')
-        .insert([
+        const { error: insertError } = await supabase.from('quran_reading_logs').insert([
           {
             user_id: userId,
             date: format(new Date(), 'yyyy-MM-dd'),
@@ -170,39 +173,41 @@ export const useReadingPlan = (userId?: string): UseReadingPlanReturn => {
           },
         ]);
 
-      if (insertError) throw insertError;
+        if (insertError) throw insertError;
 
-      // Update plan progress if there's an active plan
-      if (activePlan) {
-        let progressIncrement = 0;
+        // Update plan progress if there's an active plan
+        if (activePlan) {
+          let progressIncrement = 0;
 
-        switch (activePlan.mode) {
-          case 'pages':
-            progressIncrement = pagesRead || 0;
-            break;
-          case 'verses':
-            progressIncrement = (log.to_ayah || 0) - (log.from_ayah || 0) + 1;
-            break;
-          case 'time':
-            progressIncrement = log.duration_minutes || 0;
-            break;
+          switch (activePlan.mode) {
+            case 'pages':
+              progressIncrement = pagesRead || 0;
+              break;
+            case 'verses':
+              progressIncrement = (log.to_ayah || 0) - (log.from_ayah || 0) + 1;
+              break;
+            case 'time':
+              progressIncrement = log.duration_minutes || 0;
+              break;
+          }
+
+          const newCompleted = activePlan.completed + progressIncrement;
+          await updatePlan(activePlan.id, { completed: newCompleted });
+
+          // Check if plan is complete
+          if (activePlan.total_target && newCompleted >= activePlan.total_target) {
+            await completePlan(activePlan.id);
+          }
         }
 
-        const newCompleted = activePlan.completed + progressIncrement;
-        await updatePlan(activePlan.id, { completed: newCompleted });
-
-        // Check if plan is complete
-        if (activePlan.total_target && newCompleted >= activePlan.total_target) {
-          await completePlan(activePlan.id);
-        }
+        logger.debug('Reading logged successfully');
+      } catch (err) {
+        logger.error('Error logging reading:', err);
+        throw err;
       }
-
-      logger.debug('Reading logged successfully');
-    } catch (err) {
-      logger.error('Error logging reading:', err);
-      throw err;
-    }
-  }, [userId, activePlan, updatePlan]);
+    },
+    [userId, activePlan, updatePlan]
+  );
 
   /**
    * Get today's progress
@@ -230,8 +235,7 @@ export const useReadingPlan = (userId?: string): UseReadingPlanReturn => {
           completed = data?.reduce((sum, log) => sum + (log.pages_read || 0), 0) || 0;
           break;
         case 'verses':
-          completed =
-            data?.reduce((sum, log) => sum + (log.to_ayah - log.from_ayah + 1), 0) || 0;
+          completed = data?.reduce((sum, log) => sum + (log.to_ayah - log.from_ayah + 1), 0) || 0;
           break;
         case 'time':
           completed = data?.reduce((sum, log) => sum + (log.duration_minutes || 0), 0) || 0;
@@ -251,19 +255,22 @@ export const useReadingPlan = (userId?: string): UseReadingPlanReturn => {
   /**
    * Mark plan as completed
    */
-  const completePlan = useCallback(async (planId: string) => {
-    try {
-      await updatePlan(planId, {
-        active: false,
-        completed_at: new Date().toISOString(),
-      });
+  const completePlan = useCallback(
+    async (planId: string) => {
+      try {
+        await updatePlan(planId, {
+          active: false,
+          completed_at: new Date().toISOString(),
+        });
 
-      logger.debug('Plan completed!');
-    } catch (err) {
-      logger.error('Error completing plan:', err);
-      throw err;
-    }
-  }, [updatePlan]);
+        logger.debug('Plan completed!');
+      } catch (err) {
+        logger.error('Error completing plan:', err);
+        throw err;
+      }
+    },
+    [updatePlan]
+  );
 
   /**
    * Refetch all data

@@ -49,12 +49,10 @@ export function calculatePrayerStats(logs: PrayerLog[]): PrayerDayStats {
   const total = 5; // 5 obligatory prayers per day
 
   // Count completed prayers (on_time, delayed, or qadaa)
-  const completed = logs.filter((log) =>
-    ['on_time', 'delayed', 'qadaa'].includes(log.status)
-  ).length;
+  const completed = logs.filter(log => ['on_time', 'delayed', 'qadaa'].includes(log.status)).length;
 
   // Count prayers prayed on time
-  const onTime = logs.filter((log) => log.status === 'on_time').length;
+  const onTime = logs.filter(log => log.status === 'on_time').length;
 
   return {
     total,
@@ -81,9 +79,10 @@ export function calculateQuranStats(
   const dateString = format(date, 'yyyy-MM-dd');
 
   // Filter logs for the specified date
-  const todayLogs = readingLogs.filter((log) => {
+  const todayLogs = readingLogs.filter(log => {
     // Handle both Date objects and ISO strings
-    const logDate = typeof log.date === 'string' ? log.date : format(new Date(log.date), 'yyyy-MM-dd');
+    const logDate =
+      typeof log.date === 'string' ? log.date : format(new Date(log.date), 'yyyy-MM-dd');
     return logDate === dateString;
   });
 
@@ -98,9 +97,8 @@ export function calculateQuranStats(
   }, 0);
 
   // Calculate completion percentage
-  const completionPercentage = dailyTarget > 0
-    ? Math.min(100, Math.round((pagesRead / dailyTarget) * 100))
-    : 0;
+  const completionPercentage =
+    dailyTarget > 0 ? Math.min(100, Math.round((pagesRead / dailyTarget) * 100)) : 0;
 
   return {
     pagesRead,
@@ -219,7 +217,9 @@ export function getDailySummary(stats: DailyStats): string {
   }
 
   if (stats.sunnah.habitsCompleted > 0) {
-    parts.push(`${stats.sunnah.habitsCompleted} habit${stats.sunnah.habitsCompleted !== 1 ? 's' : ''}`);
+    parts.push(
+      `${stats.sunnah.habitsCompleted} habit${stats.sunnah.habitsCompleted !== 1 ? 's' : ''}`
+    );
   }
 
   if (stats.charity.hasEntry) {

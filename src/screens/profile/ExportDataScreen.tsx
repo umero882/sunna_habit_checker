@@ -133,17 +133,13 @@ export const ExportDataScreen: React.FC = () => {
       },
     ];
 
-    const buttons: any[] = options.map((option) => ({
+    const buttons: any[] = options.map(option => ({
       text: option.label,
       onPress: () => handleExport(type, { start: option.start, end: option.end }),
     }));
     buttons.push({ text: 'Cancel', style: 'cancel' });
 
-    Alert.alert(
-      'Select Date Range',
-      'Choose the date range for export',
-      buttons
-    );
+    Alert.alert('Select Date Range', 'Choose the date range for export', buttons);
   };
 
   return (

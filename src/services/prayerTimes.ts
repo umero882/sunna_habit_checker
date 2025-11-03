@@ -3,7 +3,13 @@
  * Uses adhan library for accurate Islamic prayer times
  */
 
-import { Coordinates, CalculationMethod, PrayerTimes as AdhanPrayerTimes, Prayer, Madhab } from 'adhan';
+import {
+  Coordinates,
+  CalculationMethod,
+  PrayerTimes as AdhanPrayerTimes,
+  Prayer,
+  Madhab,
+} from 'adhan';
 import { format, parseISO } from 'date-fns';
 import { formatInTimeZone } from 'date-fns-tz';
 import type { PrayerTimes, PrayerOffsets, PrayerName } from '../types';
@@ -24,7 +30,9 @@ export interface CalculationParams {
 /**
  * Get calculation method from string
  */
-export const getCalculationMethod = (method?: string): typeof CalculationMethod[keyof typeof CalculationMethod] => {
+export const getCalculationMethod = (
+  method?: string
+): (typeof CalculationMethod)[keyof typeof CalculationMethod] => {
   switch (method) {
     case 'MuslimWorldLeague':
       return CalculationMethod.MuslimWorldLeague;
@@ -132,7 +140,9 @@ export const formatPrayerTimes = (
 /**
  * Get next prayer
  */
-export const getNextPrayer = (prayerTimes: AdhanPrayerTimes): {
+export const getNextPrayer = (
+  prayerTimes: AdhanPrayerTimes
+): {
   prayer: PrayerName;
   time: Date;
 } | null => {
@@ -142,7 +152,7 @@ export const getNextPrayer = (prayerTimes: AdhanPrayerTimes): {
 
   if (!nextPrayer) return null;
 
-  const prayerMap: Record<typeof Prayer[keyof typeof Prayer], PrayerName> = {
+  const prayerMap: Record<(typeof Prayer)[keyof typeof Prayer], PrayerName> = {
     [Prayer.Fajr]: 'fajr',
     [Prayer.Dhuhr]: 'dhuhr',
     [Prayer.Asr]: 'asr',
@@ -162,7 +172,7 @@ export const getNextPrayer = (prayerTimes: AdhanPrayerTimes): {
   // If nextPrayer is None, all prayers for today have passed
   // We need to get tomorrow's Fajr
   if (nextPrayer === Prayer.None) {
-    logger.debug('All prayers passed, getting tomorrow\'s Fajr');
+    logger.debug("All prayers passed, getting tomorrow's Fajr");
     // Calculate tomorrow's date
     const tomorrow = new Date(now);
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -175,7 +185,7 @@ export const getNextPrayer = (prayerTimes: AdhanPrayerTimes): {
     // TODO: Consider passing coordinates/params to this function for accurate recalculation
     prayerTime = new Date(prayerTimes.fajr);
     prayerTime.setDate(prayerTime.getDate() + 1);
-    logger.debug('Tomorrow\'s Fajr (approximation):', prayerTime);
+    logger.debug("Tomorrow's Fajr (approximation):", prayerTime);
   } else {
     prayerTime = prayerTimes.timeForPrayer(nextPrayer) || now;
     logger.debug('Prayer time from Adhan:', prayerTime);

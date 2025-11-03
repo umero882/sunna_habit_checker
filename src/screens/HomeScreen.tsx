@@ -4,7 +4,15 @@
  */
 
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import { View, StyleSheet, ScrollView, RefreshControl, ActivityIndicator, Text, Animated } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  RefreshControl,
+  ActivityIndicator,
+  Text,
+  Animated,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import type { MainTabParamList } from '../types';
@@ -19,7 +27,7 @@ import {
   DailyProgressBar,
   QuickActionTiles,
   NextPrayerCard,
-  ReflectionStrip
+  ReflectionStrip,
 } from '../components/home';
 import { PRAYER_STATUS_HADITH } from '../constants/hadith';
 import { createLogger } from '../utils/logger';
@@ -40,7 +48,12 @@ export const HomeScreen: React.FC = () => {
     refreshPrayerTimes,
     getPrayerTimeFormatted,
   } = usePrayerTimes();
-  const { stats, isLoading: statsLoading, error: statsError, refresh: refreshStats } = useTodayStats();
+  const {
+    stats,
+    isLoading: statsLoading,
+    error: statsError,
+    refresh: refreshStats,
+  } = useTodayStats();
   const { khushuLevel, saveKhushuLevel, refreshKhushuLevel } = useKhushuTracking();
   const { getDisplayName, isLoading: profileLoading } = useProfile();
 
@@ -58,29 +71,39 @@ export const HomeScreen: React.FC = () => {
   }, []);
 
   // Prepare prayer times data for NextPrayerCard (memoized)
-  const allPrayerTimes = useMemo(() =>
-    prayerTimes
-      ? [
-          { name: 'fajr' as const, time: getPrayerTimeFormatted('fajr'), date: prayerTimes.fajr },
-          { name: 'dhuhr' as const, time: getPrayerTimeFormatted('dhuhr'), date: prayerTimes.dhuhr },
-          { name: 'asr' as const, time: getPrayerTimeFormatted('asr'), date: prayerTimes.asr },
-          { name: 'maghrib' as const, time: getPrayerTimeFormatted('maghrib'), date: prayerTimes.maghrib },
-          { name: 'isha' as const, time: getPrayerTimeFormatted('isha'), date: prayerTimes.isha },
-        ]
-      : [],
+  const allPrayerTimes = useMemo(
+    () =>
+      prayerTimes
+        ? [
+            { name: 'fajr' as const, time: getPrayerTimeFormatted('fajr'), date: prayerTimes.fajr },
+            {
+              name: 'dhuhr' as const,
+              time: getPrayerTimeFormatted('dhuhr'),
+              date: prayerTimes.dhuhr,
+            },
+            { name: 'asr' as const, time: getPrayerTimeFormatted('asr'), date: prayerTimes.asr },
+            {
+              name: 'maghrib' as const,
+              time: getPrayerTimeFormatted('maghrib'),
+              date: prayerTimes.maghrib,
+            },
+            { name: 'isha' as const, time: getPrayerTimeFormatted('isha'), date: prayerTimes.isha },
+          ]
+        : [],
     [prayerTimes, getPrayerTimeFormatted]
   );
 
   // Convert nextPrayer to match NextPrayerCard interface (memoized)
-  const nextPrayerInfo = useMemo(() =>
-    nextPrayer
-      ? {
-          name: nextPrayer.name,
-          time: getPrayerTimeFormatted(nextPrayer.name),
-          date: nextPrayer.time,
-          timeRemaining: nextPrayer.timeRemaining,
-        }
-      : null,
+  const nextPrayerInfo = useMemo(
+    () =>
+      nextPrayer
+        ? {
+            name: nextPrayer.name,
+            time: getPrayerTimeFormatted(nextPrayer.name),
+            date: nextPrayer.time,
+            timeRemaining: nextPrayer.timeRemaining,
+          }
+        : null,
     [nextPrayer, getPrayerTimeFormatted]
   );
 
@@ -109,17 +132,20 @@ export const HomeScreen: React.FC = () => {
     navigation.navigate('ProfileTab');
   }, [navigation]);
 
-  const handleProgressPress = useCallback((category: 'prayer' | 'quran' | 'sunnah' | 'charity') => {
-    // Navigate to respective tab
-    const tabMap = {
-      prayer: 'PrayersTab',
-      quran: 'QuranTab',
-      sunnah: 'SunnahTab',
-      charity: 'ProfileTab', // Charity is in Profile for now
-    };
+  const handleProgressPress = useCallback(
+    (category: 'prayer' | 'quran' | 'sunnah' | 'charity') => {
+      // Navigate to respective tab
+      const tabMap = {
+        prayer: 'PrayersTab',
+        quran: 'QuranTab',
+        sunnah: 'SunnahTab',
+        charity: 'ProfileTab', // Charity is in Profile for now
+      };
 
-    navigation.navigate(tabMap[category] as keyof MainTabParamList);
-  }, [navigation]);
+      navigation.navigate(tabMap[category] as keyof MainTabParamList);
+    },
+    [navigation]
+  );
 
   const handleLearnMore = useCallback(() => {
     // Navigate to Sunnah tab for more hadith
@@ -139,13 +165,16 @@ export const HomeScreen: React.FC = () => {
     navigation.navigate('PrayersTab');
   }, [navigation]);
 
-  const handleKhushuChange = useCallback(async (value: number) => {
-    try {
-      await saveKhushuLevel(value);
-    } catch (error) {
-      logger.error('Failed to save Khushu level:', error);
-    }
-  }, [saveKhushuLevel]);
+  const handleKhushuChange = useCallback(
+    async (value: number) => {
+      try {
+        await saveKhushuLevel(value);
+      } catch (error) {
+        logger.error('Failed to save Khushu level:', error);
+      }
+    },
+    [saveKhushuLevel]
+  );
 
   const handleJournalPress = useCallback(() => {
     logger.debug('Journal pressed');
@@ -208,10 +237,7 @@ export const HomeScreen: React.FC = () => {
         />
 
         {/* Daily Progress */}
-        <DailyProgressBar
-          stats={stats}
-          onPressCategory={handleProgressPress}
-        />
+        <DailyProgressBar stats={stats} onPressCategory={handleProgressPress} />
 
         {/* Next Prayer Card with Countdown */}
         <View style={styles.section}>
@@ -237,10 +263,7 @@ export const HomeScreen: React.FC = () => {
 
         {/* Hadith of the Day */}
         <View style={styles.section}>
-          <HadithCard
-            hadith={dailyHadith}
-            onLearnMore={handleLearnMore}
-          />
+          <HadithCard hadith={dailyHadith} onLearnMore={handleLearnMore} />
         </View>
 
         {/* Reflection & Khushu Strip */}

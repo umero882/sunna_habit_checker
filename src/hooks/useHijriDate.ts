@@ -4,7 +4,12 @@
  */
 
 import { useState, useEffect } from 'react';
-import { gregorianToHijri, formatHijriDate, formatBothCalendars, type HijriDate } from '../utils/hijriDate';
+import {
+  gregorianToHijri,
+  formatHijriDate,
+  formatBothCalendars,
+  type HijriDate,
+} from '../utils/hijriDate';
 
 export interface UseHijriDateOptions {
   date?: Date;
@@ -32,11 +37,7 @@ export interface UseHijriDateReturn {
  * // formattedBoth: { gregorian: "October 31, 2025", hijri: "29 Rabi al-Thani 1447 AH" }
  */
 export function useHijriDate(options: UseHijriDateOptions = {}): UseHijriDateReturn {
-  const {
-    date: initialDate = new Date(),
-    locale = 'en',
-    updateInterval = 0,
-  } = options;
+  const { date: initialDate = new Date(), locale = 'en', updateInterval = 0 } = options;
 
   const [gregorianDate, setGregorianDate] = useState<Date>(initialDate);
 

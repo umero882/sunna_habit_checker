@@ -110,7 +110,12 @@ export const CompletionScreen: React.FC = () => {
 
         {/* Inspirational Quote */}
         <View style={styles.quoteContainer}>
-          <Ionicons name="chatbubble-outline" size={24} color={theme.colors.white} style={styles.quoteIcon} />
+          <Ionicons
+            name="chatbubble-outline"
+            size={24}
+            color={theme.colors.white}
+            style={styles.quoteIcon}
+          />
           <Text style={styles.quoteText}>
             {t(
               'onboarding.complete.quote',

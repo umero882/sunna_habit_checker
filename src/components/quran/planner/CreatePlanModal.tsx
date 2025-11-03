@@ -67,11 +67,7 @@ const PRESET_PLANS = [
   },
 ];
 
-export const CreatePlanModal: React.FC<CreatePlanModalProps> = ({
-  visible,
-  onClose,
-  onCreate,
-}) => {
+export const CreatePlanModal: React.FC<CreatePlanModalProps> = ({ visible, onClose, onCreate }) => {
   const { preferences } = useQuranPreferences();
   const [step, setStep] = useState<'preset' | 'custom'>('preset');
   const [isLoading, setIsLoading] = useState(false);
@@ -118,7 +114,7 @@ export const CreatePlanModal: React.FC<CreatePlanModalProps> = ({
     onClose();
   };
 
-  const handleCreatePreset = async (preset: typeof PRESET_PLANS[0]) => {
+  const handleCreatePreset = async (preset: (typeof PRESET_PLANS)[0]) => {
     setIsLoading(true);
     try {
       await onCreate({
@@ -168,12 +164,7 @@ export const CreatePlanModal: React.FC<CreatePlanModalProps> = ({
   };
 
   return (
-    <Modal
-      visible={visible}
-      animationType="slide"
-      transparent={true}
-      onRequestClose={handleClose}
-    >
+    <Modal visible={visible} animationType="slide" transparent={true} onRequestClose={handleClose}>
       <View style={styles.overlay}>
         <View style={styles.container}>
           {/* Header */}
@@ -191,9 +182,7 @@ export const CreatePlanModal: React.FC<CreatePlanModalProps> = ({
                 <Text style={styles.sectionTitle}>Choose a Preset Plan</Text>
                 {suggestedPresetIndex !== null && (
                   <View style={styles.suggestionBanner}>
-                    <Text style={styles.suggestionText}>
-                      ✨ Based on your goal from onboarding
-                    </Text>
+                    <Text style={styles.suggestionText}>✨ Based on your goal from onboarding</Text>
                   </View>
                 )}
                 {PRESET_PLANS.map((preset, index) => (
@@ -201,7 +190,7 @@ export const CreatePlanModal: React.FC<CreatePlanModalProps> = ({
                     key={index}
                     style={[
                       styles.presetCard,
-                      suggestedPresetIndex === index && styles.presetCardSuggested
+                      suggestedPresetIndex === index && styles.presetCardSuggested,
                     ]}
                     onPress={() => handleCreatePreset(preset)}
                     disabled={isLoading}
@@ -236,10 +225,7 @@ export const CreatePlanModal: React.FC<CreatePlanModalProps> = ({
             ) : (
               <>
                 {/* Custom Plan Form */}
-                <TouchableOpacity
-                  style={styles.backButton}
-                  onPress={() => setStep('preset')}
-                >
+                <TouchableOpacity style={styles.backButton} onPress={() => setStep('preset')}>
                   <Text style={styles.backIcon}>←</Text>
                   <Text style={styles.backText}>Back to Presets</Text>
                 </TouchableOpacity>
@@ -262,21 +248,13 @@ export const CreatePlanModal: React.FC<CreatePlanModalProps> = ({
                 <View style={styles.inputGroup}>
                   <Text style={styles.label}>Reading Mode</Text>
                   <View style={styles.modeSelector}>
-                    {(['pages', 'verses', 'time'] as ReadingMode[]).map((m) => (
+                    {(['pages', 'verses', 'time'] as ReadingMode[]).map(m => (
                       <TouchableOpacity
                         key={m}
-                        style={[
-                          styles.modeOption,
-                          mode === m && styles.modeOptionActive,
-                        ]}
+                        style={[styles.modeOption, mode === m && styles.modeOptionActive]}
                         onPress={() => setMode(m)}
                       >
-                        <Text
-                          style={[
-                            styles.modeText,
-                            mode === m && styles.modeTextActive,
-                          ]}
-                        >
+                        <Text style={[styles.modeText, mode === m && styles.modeTextActive]}>
                           {getModeLabel(m)}
                         </Text>
                       </TouchableOpacity>
@@ -286,9 +264,7 @@ export const CreatePlanModal: React.FC<CreatePlanModalProps> = ({
 
                 {/* Daily Target */}
                 <View style={styles.inputGroup}>
-                  <Text style={styles.label}>
-                    Daily Target ({getModeLabel(mode)})
-                  </Text>
+                  <Text style={styles.label}>Daily Target ({getModeLabel(mode)})</Text>
                   <TextInput
                     style={styles.input}
                     placeholder="e.g., 5"
@@ -305,27 +281,15 @@ export const CreatePlanModal: React.FC<CreatePlanModalProps> = ({
                   onPress={() => setHasEndDate(!hasEndDate)}
                 >
                   <Text style={styles.toggleLabel}>Set a completion goal?</Text>
-                  <View
-                    style={[
-                      styles.toggle,
-                      hasEndDate && styles.toggleActive,
-                    ]}
-                  >
-                    <View
-                      style={[
-                        styles.toggleThumb,
-                        hasEndDate && styles.toggleThumbActive,
-                      ]}
-                    />
+                  <View style={[styles.toggle, hasEndDate && styles.toggleActive]}>
+                    <View style={[styles.toggleThumb, hasEndDate && styles.toggleThumbActive]} />
                   </View>
                 </TouchableOpacity>
 
                 {/* Total Target (if has end goal) */}
                 {hasEndDate && (
                   <View style={styles.inputGroup}>
-                    <Text style={styles.label}>
-                      Total Goal ({getModeLabel(mode)})
-                    </Text>
+                    <Text style={styles.label}>Total Goal ({getModeLabel(mode)})</Text>
                     <TextInput
                       style={styles.input}
                       placeholder="e.g., 604 (full Quran)"

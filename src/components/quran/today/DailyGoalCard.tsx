@@ -79,9 +79,10 @@ export const DailyGoalCard: React.FC<DailyGoalCardProps> = ({ userId }) => {
     );
   }
 
-  const percentage = todayProgress.target > 0
-    ? Math.min((todayProgress.completed / todayProgress.target) * 100, 100)
-    : 0;
+  const percentage =
+    todayProgress.target > 0
+      ? Math.min((todayProgress.completed / todayProgress.target) * 100, 100)
+      : 0;
 
   const isComplete = percentage >= 100;
 
@@ -145,9 +146,7 @@ export const DailyGoalCard: React.FC<DailyGoalCardProps> = ({ userId }) => {
 
         {/* Center Text */}
         <View style={styles.centerTextContainer}>
-          <Text style={styles.percentageText}>
-            {Math.round(percentage)}%
-          </Text>
+          <Text style={styles.percentageText}>{Math.round(percentage)}%</Text>
           <Text style={styles.progressText}>
             {todayProgress.completed} / {todayProgress.target}
           </Text>
@@ -172,7 +171,8 @@ export const DailyGoalCard: React.FC<DailyGoalCardProps> = ({ userId }) => {
       {isComplete && (
         <View style={styles.motivationContainer}>
           <Text style={styles.motivationText}>
-            "Read the Qur'an, for it will come as an intercessor for its reciters on the Day of Resurrection."
+            "Read the Qur'an, for it will come as an intercessor for its reciters on the Day of
+            Resurrection."
           </Text>
           <Text style={styles.motivationSource}>- Sahih Muslim</Text>
         </View>

@@ -33,9 +33,7 @@ export const OnboardingScreenContainer: React.FC<OnboardingScreenContainerProps>
       />
 
       {/* Content */}
-      <View style={styles.contentWrapper}>
-        {children}
-      </View>
+      <View style={styles.contentWrapper}>{children}</View>
     </View>
   );
 };

@@ -89,7 +89,10 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
     try {
       // Get current user
-      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      const {
+        data: { user },
+        error: userError,
+      } = await supabase.auth.getUser();
 
       if (userError || !user) {
         throw new Error('Not authenticated');
@@ -133,10 +136,7 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
       onClose();
     } catch (error: any) {
       logger.error('Error updating profile:', error);
-      Alert.alert(
-        'Update Failed',
-        error.message || 'Failed to update profile. Please try again.'
-      );
+      Alert.alert('Update Failed', error.message || 'Failed to update profile. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -157,11 +157,16 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
     if (Platform.OS === 'ios') {
       ActionSheetIOS.showActionSheetWithOptions(
         {
-          options: ['Cancel', 'Take Photo', 'Choose from Library', avatarUrl ? 'Remove Photo' : ''].filter(Boolean),
+          options: [
+            'Cancel',
+            'Take Photo',
+            'Choose from Library',
+            avatarUrl ? 'Remove Photo' : '',
+          ].filter(Boolean),
           destructiveButtonIndex: avatarUrl ? 3 : undefined,
           cancelButtonIndex: 0,
         },
-        async (buttonIndex) => {
+        async buttonIndex => {
           if (buttonIndex === 1) {
             await handleTakePhoto();
           } else if (buttonIndex === 2) {
@@ -173,16 +178,14 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
       );
     } else {
       // Android - show custom alert
-      Alert.alert(
-        'Profile Photo',
-        'Choose an option',
-        [
-          { text: 'Take Photo', onPress: handleTakePhoto },
-          { text: 'Choose from Library', onPress: handlePickFromGallery },
-          ...(avatarUrl ? [{ text: 'Remove Photo', onPress: handleDeletePhoto, style: 'destructive' as const }] : []),
-          { text: 'Cancel', style: 'cancel' as const },
-        ]
-      );
+      Alert.alert('Profile Photo', 'Choose an option', [
+        { text: 'Take Photo', onPress: handleTakePhoto },
+        { text: 'Choose from Library', onPress: handlePickFromGallery },
+        ...(avatarUrl
+          ? [{ text: 'Remove Photo', onPress: handleDeletePhoto, style: 'destructive' as const }]
+          : []),
+        { text: 'Cancel', style: 'cancel' as const },
+      ]);
     }
   };
 
@@ -258,12 +261,7 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
   };
 
   return (
-    <Modal
-      visible={visible}
-      animationType="slide"
-      transparent={true}
-      onRequestClose={onClose}
-    >
+    <Modal visible={visible} animationType="slide" transparent={true} onRequestClose={onClose}>
       <View style={styles.overlay}>
         <View style={styles.modalContainer}>
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -358,8 +356,8 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
             {/* Info Box */}
             <View style={styles.infoBox}>
               <Text style={styles.infoText}>
-                ℹ️ Your information is private and secure. We only use it for account management
-                and recovery purposes.
+                ℹ️ Your information is private and secure. We only use it for account management and
+                recovery purposes.
               </Text>
             </View>
 
@@ -374,7 +372,11 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={[styles.button, styles.saveButton, isSubmitting && styles.saveButtonDisabled]}
+                style={[
+                  styles.button,
+                  styles.saveButton,
+                  isSubmitting && styles.saveButtonDisabled,
+                ]}
                 onPress={handleSubmit}
                 disabled={isSubmitting}
               >

@@ -84,19 +84,17 @@ export const useKhushuTracking = (options: UseKhushuTrackingOptions = {}) => {
       const dbValue = Math.ceil(value / 20) || 1; // Ensure minimum of 1
 
       // Upsert journal entry with khushu level
-      const { error: upsertError } = await supabase
-        .from('journal_entries')
-        .upsert(
-          {
-            user_id: user.id,
-            date,
-            khushu_level: dbValue,
-            text: '', // Empty text, can be filled later via journal screen
-          },
-          {
-            onConflict: 'user_id,date',
-          }
-        );
+      const { error: upsertError } = await supabase.from('journal_entries').upsert(
+        {
+          user_id: user.id,
+          date,
+          khushu_level: dbValue,
+          text: '', // Empty text, can be filled later via journal screen
+        },
+        {
+          onConflict: 'user_id,date',
+        }
+      );
 
       if (upsertError) {
         throw upsertError;

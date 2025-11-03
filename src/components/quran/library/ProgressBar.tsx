@@ -32,9 +32,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       {label && (
         <View style={styles.labelContainer}>
           <Text style={styles.labelText}>{label}</Text>
-          {showPercentage && (
-            <Text style={styles.percentageText}>{percentage}%</Text>
-          )}
+          {showPercentage && <Text style={styles.percentageText}>{percentage}%</Text>}
         </View>
       )}
       <View style={[styles.track, { height, backgroundColor }]}>
@@ -49,9 +47,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
           ]}
         />
       </View>
-      {!label && showPercentage && (
-        <Text style={styles.standalonePercentage}>{percentage}%</Text>
-      )}
+      {!label && showPercentage && <Text style={styles.standalonePercentage}>{percentage}%</Text>}
     </View>
   );
 };

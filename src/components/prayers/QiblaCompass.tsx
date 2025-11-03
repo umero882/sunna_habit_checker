@@ -96,10 +96,14 @@ export const QiblaCompass: React.FC<QiblaCompassProps> = ({
           style={[
             styles.compassRing,
             {
-              transform: [{ rotate: compassRotation.interpolate({
-                inputRange: [0, 360],
-                outputRange: ['0deg', '360deg'],
-              }) }],
+              transform: [
+                {
+                  rotate: compassRotation.interpolate({
+                    inputRange: [0, 360],
+                    outputRange: ['0deg', '360deg'],
+                  }),
+                },
+              ],
             },
           ]}
         >
@@ -124,7 +128,7 @@ export const QiblaCompass: React.FC<QiblaCompassProps> = ({
           </View>
 
           {/* Degree Markers */}
-          {[0, 45, 90, 135, 180, 225, 270, 315].map((degree) => {
+          {[0, 45, 90, 135, 180, 225, 270, 315].map(degree => {
             const angle = (degree * Math.PI) / 180;
             const markerRadius = COMPASS_SIZE / 2 - 30;
             const x = Math.sin(angle) * markerRadius;
@@ -138,9 +142,8 @@ export const QiblaCompass: React.FC<QiblaCompassProps> = ({
                   {
                     left: COMPASS_SIZE / 2 + x - 2,
                     top: COMPASS_SIZE / 2 + y - 2,
-                    backgroundColor: degree % 90 === 0
-                      ? theme.colors.primary[600]
-                      : theme.colors.text.tertiary,
+                    backgroundColor:
+                      degree % 90 === 0 ? theme.colors.primary[600] : theme.colors.text.tertiary,
                   },
                 ]}
               />
@@ -164,10 +167,14 @@ export const QiblaCompass: React.FC<QiblaCompassProps> = ({
           style={[
             styles.needleContainer,
             {
-              transform: [{ rotate: needleRotation.interpolate({
-                inputRange: [0, 360],
-                outputRange: ['0deg', '360deg'],
-              }) }],
+              transform: [
+                {
+                  rotate: needleRotation.interpolate({
+                    inputRange: [0, 360],
+                    outputRange: ['0deg', '360deg'],
+                  }),
+                },
+              ],
             },
           ]}
         >

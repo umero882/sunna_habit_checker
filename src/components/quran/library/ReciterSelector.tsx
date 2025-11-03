@@ -43,10 +43,11 @@ export const ReciterSelector: React.FC<ReciterSelectorProps> = ({
     }
 
     const query = searchQuery.toLowerCase();
-    return availableReciters.filter((reciter) =>
-      reciter.name.toLowerCase().includes(query) ||
-      reciter.country?.toLowerCase().includes(query) ||
-      reciter.style?.toLowerCase().includes(query)
+    return availableReciters.filter(
+      reciter =>
+        reciter.name.toLowerCase().includes(query) ||
+        reciter.country?.toLowerCase().includes(query) ||
+        reciter.style?.toLowerCase().includes(query)
     );
   }, [searchQuery, availableReciters]);
 
@@ -67,19 +68,13 @@ export const ReciterSelector: React.FC<ReciterSelectorProps> = ({
 
     return (
       <TouchableOpacity
-        style={[
-          styles.reciterItem,
-          isSelected && styles.reciterItemSelected,
-        ]}
+        style={[styles.reciterItem, isSelected && styles.reciterItemSelected]}
         onPress={() => handleSelect(item.id)}
         activeOpacity={0.7}
       >
         <View style={styles.reciterInfo}>
           <View style={styles.reciterHeader}>
-            <Text style={[
-              styles.reciterName,
-              isSelected && styles.reciterNameSelected,
-            ]}>
+            <Text style={[styles.reciterName, isSelected && styles.reciterNameSelected]}>
               {item.name}
             </Text>
             {isSelected && (
@@ -89,11 +84,7 @@ export const ReciterSelector: React.FC<ReciterSelectorProps> = ({
             )}
           </View>
 
-          {item.country && (
-            <Text style={styles.reciterCountry}>
-              {item.country}
-            </Text>
-          )}
+          {item.country && <Text style={styles.reciterCountry}>{item.country}</Text>}
 
           {item.style && (
             <Text style={styles.reciterStyle} numberOfLines={2}>
@@ -106,14 +97,9 @@ export const ReciterSelector: React.FC<ReciterSelectorProps> = ({
   };
 
   return (
-    <Modal
-      visible={visible}
-      animationType="slide"
-      transparent={true}
-      onRequestClose={onClose}
-    >
+    <Modal visible={visible} animationType="slide" transparent={true} onRequestClose={onClose}>
       <Pressable style={styles.overlay} onPress={onClose}>
-        <Pressable style={styles.modalContainer} onPress={(e) => e.stopPropagation()}>
+        <Pressable style={styles.modalContainer} onPress={e => e.stopPropagation()}>
           {/* Header */}
           <View style={styles.header}>
             <Text style={styles.title}>Select Reciter</Text>
@@ -145,15 +131,13 @@ export const ReciterSelector: React.FC<ReciterSelectorProps> = ({
           <FlatList
             data={filteredReciters}
             renderItem={renderReciterItem}
-            keyExtractor={(item) => item.id}
+            keyExtractor={item => item.id}
             contentContainerStyle={styles.listContent}
             showsVerticalScrollIndicator={true}
             ListEmptyComponent={
               <View style={styles.emptyContainer}>
                 <Text style={styles.emptyText}>No reciters found</Text>
-                <Text style={styles.emptySubtext}>
-                  Try a different search term
-                </Text>
+                <Text style={styles.emptySubtext}>Try a different search term</Text>
               </View>
             }
           />

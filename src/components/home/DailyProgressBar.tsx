@@ -82,10 +82,7 @@ const PillarCard: React.FC<PillarCardProps> = ({
 
           <View style={styles.progressBarContainer}>
             <View
-              style={[
-                styles.progressBarFill,
-                { width: `${percentage}%`, backgroundColor: color },
-              ]}
+              style={[styles.progressBarFill, { width: `${percentage}%`, backgroundColor: color }]}
             />
           </View>
         </View>
@@ -101,10 +98,7 @@ const PillarCard: React.FC<PillarCardProps> = ({
   );
 };
 
-export const DailyProgressBar: React.FC<DailyProgressBarProps> = ({
-  stats,
-  onPressCategory,
-}) => {
+export const DailyProgressBar: React.FC<DailyProgressBarProps> = ({ stats, onPressCategory }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.sectionTitle}>Today's Progress</Text>

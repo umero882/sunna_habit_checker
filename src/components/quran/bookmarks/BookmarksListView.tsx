@@ -32,12 +32,12 @@ export const BookmarksListView: React.FC<BookmarksListViewProps> = ({
   const { bookmarks, isLoading, removeBookmark } = useBookmarks(userId);
 
   const getSurahName = (surahNumber: number): string => {
-    const surah = SURAHS.find((s) => s.number === surahNumber);
+    const surah = SURAHS.find(s => s.number === surahNumber);
     return surah?.name || `Surah ${surahNumber}`;
   };
 
   const getSurahNameArabic = (surahNumber: number): string => {
-    const surah = SURAHS.find((s) => s.number === surahNumber);
+    const surah = SURAHS.find(s => s.number === surahNumber);
     return surah?.nameArabic || '';
   };
 
@@ -88,10 +88,7 @@ export const BookmarksListView: React.FC<BookmarksListViewProps> = ({
       </TouchableOpacity>
 
       {/* Remove Button */}
-      <TouchableOpacity
-        style={styles.removeButton}
-        onPress={() => handleRemoveBookmark(item)}
-      >
+      <TouchableOpacity style={styles.removeButton} onPress={() => handleRemoveBookmark(item)}>
         <Text style={styles.removeIcon}>🗑️</Text>
       </TouchableOpacity>
     </View>
@@ -112,9 +109,7 @@ export const BookmarksListView: React.FC<BookmarksListViewProps> = ({
       <View style={styles.emptyContainer}>
         <Text style={styles.emptyIcon}>🔒</Text>
         <Text style={styles.emptyTitle}>Sign in Required</Text>
-        <Text style={styles.emptyText}>
-          Please sign in to save and view your bookmarks
-        </Text>
+        <Text style={styles.emptyText}>Please sign in to save and view your bookmarks</Text>
       </View>
     );
   }
@@ -142,7 +137,7 @@ export const BookmarksListView: React.FC<BookmarksListViewProps> = ({
       <FlatList
         data={bookmarks}
         renderItem={renderBookmark}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         contentContainerStyle={styles.listContent}
         ListEmptyComponent={renderEmpty}
         showsVerticalScrollIndicator={false}

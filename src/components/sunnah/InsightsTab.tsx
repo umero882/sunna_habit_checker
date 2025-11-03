@@ -96,8 +96,8 @@ export const InsightsTab: React.FC = () => {
               {streak.currentStreak === 0
                 ? 'Start today!'
                 : streak.currentStreak === 1
-                ? '1 day'
-                : `${streak.currentStreak} days`}
+                  ? '1 day'
+                  : `${streak.currentStreak} days`}
             </Text>
           </View>
 
@@ -225,7 +225,8 @@ export const InsightsTab: React.FC = () => {
             <View style={styles.favoriteCategoryBox}>
               <Ionicons name="star" size={20} color={theme.colors.warning} />
               <Text style={styles.favoriteCategoryText}>
-                Most Active: <Text style={styles.favoriteCategoryName}>{monthly.favoriteCategory}</Text>
+                Most Active:{' '}
+                <Text style={styles.favoriteCategoryName}>{monthly.favoriteCategory}</Text>
               </Text>
             </View>
           )}
@@ -257,10 +258,10 @@ export const InsightsTab: React.FC = () => {
                     index === 0
                       ? '#FFD700'
                       : index === 1
-                      ? '#C0C0C0'
-                      : index === 2
-                      ? '#CD7F32'
-                      : theme.colors.text.tertiary
+                        ? '#C0C0C0'
+                        : index === 2
+                          ? '#CD7F32'
+                          : theme.colors.text.tertiary
                   }
                 />
               </View>
@@ -285,14 +286,14 @@ export const InsightsTab: React.FC = () => {
                     {milestone.type === 'streak_7'
                       ? '7-Day Streak'
                       : milestone.type === 'streak_30'
-                      ? '30-Day Streak'
-                      : milestone.type === 'streak_100'
-                      ? '100-Day Streak'
-                      : milestone.type === 'level_upgrade'
-                      ? 'Level Upgrade'
-                      : milestone.type === 'category_complete'
-                      ? 'Category Completed'
-                      : 'First Log'}
+                        ? '30-Day Streak'
+                        : milestone.type === 'streak_100'
+                          ? '100-Day Streak'
+                          : milestone.type === 'level_upgrade'
+                            ? 'Level Upgrade'
+                            : milestone.type === 'category_complete'
+                              ? 'Category Completed'
+                              : 'First Log'}
                   </Text>
                   <Text style={styles.milestoneDate}>
                     {new Date(milestone.achieved_at).toLocaleDateString()}
@@ -312,8 +313,8 @@ export const InsightsTab: React.FC = () => {
           {insights.currentStreak > 7
             ? "You're doing amazing! Your consistency is building strong spiritual habits."
             : insights.currentStreak > 0
-            ? "Great start! Keep building your streak one day at a time."
-            : "Ready to start your journey? Log your first Sunnah habit today!"}
+              ? 'Great start! Keep building your streak one day at a time.'
+              : 'Ready to start your journey? Log your first Sunnah habit today!'}
         </Text>
       </View>
 

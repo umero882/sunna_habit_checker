@@ -22,7 +22,12 @@ interface StatItemProps {
   color?: string;
 }
 
-const StatItem: React.FC<StatItemProps> = ({ label, value, icon, color = theme.colors.primary[600] }) => (
+const StatItem: React.FC<StatItemProps> = ({
+  label,
+  value,
+  icon,
+  color = theme.colors.primary[600],
+}) => (
   <View style={styles.statItem}>
     {icon && <Ionicons name={icon} size={16} color={color} style={styles.statIcon} />}
     <View style={styles.statContent}>
@@ -38,7 +43,11 @@ interface ProgressBarProps {
   color?: string;
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ label, percentage, color = theme.colors.primary[600] }) => (
+const ProgressBar: React.FC<ProgressBarProps> = ({
+  label,
+  percentage,
+  color = theme.colors.primary[600],
+}) => (
   <View style={styles.progressContainer}>
     <View style={styles.progressHeader}>
       <Text style={styles.progressLabel}>{label}</Text>
@@ -76,7 +85,9 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ weekly, monthly }) => {
         <View style={styles.cardContent}>
           {/* Main Stat */}
           <View style={styles.mainStat}>
-            <Text style={styles.mainStatValue}>{weekly.prayersLogged}/{weekly.totalPrayers}</Text>
+            <Text style={styles.mainStatValue}>
+              {weekly.prayersLogged}/{weekly.totalPrayers}
+            </Text>
             <Text style={styles.mainStatLabel}>Prayers Logged</Text>
           </View>
 
@@ -132,9 +143,7 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ weekly, monthly }) => {
             <Ionicons name="stats-chart-outline" size={20} color={theme.colors.secondary[600]} />
             <Text style={styles.cardTitle}>This Month</Text>
           </View>
-          <Text style={styles.dateRange}>
-            {format(parseISO(monthly.monthStart), 'MMMM yyyy')}
-          </Text>
+          <Text style={styles.dateRange}>{format(parseISO(monthly.monthStart), 'MMMM yyyy')}</Text>
         </View>
 
         <View style={styles.cardContent}>

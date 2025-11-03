@@ -17,10 +17,7 @@ const KAABA_LONGITUDE = 39.8262;
  * @param longitude - User's longitude
  * @returns Bearing in degrees (0-360) where 0 is North
  */
-export const calculateQiblaDirection = (
-  latitude: number,
-  longitude: number
-): number => {
+export const calculateQiblaDirection = (latitude: number, longitude: number): number => {
   // Convert to radians
   const lat1 = toRadians(latitude);
   const lon1 = toRadians(longitude);
@@ -32,9 +29,7 @@ export const calculateQiblaDirection = (
   const dLon = lon2 - lon1;
 
   const y = Math.sin(dLon) * Math.cos(lat2);
-  const x =
-    Math.cos(lat1) * Math.sin(lat2) -
-    Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+  const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
 
   let bearing = Math.atan2(y, x);
 
@@ -55,10 +50,7 @@ export const calculateQiblaDirection = (
  * @param longitude - User's longitude
  * @returns Distance in kilometers
  */
-export const calculateDistanceToKaaba = (
-  latitude: number,
-  longitude: number
-): number => {
+export const calculateDistanceToKaaba = (latitude: number, longitude: number): number => {
   const R = 6371; // Earth's radius in kilometers
 
   const lat1 = toRadians(latitude);
@@ -137,14 +129,6 @@ const toDegrees = (radians: number): number => {
 /**
  * Check if coordinates are valid
  */
-export const isValidCoordinates = (
-  latitude: number,
-  longitude: number
-): boolean => {
-  return (
-    latitude >= -90 &&
-    latitude <= 90 &&
-    longitude >= -180 &&
-    longitude <= 180
-  );
+export const isValidCoordinates = (latitude: number, longitude: number): boolean => {
+  return latitude >= -90 && latitude <= 90 && longitude >= -180 && longitude <= 180;
 };

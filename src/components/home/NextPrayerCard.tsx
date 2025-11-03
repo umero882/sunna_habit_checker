@@ -115,7 +115,7 @@ export const NextPrayerCard: React.FC<NextPrayerCardProps> = ({
         <View style={styles.prayerList}>
           <Text style={styles.listTitle}>Today's Prayers</Text>
           <View style={styles.prayerGrid}>
-            {prayerTimes.slice(0, 5).map((prayer) => (
+            {prayerTimes.slice(0, 5).map(prayer => (
               <View key={prayer.name} style={styles.prayerItem}>
                 <Text style={styles.prayerItemName}>{PRAYER_NAMES[prayer.name]}</Text>
                 <Text style={styles.prayerItemTime}>{prayer.time}</Text>

@@ -5,7 +5,17 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../services/supabase';
-import { format, subDays, startOfWeek, endOfWeek, startOfMonth, endOfMonth, eachDayOfInterval, parseISO, differenceInDays } from 'date-fns';
+import {
+  format,
+  subDays,
+  startOfWeek,
+  endOfWeek,
+  startOfMonth,
+  endOfMonth,
+  eachDayOfInterval,
+  parseISO,
+  differenceInDays,
+} from 'date-fns';
 import type { PrayerLog, PrayerName } from '../types';
 
 import { createLogger } from '../utils/logger';
@@ -106,7 +116,9 @@ export const usePrayerStats = (options: UsePrayerStatsOptions = {}) => {
     }
 
     // Sort by date descending
-    const sorted = [...dailyStats].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const sorted = [...dailyStats].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
 
     let currentStreak = 0;
     let longestStreak = 0;
@@ -165,24 +177,30 @@ export const usePrayerStats = (options: UsePrayerStatsOptions = {}) => {
     const weekStart = format(startOfWeek(now, { weekStartsOn: 0 }), 'yyyy-MM-dd');
     const weekEnd = format(endOfWeek(now, { weekStartsOn: 0 }), 'yyyy-MM-dd');
 
-    const weekLogs = dailyStats.filter(
-      day => day.date >= weekStart && day.date <= weekEnd
-    );
+    const weekLogs = dailyStats.filter(day => day.date >= weekStart && day.date <= weekEnd);
 
     const totalPrayers = weekLogs.reduce((sum, day) => sum + day.totalPrayers, 0);
     const prayersLogged = weekLogs.reduce((sum, day) => sum + day.prayersLogged, 0);
     const onTimeCount = weekLogs.reduce((sum, day) => sum + day.onTime, 0);
     const jamaahCount = weekLogs.reduce((sum, day) => sum + day.jamaah, 0);
 
-    const onTimePercentage = prayersLogged > 0 ? Math.round((onTimeCount / prayersLogged) * 100) : 0;
-    const jamaahPercentage = prayersLogged > 0 ? Math.round((jamaahCount / prayersLogged) * 100) : 0;
-    const completionPercentage = totalPrayers > 0 ? Math.round((prayersLogged / totalPrayers) * 100) : 0;
+    const onTimePercentage =
+      prayersLogged > 0 ? Math.round((onTimeCount / prayersLogged) * 100) : 0;
+    const jamaahPercentage =
+      prayersLogged > 0 ? Math.round((jamaahCount / prayersLogged) * 100) : 0;
+    const completionPercentage =
+      totalPrayers > 0 ? Math.round((prayersLogged / totalPrayers) * 100) : 0;
 
     // Find best and worst days
     const sortedByCompletion = [...weekLogs].sort((a, b) => b.completion - a.completion);
-    const bestDay = sortedByCompletion[0] ? { date: sortedByCompletion[0].date, completion: sortedByCompletion[0].completion } : null;
+    const bestDay = sortedByCompletion[0]
+      ? { date: sortedByCompletion[0].date, completion: sortedByCompletion[0].completion }
+      : null;
     const worstDay = sortedByCompletion[sortedByCompletion.length - 1]
-      ? { date: sortedByCompletion[sortedByCompletion.length - 1].date, completion: sortedByCompletion[sortedByCompletion.length - 1].completion }
+      ? {
+          date: sortedByCompletion[sortedByCompletion.length - 1].date,
+          completion: sortedByCompletion[sortedByCompletion.length - 1].completion,
+        }
       : null;
 
     return {
@@ -206,19 +224,21 @@ export const usePrayerStats = (options: UsePrayerStatsOptions = {}) => {
     const monthStart = format(startOfMonth(now), 'yyyy-MM-dd');
     const monthEnd = format(endOfMonth(now), 'yyyy-MM-dd');
 
-    const monthLogs = dailyStats.filter(
-      day => day.date >= monthStart && day.date <= monthEnd
-    );
+    const monthLogs = dailyStats.filter(day => day.date >= monthStart && day.date <= monthEnd);
 
     const totalPrayers = monthLogs.reduce((sum, day) => sum + day.totalPrayers, 0);
     const prayersLogged = monthLogs.reduce((sum, day) => sum + day.prayersLogged, 0);
     const onTimeCount = monthLogs.reduce((sum, day) => sum + day.onTime, 0);
     const jamaahCount = monthLogs.reduce((sum, day) => sum + day.jamaah, 0);
 
-    const onTimePercentage = prayersLogged > 0 ? Math.round((onTimeCount / prayersLogged) * 100) : 0;
-    const jamaahPercentage = prayersLogged > 0 ? Math.round((jamaahCount / prayersLogged) * 100) : 0;
-    const completionPercentage = totalPrayers > 0 ? Math.round((prayersLogged / totalPrayers) * 100) : 0;
-    const dailyAverage = monthLogs.length > 0 ? Number((prayersLogged / monthLogs.length).toFixed(1)) : 0;
+    const onTimePercentage =
+      prayersLogged > 0 ? Math.round((onTimeCount / prayersLogged) * 100) : 0;
+    const jamaahPercentage =
+      prayersLogged > 0 ? Math.round((jamaahCount / prayersLogged) * 100) : 0;
+    const completionPercentage =
+      totalPrayers > 0 ? Math.round((prayersLogged / totalPrayers) * 100) : 0;
+    const dailyAverage =
+      monthLogs.length > 0 ? Number((prayersLogged / monthLogs.length).toFixed(1)) : 0;
 
     return {
       monthStart,
@@ -240,7 +260,16 @@ export const usePrayerStats = (options: UsePrayerStatsOptions = {}) => {
     return dailyStats.map(day => ({
       date: day.date,
       count: day.prayersLogged,
-      level: day.completion >= 100 ? 4 : day.completion >= 80 ? 3 : day.completion >= 60 ? 2 : day.completion >= 40 ? 1 : 0,
+      level:
+        day.completion >= 100
+          ? 4
+          : day.completion >= 80
+            ? 3
+            : day.completion >= 60
+              ? 2
+              : day.completion >= 40
+                ? 1
+                : 0,
     }));
   };
 
@@ -252,7 +281,9 @@ export const usePrayerStats = (options: UsePrayerStatsOptions = {}) => {
     setError(null);
 
     try {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
       if (!user) {
         throw new Error('User not authenticated');

@@ -52,8 +52,8 @@ export const useQuranStatistics = (userId?: string): UseQuranStatisticsReturn =>
     if (!logs || logs.length === 0) return { current: 0, longest: 0 };
 
     // Sort by date descending
-    const sortedLogs = [...logs].sort((a, b) =>
-      new Date(b.date).getTime() - new Date(a.date).getTime()
+    const sortedLogs = [...logs].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
 
     // Get unique dates
@@ -212,12 +212,14 @@ export const useQuranStatistics = (userId?: string): UseQuranStatisticsReturn =>
 
       // Calculate totals
       // Round page totals since old logs may have decimal values, but pages should be integers
-      const totalPagesRead = Math.round(allLogs.reduce((sum, log) => sum + (log.pages_read || 0), 0));
+      const totalPagesRead = Math.round(
+        allLogs.reduce((sum, log) => sum + (log.pages_read || 0), 0)
+      );
       const totalMinutesRead = allLogs.reduce((sum, log) => sum + (log.duration_minutes || 0), 0);
 
       // Calculate verses read
       const totalVersesRead = allLogs.reduce((sum, log) => {
-        const versesInLog = (log.to_ayah - log.from_ayah) + 1;
+        const versesInLog = log.to_ayah - log.from_ayah + 1;
         return sum + versesInLog;
       }, 0);
 
@@ -229,19 +231,23 @@ export const useQuranStatistics = (userId?: string): UseQuranStatisticsReturn =>
 
       // This week stats
       const weekRange = getThisWeekRange();
-      const weekLogs = allLogs.filter(log =>
-        log.date >= weekRange.start && log.date <= weekRange.end
+      const weekLogs = allLogs.filter(
+        log => log.date >= weekRange.start && log.date <= weekRange.end
       );
-      const weekPagesRead = Math.round(weekLogs.reduce((sum, log) => sum + (log.pages_read || 0), 0));
+      const weekPagesRead = Math.round(
+        weekLogs.reduce((sum, log) => sum + (log.pages_read || 0), 0)
+      );
       const weekMinutesRead = weekLogs.reduce((sum, log) => sum + (log.duration_minutes || 0), 0);
       const weekDaysActive = new Set(weekLogs.map(log => log.date)).size;
 
       // This month stats
       const monthRange = getThisMonthRange();
-      const monthLogs = allLogs.filter(log =>
-        log.date >= monthRange.start && log.date <= monthRange.end
+      const monthLogs = allLogs.filter(
+        log => log.date >= monthRange.start && log.date <= monthRange.end
       );
-      const monthPagesRead = Math.round(monthLogs.reduce((sum, log) => sum + (log.pages_read || 0), 0));
+      const monthPagesRead = Math.round(
+        monthLogs.reduce((sum, log) => sum + (log.pages_read || 0), 0)
+      );
       const monthMinutesRead = monthLogs.reduce((sum, log) => sum + (log.duration_minutes || 0), 0);
       const monthDaysActive = new Set(monthLogs.map(log => log.date)).size;
 

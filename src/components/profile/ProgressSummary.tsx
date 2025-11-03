@@ -38,7 +38,9 @@ export const ProgressSummary: React.FC = () => {
     return (
       <View style={styles.emptyContainer}>
         <Text style={styles.emptyText}>No progress data yet</Text>
-        <Text style={styles.emptySubtext}>Start logging your habits to see your progress here!</Text>
+        <Text style={styles.emptySubtext}>
+          Start logging your habits to see your progress here!
+        </Text>
       </View>
     );
   }

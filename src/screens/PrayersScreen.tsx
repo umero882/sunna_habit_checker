@@ -4,7 +4,17 @@
  */
 
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, RefreshControl, ActivityIndicator, Animated, Alert, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  RefreshControl,
+  ActivityIndicator,
+  Animated,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import type { StackNavigationProp } from '@react-navigation/stack';
@@ -74,9 +84,12 @@ export const PrayersScreen: React.FC = () => {
   }, [fadeAnim]);
 
   // Get prayer log for a specific prayer (memoized)
-  const getPrayerLog = useCallback((prayerName: PrayerName) => {
-    return logs.find(log => log.prayer === prayerName);
-  }, [logs]);
+  const getPrayerLog = useCallback(
+    (prayerName: PrayerName) => {
+      return logs.find(log => log.prayer === prayerName);
+    },
+    [logs]
+  );
 
   // Calculate daily stats (memoized)
   const dailyStats = useMemo(() => {
@@ -117,11 +130,9 @@ export const PrayersScreen: React.FC = () => {
         setTimeout(() => setSuccessMessage(null), 3000);
       } catch (err) {
         logger.error('Error logging prayer:', err);
-        Alert.alert(
-          'Error',
-          'Failed to log prayer. Please check your connection and try again.',
-          [{ text: 'OK' }]
-        );
+        Alert.alert('Error', 'Failed to log prayer. Please check your connection and try again.', [
+          { text: 'OK' },
+        ]);
       }
     },
     [logPrayer]
@@ -147,29 +158,39 @@ export const PrayersScreen: React.FC = () => {
   }, []);
 
   // Prepare prayer times data for NextPrayerCard (memoized)
-  const allPrayerTimes = useMemo(() =>
-    prayerTimes
-      ? [
-          { name: 'fajr' as const, time: getPrayerTimeFormatted('fajr'), date: prayerTimes.fajr },
-          { name: 'dhuhr' as const, time: getPrayerTimeFormatted('dhuhr'), date: prayerTimes.dhuhr },
-          { name: 'asr' as const, time: getPrayerTimeFormatted('asr'), date: prayerTimes.asr },
-          { name: 'maghrib' as const, time: getPrayerTimeFormatted('maghrib'), date: prayerTimes.maghrib },
-          { name: 'isha' as const, time: getPrayerTimeFormatted('isha'), date: prayerTimes.isha },
-        ]
-      : [],
+  const allPrayerTimes = useMemo(
+    () =>
+      prayerTimes
+        ? [
+            { name: 'fajr' as const, time: getPrayerTimeFormatted('fajr'), date: prayerTimes.fajr },
+            {
+              name: 'dhuhr' as const,
+              time: getPrayerTimeFormatted('dhuhr'),
+              date: prayerTimes.dhuhr,
+            },
+            { name: 'asr' as const, time: getPrayerTimeFormatted('asr'), date: prayerTimes.asr },
+            {
+              name: 'maghrib' as const,
+              time: getPrayerTimeFormatted('maghrib'),
+              date: prayerTimes.maghrib,
+            },
+            { name: 'isha' as const, time: getPrayerTimeFormatted('isha'), date: prayerTimes.isha },
+          ]
+        : [],
     [prayerTimes, getPrayerTimeFormatted]
   );
 
   // Convert nextPrayer to match NextPrayerCard interface (memoized)
-  const nextPrayerInfo = useMemo(() =>
-    nextPrayer
-      ? {
-          name: nextPrayer.name,
-          time: getPrayerTimeFormatted(nextPrayer.name),
-          date: nextPrayer.time,
-          timeRemaining: nextPrayer.timeRemaining,
-        }
-      : null,
+  const nextPrayerInfo = useMemo(
+    () =>
+      nextPrayer
+        ? {
+            name: nextPrayer.name,
+            time: getPrayerTimeFormatted(nextPrayer.name),
+            date: nextPrayer.time,
+            timeRemaining: nextPrayer.timeRemaining,
+          }
+        : null,
     [nextPrayer, getPrayerTimeFormatted]
   );
 
@@ -218,7 +239,9 @@ export const PrayersScreen: React.FC = () => {
               <Text style={styles.summaryTitle}>Today's Summary</Text>
               <View style={styles.summaryStats}>
                 <View style={styles.statItem}>
-                  <Text style={styles.statValue}>{dailyStats.logged}/{dailyStats.total}</Text>
+                  <Text style={styles.statValue}>
+                    {dailyStats.logged}/{dailyStats.total}
+                  </Text>
                   <Text style={styles.statLabel}>Logged</Text>
                 </View>
                 <View style={styles.statDivider} />
@@ -243,18 +266,12 @@ export const PrayersScreen: React.FC = () => {
 
         {/* Next Prayer Card */}
         <View style={styles.section}>
-          <NextPrayerCard
-            nextPrayer={nextPrayerInfo}
-            prayerTimes={allPrayerTimes}
-          />
+          <NextPrayerCard nextPrayer={nextPrayerInfo} prayerTimes={allPrayerTimes} />
         </View>
 
         {/* Qibla Compass Button */}
         <View style={styles.section}>
-          <TouchableOpacity
-            style={styles.qiblaButton}
-            onPress={() => navigation.navigate('Qibla')}
-          >
+          <TouchableOpacity style={styles.qiblaButton} onPress={() => navigation.navigate('Qibla')}>
             <View style={styles.qiblaIcon}>
               <Ionicons name="compass" size={32} color={theme.colors.primary[600]} />
             </View>
@@ -278,7 +295,7 @@ export const PrayersScreen: React.FC = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Today's Prayers</Text>
           <View style={styles.prayersList}>
-            {(['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'] as PrayerName[]).map((prayer) => {
+            {(['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'] as PrayerName[]).map(prayer => {
               const log = getPrayerLog(prayer);
               const jamaahValue = log && log.jamaah !== null ? log.jamaah : undefined;
 

@@ -34,12 +34,15 @@ if (__DEV__) {
 import i18n from './src/services/i18n';
 import { isSupabaseConfigured } from './src/services/supabase';
 import { quranDb } from './src/services/quranDb';
+import { createLogger } from './src/utils/logger';
 
 // Navigation
 import RootNavigator from './src/navigation/RootNavigator';
 
 // Error Boundary
 import ErrorBoundary from './src/components/common/ErrorBoundary';
+
+const logger = createLogger('App');
 
 // Create React Query client
 const queryClient = new QueryClient({
@@ -67,9 +70,9 @@ export default function App() {
         }
 
         // Initialize Quran database
-        console.log('📚 Initializing Quran database...');
+        logger.info('Initializing Quran database...');
         await quranDb.init();
-        console.log('✅ Quran database initialized successfully');
+        logger.info('Quran database initialized successfully');
 
         // Add any other initialization logic here
         // - Load persisted settings

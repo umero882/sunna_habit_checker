@@ -45,11 +45,7 @@ export const SettingsSection: React.FC<SettingsSectionProps> = ({
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.header}
-        onPress={toggleExpanded}
-        activeOpacity={0.7}
-      >
+      <TouchableOpacity style={styles.header} onPress={toggleExpanded} activeOpacity={0.7}>
         <View style={styles.headerLeft}>
           {icon && <View style={styles.iconContainer}>{icon}</View>}
           <View style={styles.headerTextContainer}>

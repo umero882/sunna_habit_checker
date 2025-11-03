@@ -30,7 +30,7 @@ export const SurahList: React.FC<SurahListProps> = ({ onSurahPress }) => {
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       surahs = surahs.filter(
-        (surah) =>
+        surah =>
           surah.name.toLowerCase().includes(query) ||
           surah.nameArabic.includes(query) ||
           surah.nameTransliteration.toLowerCase().includes(query) ||
@@ -42,7 +42,7 @@ export const SurahList: React.FC<SurahListProps> = ({ onSurahPress }) => {
     // Apply revelation type filter
     if (filter !== 'all') {
       const filterType = filter === 'meccan' ? 'Meccan' : 'Medinan';
-      surahs = surahs.filter((surah) => surah.revelationType === filterType);
+      surahs = surahs.filter(surah => surah.revelationType === filterType);
     }
 
     // Apply sorting
@@ -71,7 +71,9 @@ export const SurahList: React.FC<SurahListProps> = ({ onSurahPress }) => {
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Qur'an Library</Text>
         <Text style={styles.subtitle}>
-          {filteredSurahs.length} {filter !== 'all' ? `${filter.charAt(0).toUpperCase() + filter.slice(1)} ` : ''}Surah{filteredSurahs.length !== 1 ? 's' : ''}
+          {filteredSurahs.length}{' '}
+          {filter !== 'all' ? `${filter.charAt(0).toUpperCase() + filter.slice(1)} ` : ''}Surah
+          {filteredSurahs.length !== 1 ? 's' : ''}
         </Text>
       </View>
 
@@ -86,10 +88,7 @@ export const SurahList: React.FC<SurahListProps> = ({ onSurahPress }) => {
           placeholderTextColor={theme.colors.text.tertiary}
         />
         {searchQuery.length > 0 && (
-          <Text
-            style={styles.clearButton}
-            onPress={() => setSearchQuery('')}
-          >
+          <Text style={styles.clearButton} onPress={() => setSearchQuery('')}>
             ✕
           </Text>
         )}
@@ -118,7 +117,9 @@ export const SurahList: React.FC<SurahListProps> = ({ onSurahPress }) => {
           style={[styles.filterChip, filter === 'medinan' && styles.filterChipActive]}
           onPress={() => setFilter('medinan')}
         >
-          <Text style={[styles.filterChipText, filter === 'medinan' && styles.filterChipTextActive]}>
+          <Text
+            style={[styles.filterChipText, filter === 'medinan' && styles.filterChipTextActive]}
+          >
             Medinan (28)
           </Text>
         </TouchableOpacity>
@@ -159,9 +160,7 @@ export const SurahList: React.FC<SurahListProps> = ({ onSurahPress }) => {
     <View style={styles.emptyContainer}>
       <Text style={styles.emptyIcon}>📖</Text>
       <Text style={styles.emptyTitle}>No Surahs Found</Text>
-      <Text style={styles.emptySubtitle}>
-        Try searching with a different term
-      </Text>
+      <Text style={styles.emptySubtitle}>Try searching with a different term</Text>
     </View>
   );
 
@@ -172,7 +171,7 @@ export const SurahList: React.FC<SurahListProps> = ({ onSurahPress }) => {
       <FlatList
         data={filteredSurahs}
         renderItem={renderSurahItem}
-        keyExtractor={(item) => item.number.toString()}
+        keyExtractor={item => item.number.toString()}
         ListHeaderComponent={renderHeader}
         ListEmptyComponent={renderEmpty}
         ItemSeparatorComponent={renderSeparator}

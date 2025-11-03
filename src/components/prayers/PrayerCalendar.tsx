@@ -45,7 +45,9 @@ export const PrayerCalendar: React.FC<PrayerCalendarProps> = ({ data, onDayPress
     if (data.length === 0) return [];
 
     // Get the date range
-    const sortedData = [...data].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    const sortedData = [...data].sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
     const startDate = parseISO(sortedData[0].date);
     const endDate = parseISO(sortedData[sortedData.length - 1].date);
 
@@ -148,10 +150,7 @@ export const PrayerCalendar: React.FC<PrayerCalendarProps> = ({ data, onDayPress
                   {week.map((day, dayIndex) => (
                     <TouchableOpacity
                       key={day.date}
-                      style={[
-                        styles.cell,
-                        { backgroundColor: getLevelColor(day.level) },
-                      ]}
+                      style={[styles.cell, { backgroundColor: getLevelColor(day.level) }]}
                       onPress={() => onDayPress?.(day)}
                       activeOpacity={0.7}
                     >

@@ -61,7 +61,7 @@ export const useQuranAudio = ({
       setDuration(status.durationMillis ?? 0);
 
       // Update full audio state
-      audioService.getAudioState().then((state) => {
+      audioService.getAudioState().then(state => {
         if (state) {
           setAudioState(state);
         }
@@ -75,7 +75,7 @@ export const useQuranAudio = ({
   const handleAyahChange = useCallback((ayahNumber: number) => {
     logger.debug(`🎵 useQuranAudio: handleAyahChange called with ayahNumber=${ayahNumber}`);
     // Update audio state immediately when ayah changes
-    audioService.getAudioState().then((state) => {
+    audioService.getAudioState().then(state => {
       if (state) {
         logger.debug(`✅ useQuranAudio: Audio state updated, currentAyah=${state.currentAyah}`);
         setAudioState(state);
@@ -149,7 +149,13 @@ export const useQuranAudio = ({
         unsubscribe();
       }
     };
-  }, [handlePlaybackStatusUpdate, handleAyahChange, handleWordChange, handlePlaybackEnd, handleError]);
+  }, [
+    handlePlaybackStatusUpdate,
+    handleAyahChange,
+    handleWordChange,
+    handlePlaybackEnd,
+    handleError,
+  ]);
 
   /**
    * Auto-play if enabled
@@ -163,30 +169,36 @@ export const useQuranAudio = ({
   /**
    * Play Surah
    */
-  const play = useCallback(async (surahNum: number, startFromAyah: number = 1) => {
-    setIsLoading(true);
-    try {
-      await audioService.playSurah(surahNum, reciter, startFromAyah);
-    } catch (error) {
-      logger.error('Failed to play surah:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [reciter]);
+  const play = useCallback(
+    async (surahNum: number, startFromAyah: number = 1) => {
+      setIsLoading(true);
+      try {
+        await audioService.playSurah(surahNum, reciter, startFromAyah);
+      } catch (error) {
+        logger.error('Failed to play surah:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [reciter]
+  );
 
   /**
    * Play specific Ayah
    */
-  const playAyah = useCallback(async (surahNum: number, ayahNumber: number) => {
-    setIsLoading(true);
-    try {
-      await audioService.playAyah(surahNum, ayahNumber, reciter);
-    } catch (error) {
-      logger.error('Failed to play ayah:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [reciter]);
+  const playAyah = useCallback(
+    async (surahNum: number, ayahNumber: number) => {
+      setIsLoading(true);
+      try {
+        await audioService.playAyah(surahNum, ayahNumber, reciter);
+      } catch (error) {
+        logger.error('Failed to play ayah:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [reciter]
+  );
 
   /**
    * Pause playback
@@ -224,33 +236,45 @@ export const useQuranAudio = ({
   /**
    * Set playback speed
    */
-  const setSpeed = useCallback(async (speed: number) => {
-    await audioService.setPlaybackSpeed(speed);
-    if (audioState) {
-      setAudioState({ ...audioState, speed });
-    }
-  }, [audioState]);
+  const setSpeed = useCallback(
+    async (speed: number) => {
+      await audioService.setPlaybackSpeed(speed);
+      if (audioState) {
+        setAudioState({ ...audioState, speed });
+      }
+    },
+    [audioState]
+  );
 
   /**
    * Download Surah for offline playback
    */
-  const downloadSurah = useCallback(async (surahNum: number, onProgress?: (progress: number) => void): Promise<boolean> => {
-    return await audioService.downloadSurah(surahNum, reciter, onProgress);
-  }, [reciter]);
+  const downloadSurah = useCallback(
+    async (surahNum: number, onProgress?: (progress: number) => void): Promise<boolean> => {
+      return await audioService.downloadSurah(surahNum, reciter, onProgress);
+    },
+    [reciter]
+  );
 
   /**
    * Check if Surah is cached
    */
-  const isSurahCached = useCallback(async (surahNum: number): Promise<boolean> => {
-    return await audioService.isSurahCached(surahNum, reciter);
-  }, [reciter]);
+  const isSurahCached = useCallback(
+    async (surahNum: number): Promise<boolean> => {
+      return await audioService.isSurahCached(surahNum, reciter);
+    },
+    [reciter]
+  );
 
   /**
    * Delete cached Surah
    */
-  const deleteCachedSurah = useCallback(async (surahNum: number): Promise<boolean> => {
-    return await audioService.deleteCachedSurah(surahNum, reciter);
-  }, [reciter]);
+  const deleteCachedSurah = useCallback(
+    async (surahNum: number): Promise<boolean> => {
+      return await audioService.deleteCachedSurah(surahNum, reciter);
+    },
+    [reciter]
+  );
 
   /**
    * Cleanup audio resources

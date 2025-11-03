@@ -61,7 +61,7 @@ export const useLocation = (): UseLocationReturn => {
     const checkPermission = async () => {
       try {
         const permission = await checkLocationPermission();
-        setState((prev) => ({
+        setState(prev => ({
           ...prev,
           permissionGranted: permission.granted,
           canAskAgain: permission.canAskAgain,
@@ -77,7 +77,7 @@ export const useLocation = (): UseLocationReturn => {
         }
       } catch (error) {
         logger.error('Error checking location permission:', error);
-        setState((prev) => ({
+        setState(prev => ({
           ...prev,
           error: {
             code: 'UNKNOWN',
@@ -96,12 +96,12 @@ export const useLocation = (): UseLocationReturn => {
    * @returns true if permission granted, false otherwise
    */
   const requestPermission = useCallback(async (): Promise<boolean> => {
-    setState((prev) => ({ ...prev, isLoading: true, error: null }));
+    setState(prev => ({ ...prev, isLoading: true, error: null }));
 
     try {
       const permission = await requestLocationPermission();
 
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         permissionGranted: permission.granted,
         canAskAgain: permission.canAskAgain,
@@ -112,7 +112,7 @@ export const useLocation = (): UseLocationReturn => {
         await fetchLocation();
         return true;
       } else {
-        setState((prev) => ({
+        setState(prev => ({
           ...prev,
           error: {
             code: 'PERMISSION_DENIED',
@@ -123,7 +123,7 @@ export const useLocation = (): UseLocationReturn => {
         return false;
       }
     } catch (error: any) {
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         error: {
           code: 'UNKNOWN',
@@ -139,7 +139,7 @@ export const useLocation = (): UseLocationReturn => {
    * Fetch current location coordinates and address info
    */
   const fetchLocation = async (): Promise<void> => {
-    setState((prev) => ({ ...prev, isLoading: true, error: null }));
+    setState(prev => ({ ...prev, isLoading: true, error: null }));
 
     try {
       // Get coordinates
@@ -148,7 +148,7 @@ export const useLocation = (): UseLocationReturn => {
       // Get address info
       const address = await reverseGeocode(coords);
 
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         coordinates: coords,
         city: address.city || null,
@@ -157,7 +157,7 @@ export const useLocation = (): UseLocationReturn => {
         error: null,
       }));
     } catch (error: any) {
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         error: error as LocationError,
         isLoading: false,
@@ -179,7 +179,7 @@ export const useLocation = (): UseLocationReturn => {
    * Clear error state
    */
   const clearError = useCallback(() => {
-    setState((prev) => ({ ...prev, error: null }));
+    setState(prev => ({ ...prev, error: null }));
   }, []);
 
   return {

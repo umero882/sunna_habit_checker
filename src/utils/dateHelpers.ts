@@ -30,10 +30,7 @@ export const isTodayFriday = (): boolean => {
  * @param date - Date to check (defaults to today)
  * @returns true if it's Friday and the prayer is Dhuhr
  */
-export const isJumuahPrayer = (
-  prayer: PrayerName,
-  date: Date = new Date()
-): boolean => {
+export const isJumuahPrayer = (prayer: PrayerName, date: Date = new Date()): boolean => {
   return prayer === 'dhuhr' && isFriday(date);
 };
 
@@ -54,13 +51,13 @@ export const getDayName = (date: Date = new Date()): string => {
 export const getDayNameArabic = (date: Date = new Date()): string => {
   const dayIndex = getDay(date);
   const arabicDays = [
-    'الأحد',    // Sunday
-    'الاثنين',  // Monday
+    'الأحد', // Sunday
+    'الاثنين', // Monday
     'الثلاثاء', // Tuesday
     'الأربعاء', // Wednesday
-    'الخميس',   // Thursday
-    'الجمعة',   // Friday
-    'السبت',    // Saturday
+    'الخميس', // Thursday
+    'الجمعة', // Friday
+    'السبت', // Saturday
   ];
   return arabicDays[dayIndex];
 };

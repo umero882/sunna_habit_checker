@@ -29,7 +29,8 @@ const MADHHAB_OPTIONS: { id: Madhhab; name: string; description: string }[] = [
 
 export const PrayerSettingsScreen: React.FC = () => {
   const { t } = useTranslation();
-  const { goToNextStep, goToPreviousStep, skipCurrentStep, currentStepIndex, totalSteps } = useOnboarding();
+  const { goToNextStep, goToPreviousStep, skipCurrentStep, currentStepIndex, totalSteps } =
+    useOnboarding();
   const { settings, updateSettings } = useUserSettings();
 
   const [selectedMethod, setSelectedMethod] = useState(settings?.prayerCalcMethod || 'MWL');
@@ -66,13 +67,10 @@ export const PrayerSettingsScreen: React.FC = () => {
             {t('onboarding.prayerSettings.methodTitle', 'Calculation Method')}
           </Text>
 
-          {CALCULATION_METHODS.map((method) => (
+          {CALCULATION_METHODS.map(method => (
             <TouchableOpacity
               key={method.id}
-              style={[
-                styles.optionCard,
-                selectedMethod === method.id && styles.optionCardSelected,
-              ]}
+              style={[styles.optionCard, selectedMethod === method.id && styles.optionCardSelected]}
               onPress={() => setSelectedMethod(method.id)}
               activeOpacity={0.7}
             >
@@ -90,7 +88,7 @@ export const PrayerSettingsScreen: React.FC = () => {
             {t('onboarding.prayerSettings.madhhabTitle', 'Madhhab (Asr Calculation)')}
           </Text>
 
-          {MADHHAB_OPTIONS.map((madhhab) => (
+          {MADHHAB_OPTIONS.map(madhhab => (
             <TouchableOpacity
               key={madhhab.id}
               style={[

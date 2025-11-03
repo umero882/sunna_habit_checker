@@ -34,7 +34,7 @@ export const ANALYTICS_EVENTS = {
   FIRST_HABIT_COMPLETED: 'first_habit_completed',
 } as const;
 
-export type AnalyticsEvent = typeof ANALYTICS_EVENTS[keyof typeof ANALYTICS_EVENTS];
+export type AnalyticsEvent = (typeof ANALYTICS_EVENTS)[keyof typeof ANALYTICS_EVENTS];
 
 interface EventProperties {
   [key: string]: string | number | boolean | undefined;
@@ -84,7 +84,11 @@ export const trackOnboardingStepViewed = (step: OnboardingStep, stepIndex: numbe
 /**
  * Track onboarding step completion
  */
-export const trackOnboardingStepCompleted = (step: OnboardingStep, stepIndex: number, timeSpent?: number): void => {
+export const trackOnboardingStepCompleted = (
+  step: OnboardingStep,
+  stepIndex: number,
+  timeSpent?: number
+): void => {
   trackEvent(ANALYTICS_EVENTS.ONBOARDING_STEP_COMPLETED, {
     step,
     step_index: stepIndex,

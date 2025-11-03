@@ -55,14 +55,16 @@ const fetchUserData = async (): Promise<Omit<BackupData, 'version' | 'created_at
   // Fetch sunnah logs with habit details
   const { data: sunnahLogs, error: sunnahError } = await supabase
     .from('sunnah_logs')
-    .select(`
+    .select(
+      `
       *,
       sunnah_habits (
         name,
         category,
         description
       )
-    `)
+    `
+    )
     .eq('user_id', user.id)
     .order('date', { ascending: false });
 
@@ -276,18 +278,15 @@ export const restoreBackup = async (backupId: string): Promise<void> => {
     // Restore prayer logs
     if (backupData.prayer_logs && backupData.prayer_logs.length > 0) {
       // Delete existing prayer logs
-      await supabase
-        .from('prayer_logs')
-        .delete()
-        .eq('user_id', user.id);
+      await supabase.from('prayer_logs').delete().eq('user_id', user.id);
 
       // Insert backup prayer logs
-      const { error: prayerError } = await supabase
-        .from('prayer_logs')
-        .insert(backupData.prayer_logs.map(log => ({
+      const { error: prayerError } = await supabase.from('prayer_logs').insert(
+        backupData.prayer_logs.map(log => ({
           ...log,
           user_id: user.id, // Ensure user_id is correct
-        })));
+        }))
+      );
 
       if (prayerError) throw prayerError;
     }
@@ -295,21 +294,18 @@ export const restoreBackup = async (backupId: string): Promise<void> => {
     // Restore sunnah logs
     if (backupData.sunnah_logs && backupData.sunnah_logs.length > 0) {
       // Delete existing sunnah logs
-      await supabase
-        .from('sunnah_logs')
-        .delete()
-        .eq('user_id', user.id);
+      await supabase.from('sunnah_logs').delete().eq('user_id', user.id);
 
       // Insert backup sunnah logs (exclude nested habit data)
-      const { error: sunnahError } = await supabase
-        .from('sunnah_logs')
-        .insert(backupData.sunnah_logs.map(log => {
+      const { error: sunnahError } = await supabase.from('sunnah_logs').insert(
+        backupData.sunnah_logs.map(log => {
           const { sunnah_habits, ...logData } = log;
           return {
             ...logData,
             user_id: user.id,
           };
-        }));
+        })
+      );
 
       if (sunnahError) throw sunnahError;
     }
@@ -317,42 +313,35 @@ export const restoreBackup = async (backupId: string): Promise<void> => {
     // Restore quran progress
     if (backupData.quran_progress && backupData.quran_progress.length > 0) {
       // Delete existing quran progress
-      await supabase
-        .from('quran_progress')
-        .delete()
-        .eq('user_id', user.id);
+      await supabase.from('quran_progress').delete().eq('user_id', user.id);
 
       // Insert backup quran progress
-      const { error: quranError } = await supabase
-        .from('quran_progress')
-        .insert(backupData.quran_progress.map(progress => ({
+      const { error: quranError } = await supabase.from('quran_progress').insert(
+        backupData.quran_progress.map(progress => ({
           ...progress,
           user_id: user.id,
-        })));
+        }))
+      );
 
       if (quranError) throw quranError;
     }
 
     // Restore user profile
     if (backupData.user_profile) {
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .upsert({
-          ...backupData.user_profile,
-          id: user.id,
-        });
+      const { error: profileError } = await supabase.from('profiles').upsert({
+        ...backupData.user_profile,
+        id: user.id,
+      });
 
       if (profileError) throw profileError;
     }
 
     // Restore settings
     if (backupData.settings) {
-      const { error: settingsError } = await supabase
-        .from('user_settings')
-        .upsert({
-          ...backupData.settings,
-          user_id: user.id,
-        });
+      const { error: settingsError } = await supabase.from('user_settings').upsert({
+        ...backupData.settings,
+        user_id: user.id,
+      });
 
       if (settingsError) throw settingsError;
     }

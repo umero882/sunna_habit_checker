@@ -71,60 +71,64 @@ export const useReciterPreference = (userId?: string): UseReciterPreferenceRetur
    * Validate reciter ID exists in available reciters
    */
   const isValidReciter = (reciterId: string): boolean => {
-    return AVAILABLE_RECITERS.some((r) => r.id === reciterId);
+    return AVAILABLE_RECITERS.some(r => r.id === reciterId);
   };
 
   /**
    * Get reciter info by ID
    */
   const getReciterInfo = useCallback((reciterId: string): ReciterInfo | null => {
-    return AVAILABLE_RECITERS.find((r) => r.id === reciterId) || null;
+    return AVAILABLE_RECITERS.find(r => r.id === reciterId) || null;
   }, []);
 
   /**
    * Update reciter preference
    */
-  const setReciter = useCallback(async (reciterId: string) => {
-    if (!isValidReciter(reciterId)) {
-      logger.error(`Invalid reciter ID: ${reciterId}`);
-      return;
-    }
+  const setReciter = useCallback(
+    async (reciterId: string) => {
+      if (!isValidReciter(reciterId)) {
+        logger.error(`Invalid reciter ID: ${reciterId}`);
+        return;
+      }
 
-    try {
-      // Update local state immediately
-      setReciterState(reciterId);
+      try {
+        // Update local state immediately
+        setReciterState(reciterId);
 
-      // Save to AsyncStorage
-      await AsyncStorage.setItem(RECITER_STORAGE_KEY, reciterId);
+        // Save to AsyncStorage
+        await AsyncStorage.setItem(RECITER_STORAGE_KEY, reciterId);
 
-      // If user is logged in, sync to Supabase
-      if (userId) {
-        const { error } = await supabase
-          .from('user_quran_preferences')
-          .upsert({
-            user_id: userId,
-            reciter: reciterId,
-            updated_at: new Date().toISOString(),
-          }, {
-            onConflict: 'user_id'
-          });
+        // If user is logged in, sync to Supabase
+        if (userId) {
+          const { error } = await supabase.from('user_quran_preferences').upsert(
+            {
+              user_id: userId,
+              reciter: reciterId,
+              updated_at: new Date().toISOString(),
+            },
+            {
+              onConflict: 'user_id',
+            }
+          );
 
-        if (error) {
-          logger.error('Failed to save reciter to Supabase:', error);
-          // Don't throw - local storage update succeeded
-        } else {
-          logger.debug(`Reciter preference saved: ${reciterId}`);
+          if (error) {
+            logger.error('Failed to save reciter to Supabase:', error);
+            // Don't throw - local storage update succeeded
+          } else {
+            logger.debug(`Reciter preference saved: ${reciterId}`);
+          }
+        }
+      } catch (error) {
+        logger.error('Failed to update reciter preference:', error);
+        // Revert to previous state on error
+        const storedReciter = await AsyncStorage.getItem(RECITER_STORAGE_KEY);
+        if (storedReciter) {
+          setReciterState(storedReciter);
         }
       }
-    } catch (error) {
-      logger.error('Failed to update reciter preference:', error);
-      // Revert to previous state on error
-      const storedReciter = await AsyncStorage.getItem(RECITER_STORAGE_KEY);
-      if (storedReciter) {
-        setReciterState(storedReciter);
-      }
-    }
-  }, [userId]);
+    },
+    [userId]
+  );
 
   return {
     reciter,

@@ -1,0 +1,455 @@
+
+> sunnah-habit-checker@1.0.0 lint
+> eslint . --ext .ts,.tsx
+
+
+C:\Users\umera\sunnah-habit-checker\src\components\home\DailyProgressBar.tsx
+  46:9  warning  Inline style: { borderLeftWidth: 4 }  react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\components\home\GreetingHeader.tsx
+  30:3  warning  'onSettingsPress' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\components\onboarding\OnboardingButtons.tsx
+  39:3   warning  'showSkip' is assigned a value but never used. Allowed unused vars must match /^_/u   @typescript-eslint/no-unused-vars
+  43:3   warning  'skipLabel' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  47:3   warning  'onSkip' is defined but never used. Allowed unused args must match /^_/u              @typescript-eslint/no-unused-vars
+  77:26  warning  Inline style: { flex: 0.4 }                                                           react-native/no-inline-styles
+  83:45  warning  Inline style: { flex: 1 }                                                             react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\components\onboarding\OnboardingSlide.tsx
+   23:21  warning  Unexpected any. Specify a different type                                                                                       @typescript-eslint/no-explicit-any
+   78:6   warning  React Hook useEffect has missing dependencies: 'fadeAnim' and 'slideAnim'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  117:18  warning  Inline style: { flex: 1 }                                                                                                      react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\components\onboarding\ProgressIndicator.tsx
+  59:6  warning  React Hook useEffect has missing dependencies: 'opacityAnim' and 'scaleAnim'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\umera\sunnah-habit-checker\src\components\prayers\PrayerCalendar.tsx
+    8:50  warning  'subDays' is defined but never used. Allowed unused vars must match /^_/u   @typescript-eslint/no-unused-vars
+  150:35  warning  'dayIndex' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\components\prayers\PrayerCard.tsx
+  11:10  warning  'getRandomHadithByStatus' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  43:58  warning  Unexpected any. Specify a different type                                                   @typescript-eslint/no-explicit-any
+  46:48  warning  Unexpected any. Specify a different type                                                   @typescript-eslint/no-explicit-any
+  50:27  warning  'status' is already declared in the upper scope on line 32 column 3                        @typescript-eslint/no-shadow
+  67:27  warning  'status' is already declared in the upper scope on line 32 column 3                        @typescript-eslint/no-shadow
+  84:31  warning  'status' is already declared in the upper scope on line 32 column 3                        @typescript-eslint/no-shadow
+
+C:\Users\umera\sunnah-habit-checker\src\components\prayers\QiblaCompass.tsx
+   12:7   warning  'logger' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  111:68  warning  Inline style: { top: 5 }                                                           react-native/no-inline-styles
+  116:48  warning  Inline style: { right: 5 }                                                         react-native/no-inline-styles
+  121:48  warning  Inline style: { bottom: 5 }                                                        react-native/no-inline-styles
+  126:48  warning  Inline style: { left: 5 }                                                          react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\components\prayers\RewardAnimationModal.tsx
+   76:6   warning  React Hook useEffect has missing dependencies: 'onComplete', 'startFade', 'startMultiplier', and 'startScale'. Either include them or remove the dependency array. If 'onComplete' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
+  106:13  warning  Inline style: { overflow: 'hidden' }                                                                                                                                                                                                                                                     react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\components\profile\EditProfileModal.tsx
+   21:49  warning  'ImageIcon' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+   21:60  warning  'Trash2' is defined but never used. Allowed unused vars must match /^_/u     @typescript-eslint/no-unused-vars
+  137:21  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  145:25  warning  'email' is already declared in the upper scope on line 57 column 10          @typescript-eslint/no-shadow
+  150:25  warning  'phone' is already declared in the upper scope on line 56 column 10          @typescript-eslint/no-shadow
+  206:21  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  228:21  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  246:21  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\components\profile\ExportDataModal.tsx
+  43:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\components\profile\ProfileHeader.tsx
+   8:10  warning  'User' is defined but never used. Allowed unused vars must match /^_/u                                              @typescript-eslint/no-unused-vars
+  46:53  warning  'isLoading' is assigned a value but never used. Allowed unused vars must match /^_/u                                @typescript-eslint/no-unused-vars
+  66:6   warning  React Hook useEffect has a missing dependency: 'getUserInitials'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\umera\sunnah-habit-checker\src\components\profile\WeeklyChart.tsx
+  24:7  warning  'chartWidth' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\components\quran\library\AudioPlayer.tsx
+   29:3   warning  'onSurahComplete' is defined but never used. Allowed unused args must match /^_/u                                                                                                                                      @typescript-eslint/no-unused-vars
+   86:6   warning  React Hook useEffect has missing dependencies: 'audioState.currentAyah', 'audioState?.surahNumber', 'currentAyah', 'isPlaying', 'play', 'stop', and 'surahNumber'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  135:35  warning  Unexpected any. Specify a different type                                                                                                                                                                               @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\components\quran\library\QuranReader.tsx
+   60:3   warning  'onSurahChange' is defined but never used. Allowed unused args must match /^_/u                                                   @typescript-eslint/no-unused-vars
+   69:11  warning  'bookmarks' is assigned a value but never used. Allowed unused vars must match /^_/u                                              @typescript-eslint/no-unused-vars
+   76:10  warning  'reciterForTiming' is assigned a value but never used. Allowed unused vars must match /^_/u                                       @typescript-eslint/no-unused-vars
+   79:9   warning  'lastUpdateTime' is assigned a value but never used. Allowed unused vars must match /^_/u                                         @typescript-eslint/no-unused-vars
+  202:6   warning  React Hook useEffect has missing dependencies: 'goToAyah' and 'scrollToAyah'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  271:61  warning  Unexpected any. Specify a different type                                                                                          @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\components\quran\planner\CreatePlanModal.tsx
+  143:25  warning  Missing radix parameter  radix
+  144:51  warning  Missing radix parameter  radix
+
+C:\Users\umera\sunnah-habit-checker\src\components\quran\planner\PlannerTab.tsx
+  32:45  warning  Unexpected any. Specify a different type                             @typescript-eslint/no-explicit-any
+  35:7   warning  Value of 'error' may be overwritten in IE 8 and earlier              no-catch-shadow
+  35:14  warning  'error' is already declared in the upper scope on line 27 column 41  @typescript-eslint/no-shadow
+  49:13  warning  Value of 'error' may be overwritten in IE 8 and earlier              no-catch-shadow
+  49:20  warning  'error' is already declared in the upper scope on line 27 column 41  @typescript-eslint/no-shadow
+  65:7   warning  Value of 'error' may be overwritten in IE 8 and earlier              no-catch-shadow
+  65:14  warning  'error' is already declared in the upper scope on line 27 column 41  @typescript-eslint/no-shadow
+
+C:\Users\umera\sunnah-habit-checker\src\components\quran\today\DailyGoalCard.tsx
+  39:6  warning  React Hook useEffect has a missing dependency: 'loadTodayProgress'. Either include it or remove the dependency array                     react-hooks/exhaustive-deps
+  47:6  warning  React Hook useEffect has missing dependencies: 'activePlan' and 'loadTodayProgress'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  67:6  warning  React Hook useEffect has a missing dependency: 'loadTodayProgress'. Either include it or remove the dependency array                     react-hooks/exhaustive-deps
+
+C:\Users\umera\sunnah-habit-checker\src\components\quran\today\QuickLogButton.tsx
+  63:25  warning  Missing radix parameter  radix
+  64:23  warning  Missing radix parameter  radix
+  94:54  warning  Missing radix parameter  radix
+
+C:\Users\umera\sunnah-habit-checker\src\components\quran\today\StatisticsCard.tsx
+  7:34  warning  'ScrollView' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\components\sunnah\BenchmarksTab.tsx
+    7:46  warning  'TouchableOpacity' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  136:31  warning  'index' is defined but never used. Allowed unused args must match /^_/u             @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\components\sunnah\InsightsTab.tsx
+  14:3  warning  'TouchableOpacity' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\components\sunnah\LibraryTab.tsx
+  181:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  243:60  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\components\sunnah\SunnahCard.tsx
+   71:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  304:28  warning  Inline style: { height: 20 }              react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useGreeting.ts
+   24:43  warning  'locale' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  119:11  warning  'type' is assigned a value but never used. Allowed unused vars must match /^_/u    @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useLocation.ts
+   92:6   warning  React Hook useEffect has a missing dependency: 'requestPermission'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  125:21  warning  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+  159:21  warning  Unexpected any. Specify a different type                                                                              @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useOnboarding.ts
+  11:3  warning  'isOnboardingComplete' is defined but never used. Allowed unused vars must match /^_/u      @typescript-eslint/no-unused-vars
+  14:3  warning  'getCurrentOnboardingStep' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\usePointsAnimation.ts
+  76:6  warning  React Hook useEffect has a missing dependency: 'start'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\usePrayerLogs.ts
+  160:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  185:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  249:27  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  331:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  366:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  395:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\usePrayerStats.ts
+  16:3   warning  'parseISO' is defined but never used. Allowed unused vars must match /^_/u          @typescript-eslint/no-unused-vars
+  17:3   warning  'differenceInDays' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  19:26  warning  'PrayerName' is defined but never used. Allowed unused vars must match /^_/u        @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\usePrayerTimes.ts
+  117:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+  218:9   warning  The 'now' object construction makes the dependencies of useCallback Hook (at line 244) change on every render. Move it inside the useCallback callback. Alternatively, wrap the initialization of 'now' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useProfile.ts
+  154:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useProgressSnapshots.ts
+  155:27  warning  'error' is already declared in the upper scope on line 149 column 5  @typescript-eslint/no-shadow
+  155:34  warning  Unexpected any. Specify a different type                             @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useQiblaDirection.ts
+  117:19  warning  Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  128:23  warning  Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  203:6   warning  React Hook useEffect has a missing dependency: 'calculateQibla'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useQuranAudio.ts
+  167:6  warning  React Hook useEffect has a missing dependency: 'play'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useQuranPreferences.ts
+  112:36  warning  Unexpected any. Specify a different type                             @typescript-eslint/no-explicit-any
+  193:27  warning  'error' is already declared in the upper scope on line 187 column 5  @typescript-eslint/no-shadow
+  193:34  warning  Unexpected any. Specify a different type                             @typescript-eslint/no-explicit-any
+  225:14  warning  Expected error to be handled                                         handle-callback-err
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useQuranReader.ts
+  7:17  warning  'Ayah' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useQuranStatistics.ts
+   41:7   warning  'TOTAL_QURAN_VERSES' is assigned a value but never used. Allowed unused vars must match /^_/u                       @typescript-eslint/no-unused-vars
+   51:34  warning  Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+   70:16  warning  'dateStr' is assigned a value but never used. Allowed unused vars must match /^_/u                                  @typescript-eslint/no-unused-vars
+  141:43  warning  Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+  161:37  warning  Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+  161:58  warning  Missing radix parameter                                                                                             radix
+  284:6   warning  React Hook useEffect has a missing dependency: 'fetchStatistics'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useReadingPlan.ts
+    7:38  warning  'ReadingMode' is defined but never used. Allowed unused vars must match /^_/u                                      @typescript-eslint/no-unused-vars
+   83:17  warning  'data' is assigned a value but never used. Allowed unused vars must match /^_/u                                    @typescript-eslint/no-unused-vars
+  209:5   warning  React Hook useCallback has a missing dependency: 'completePlan'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useSunnahHabits.ts
+   82:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  109:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  127:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  141:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  155:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  169:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useSunnahStats.ts
+   15:3   warning  'SunnahHabit' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  447:19  warning  Unexpected any. Specify a different type                                       @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useTodayStats.ts
+  167:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\hooks\useUserSettings.ts
+   93:36  warning  Unexpected any. Specify a different type                             @typescript-eslint/no-explicit-any
+  161:27  warning  'error' is already declared in the upper scope on line 155 column 5  @typescript-eslint/no-shadow
+  161:34  warning  Unexpected any. Specify a different type                             @typescript-eslint/no-explicit-any
+  193:14  warning  Expected error to be handled                                         handle-callback-err
+
+C:\Users\umera\sunnah-habit-checker\src\navigation\MainTabNavigator.tsx
+    8:20  warning  'MaterialCommunityIcons' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+   74:22  warning  Do not define components during render. React will see a new component type on every render and destroy the entire subtree’s DOM nodes and state (https://reactjs.org/docs/reconciliation.html#elements-of-different-types). Instead, move this component definition out of the parent component “MainTabNavigator” and pass data as props. If you want to allow component creation in props, set allowAsProps option to true  react/no-unstable-nested-components
+   86:23  warning  Do not define components during render. React will see a new component type on every render and destroy the entire subtree’s DOM nodes and state (https://reactjs.org/docs/reconciliation.html#elements-of-different-types). Instead, move this component definition out of the parent component “MainTabNavigator” and pass data as props. If you want to allow component creation in props, set allowAsProps option to true  react/no-unstable-nested-components
+  105:23  warning  Do not define components during render. React will see a new component type on every render and destroy the entire subtree’s DOM nodes and state (https://reactjs.org/docs/reconciliation.html#elements-of-different-types). Instead, move this component definition out of the parent component “MainTabNavigator” and pass data as props. If you want to allow component creation in props, set allowAsProps option to true  react/no-unstable-nested-components
+  124:23  warning  Do not define components during render. React will see a new component type on every render and destroy the entire subtree’s DOM nodes and state (https://reactjs.org/docs/reconciliation.html#elements-of-different-types). Instead, move this component definition out of the parent component “MainTabNavigator” and pass data as props. If you want to allow component creation in props, set allowAsProps option to true  react/no-unstable-nested-components
+  143:23  warning  Do not define components during render. React will see a new component type on every render and destroy the entire subtree’s DOM nodes and state (https://reactjs.org/docs/reconciliation.html#elements-of-different-types). Instead, move this component definition out of the parent component “MainTabNavigator” and pass data as props. If you want to allow component creation in props, set allowAsProps option to true  react/no-unstable-nested-components
+  162:23  warning  Do not define components during render. React will see a new component type on every render and destroy the entire subtree’s DOM nodes and state (https://reactjs.org/docs/reconciliation.html#elements-of-different-types). Instead, move this component definition out of the parent component “MainTabNavigator” and pass data as props. If you want to allow component creation in props, set allowAsProps option to true  react/no-unstable-nested-components
+
+C:\Users\umera\sunnah-habit-checker\src\navigation\RootNavigator.tsx
+   99:9   warning  'handleOnboardingComplete' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  125:73  warning  Unexpected any. Specify a different type                                                             @typescript-eslint/no-explicit-any
+  126:73  warning  Unexpected any. Specify a different type                                                             @typescript-eslint/no-explicit-any
+  148:14  warning  'props' is defined but never used. Allowed unused args must match /^_/u                              @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\screens\ProfileScreen.tsx
+   6:27  warning  'useEffect' is defined but never used. Allowed unused vars must match /^_/u                 @typescript-eslint/no-unused-vars
+  13:3   warning  'TouchableOpacity' is defined but never used. Allowed unused vars must match /^_/u          @typescript-eslint/no-unused-vars
+  73:7   warning  'MADHHAB_OPTIONS' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\screens\QuranScreen.tsx
+   33:10  warning  'quranDb' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+   42:9   warning  'width' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  115:8   warning  Do not define components during render. React will see a new component type on every render and destroy the entire subtree’s DOM nodes and state (https://reactjs.org/docs/reconciliation.html#elements-of-different-types). Instead, move this component definition out of the parent component “QuranScreen” and pass data as props  react/no-unstable-nested-components
+  115:11  warning  'userId' is already declared in the upper scope on line 48 column 10                                                                                                                                                                                                                                                                   @typescript-eslint/no-shadow
+
+C:\Users\umera\sunnah-habit-checker\src\screens\SunnahScreen.tsx
+  31:32  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\screens\auth\ResetPasswordScreen.tsx
+   67:60  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  137:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\screens\auth\SignInScreen.tsx
+  117:69  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  147:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\screens\auth\SignUpScreen.tsx
+   21:10  warning  'parsePhoneNumber' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+   35:11  warning  't' is assigned a value but never used. Allowed unused vars must match /^_/u        @typescript-eslint/no-unused-vars
+   53:26  warning  'email' is already declared in the upper scope on line 42 column 10                 @typescript-eslint/no-shadow
+   58:47  warning  'countryCode' is already declared in the upper scope on line 40 column 10           @typescript-eslint/no-shadow
+   62:65  warning  Unexpected any. Specify a different type                                            @typescript-eslint/no-explicit-any
+   63:7   warning  Value of 'error' may be overwritten in IE 8 and earlier                             no-catch-shadow
+   63:14  warning  'error' is already declared in the upper scope on line 48 column 10                 @typescript-eslint/no-shadow
+  146:45  warning  Unexpected any. Specify a different type                                            @typescript-eslint/no-explicit-any
+  164:60  warning  Unexpected any. Specify a different type                                            @typescript-eslint/no-explicit-any
+  328:62  warning  Unexpected any. Specify a different type                                            @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\screens\auth\WelcomeScreen.tsx
+  7:34  warning  'Image' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\screens\home\TodayScreen.tsx
+  52:12  warning  'prayerError' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\screens\onboarding\CompletionScreen.tsx
+   40:6   warning  React Hook useEffect has missing dependencies: 'fadeAnim' and 'scaleAnim'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+   55:18  warning  Inline style: { flex: 1, backgroundColor: 'rgba(76, 175, 80, 0.95)' }                                                          react-native/no-inline-styles
+  152:31  warning  Unexpected any. Specify a different type                                                                                       @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\screens\onboarding\FeaturesPrayerScreen.tsx
+  19:18  warning  Inline style: { flex: 1 }                 react-native/no-inline-styles
+  74:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\screens\onboarding\FeaturesQuranScreen.tsx
+  20:18  warning  Inline style: { flex: 1, backgroundColor: 'rgba(156, 39, 176, 0.95)' }  react-native/no-inline-styles
+  71:29  warning  Unexpected any. Specify a different type                                @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\screens\onboarding\FeaturesSunnahScreen.tsx
+  20:18  warning  Inline style: { flex: 1, backgroundColor: 'rgba(255, 152, 0, 0.95)' }  react-native/no-inline-styles
+  71:29  warning  Unexpected any. Specify a different type                               @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\screens\onboarding\LocationPermissionScreen.tsx
+  26:11  warning  't' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  48:19  warning  Unexpected any. Specify a different type                                      @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\screens\onboarding\PermissionsScreen.tsx
+  105:18  warning  Inline style: { flex: 1 }  react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\screens\onboarding\PrayerSettingsScreen.tsx
+  51:18  warning  Inline style: { flex: 1, backgroundColor: 'rgba(33, 150, 243, 0.92)' }  react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\screens\onboarding\QuranPreferencesScreen.tsx
+   69:18  warning  Inline style: { flex: 1, backgroundColor: 'rgba(156, 39, 176, 0.92)' }  react-native/no-inline-styles
+  106:24  warning  Inline style: { opacity: 0.6 }                                          react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\screens\onboarding\WelcomeScreen.tsx
+  23:18  warning  Inline style: { flex: 1 }  react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\screens\prayer\QiblaScreen.tsx
+   14:3   warning  'Alert' is defined but never used. Allowed unused vars must match /^_/u            @typescript-eslint/no-unused-vars
+   22:7   warning  'logger' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+   73:50  warning  Inline style: { color: '#FFFFFF' }                                                 react-native/no-inline-styles
+  102:54  warning  Inline style: { color: '#FFFFFF' }                                                 react-native/no-inline-styles
+  144:49  warning  Inline style: { color: '#FFFFFF' }                                                 react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\screens\profile\BackupScreen.tsx
+   16:3   warning  'TextInput' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+   59:21  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+   93:29  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  134:29  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  164:29  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  185:28  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  194:21  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\screens\profile\ExportDataScreen.tsx
+   55:21  warning  Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+  102:21  warning  Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+  136:20  warning  Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+  246:44  warning  Inline style: { backgroundColor: '#E3F2FD' }         react-native/no-inline-styles
+  272:47  warning  Inline style: { color: '#FFFFFF' }                   react-native/no-inline-styles
+  273:53  warning  Inline style: { color: 'rgba(255, 255, 255, 0.8)' }  react-native/no-inline-styles
+
+C:\Users\umera\sunnah-habit-checker\src\services\audioService.ts
+   61:43  warning  Unexpected any. Specify a different type                                            @typescript-eslint/no-explicit-any
+   62:50  warning  Unexpected any. Specify a different type                                            @typescript-eslint/no-explicit-any
+  100:35  warning  Unexpected any. Specify a different type                                            @typescript-eslint/no-explicit-any
+  496:5   warning  'reciter' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  497:5   warning  'onProgress' is defined but never used. Allowed unused args must match /^_/u        @typescript-eslint/no-unused-vars
+  534:44  warning  'reciter' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\services\backupService.ts
+   27:16  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+   28:16  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+   29:19  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+   30:17  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+   31:13  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+  148:39  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+  150:32  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+  155:32  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+  199:19  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+  226:19  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+  302:19  warning  'sunnah_habits' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  350:19  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+  403:19  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+  448:39  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+  457:32  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+  463:19  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+  498:19  warning  Unexpected any. Specify a different type                                                  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\services\dataExport.ts
+    8:13  warning  'FileSystem' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  486:19  warning  Unexpected any. Specify a different type                                      @typescript-eslint/no-explicit-any
+  517:19  warning  Unexpected any. Specify a different type                                      @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\services\exportService.ts
+   11:15  warning  'PrayerLog' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+   11:26  warning  'SunnahLog' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+   18:29  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  125:19  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  181:37  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  219:19  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  280:19  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  299:21  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  309:21  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  319:21  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  339:19  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  394:19  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  417:19  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  438:19  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  487:19  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\services\location.ts
+  94:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\services\notificationScheduler.ts
+    9:10  warning  'parse' is defined but never used. Allowed unused vars must match /^_/u                     @typescript-eslint/no-unused-vars
+    9:37  warning  'isAfter' is defined but never used. Allowed unused vars must match /^_/u                   @typescript-eslint/no-unused-vars
+  174:11  warning  'reminderTimeStr' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  373:11  warning  'data' is assigned a value but never used. Allowed unused vars must match /^_/u             @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\services\prayerTimes.ts
+  114:3  warning  'timezone' is assigned a value but never used. Allowed unused vars must match /^_/u       @typescript-eslint/no-unused-vars
+  150:9  warning  'currentPrayer' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\services\profilePhotoService.ts
+   34:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   53:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   85:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  116:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  141:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  197:27  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  272:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  324:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  352:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\services\quranApi.ts
+    7:45  warning  'SurahMeta' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  201:72  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  223:32  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+  243:79  warning  Unexpected any. Specify a different type                                     @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\services\quranDb.ts
+    8:17  warning  'Ayah' is defined but never used. Allowed unused vars must match /^_/u             @typescript-eslint/no-unused-vars
+  270:33  warning  Unexpected any. Specify a different type                                           @typescript-eslint/no-explicit-any
+  295:13  warning  'result' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\services\sunnahService.ts
+  9:3  warning  'SunnahHabit' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\services\supabase.ts
+  197:19  warning  'profileData' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  248:70  warning  Unexpected any. Specify a different type                                                @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\services\wordTimingService.ts
+  192:24  warning  'reciter' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\services\wordTimingServiceSimple.ts
+   16:7   warning  'DB_DOWNLOAD_URL' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  188:24  warning  'reciter' is defined but never used. Allowed unused args must match /^_/u                   @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\types\index.ts
+  22:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  25:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  32:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\umera\sunnah-habit-checker\src\utils\habitAggregation.ts
+    6:18  warning  'isToday' is defined but never used. Allowed unused vars must match /^_/u        @typescript-eslint/no-unused-vars
+    6:27  warning  'parseISO' is defined but never used. Allowed unused vars must match /^_/u       @typescript-eslint/no-unused-vars
+    7:26  warning  'PrayerStatus' is defined but never used. Allowed unused vars must match /^_/u   @typescript-eslint/no-unused-vars
+  117:38  warning  'date' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  133:39  warning  'date' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\umera\sunnah-habit-checker\src\utils\logger.ts
+   14:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   15:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   16:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   17:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   18:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   35:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   38:9   warning  Unexpected console statement              no-console
+   44:9   warning  Unexpected console statement              no-console
+   80:3   warning  Unexpected console statement              no-console
+   84:5   warning  Unexpected console statement              no-console
+  103:3   warning  Unexpected console statement              no-console
+  105:3   warning  Unexpected console statement              no-console
+
+✖ 284 problems (0 errors, 284 warnings)
+

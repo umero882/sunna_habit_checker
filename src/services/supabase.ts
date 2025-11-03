@@ -188,7 +188,7 @@ export const signUp = async (signUpData: SignUpData) => {
   if (!authData.user) {
     return {
       data: null,
-      error: new Error('User creation failed - no user returned')
+      error: new Error('User creation failed - no user returned'),
     };
   }
 
@@ -211,7 +211,7 @@ export const signUp = async (signUpData: SignUpData) => {
       logger.error('Profile creation error:', profileError);
       return {
         data: authData,
-        error: new Error('Account created but profile setup failed. Please contact support.')
+        error: new Error('Account created but profile setup failed. Please contact support.'),
       };
     }
 
@@ -220,7 +220,7 @@ export const signUp = async (signUpData: SignUpData) => {
     logger.error('Unexpected error during profile creation:', error);
     return {
       data: authData,
-      error: new Error('Account created but profile setup failed. Please contact support.')
+      error: new Error('Account created but profile setup failed. Please contact support.'),
     };
   }
 };

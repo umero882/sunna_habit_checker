@@ -30,7 +30,9 @@ export const PrayerPerformanceCard: React.FC<PrayerPerformanceCardProps> = ({ pe
   }, []);
 
   // Calculate performance percentage using daily prayer points
-  const performancePercentage = Math.round((performance.dailyPrayerPoints / MAX_DAILY_PRAYER_POINTS_SIMPLE) * 100);
+  const performancePercentage = Math.round(
+    (performance.dailyPrayerPoints / MAX_DAILY_PRAYER_POINTS_SIMPLE) * 100
+  );
 
   return (
     <View style={styles.container}>
@@ -62,7 +64,9 @@ export const PrayerPerformanceCard: React.FC<PrayerPerformanceCardProps> = ({ pe
           <View style={styles.percentageBadge}>
             <Text style={styles.percentageText}>{performancePercentage}%</Text>
           </View>
-          <Text style={styles.rewardScoreText}>{performance.dailyPrayerPoints}/{MAX_DAILY_PRAYER_POINTS_SIMPLE}</Text>
+          <Text style={styles.rewardScoreText}>
+            {performance.dailyPrayerPoints}/{MAX_DAILY_PRAYER_POINTS_SIMPLE}
+          </Text>
           <Text style={styles.benchmarkText}>Benchmark: {MAX_DAILY_PRAYER_POINTS_SIMPLE}</Text>
           <Text style={styles.metricLabel}>Prayer Rewards</Text>
         </View>

@@ -20,7 +20,6 @@ import { createLogger } from '../utils/logger';
 
 const logger = createLogger('sunnahService');
 
-
 // ============= Categories =============
 
 /**
@@ -72,10 +71,12 @@ export const fetchSunnahHabits = async (options?: {
 }): Promise<SunnahHabitWithCategory[]> => {
   let query = supabase
     .from('sunnah_habits')
-    .select(`
+    .select(
+      `
       *,
       category:sunnah_categories(*)
-    `)
+    `
+    )
     .eq('is_active', true)
     .order('display_order', { ascending: true });
 
@@ -146,10 +147,12 @@ export const fetchHabitsWithLogs = async (date: string): Promise<SunnahHabitWith
 export const fetchHabitById = async (habitId: string): Promise<SunnahHabitWithCategory | null> => {
   const { data, error } = await supabase
     .from('sunnah_habits')
-    .select(`
+    .select(
+      `
       *,
       category:sunnah_categories(*)
-    `)
+    `
+    )
     .eq('id', habitId)
     .single();
 
@@ -364,10 +367,7 @@ export const unpinHabit = async (habitId: string): Promise<void> => {
 /**
  * Calculate current streak for a habit
  */
-export const calculateHabitStreak = async (
-  habitId: string,
-  userId?: string
-): Promise<number> => {
+export const calculateHabitStreak = async (habitId: string, userId?: string): Promise<number> => {
   const user = userId ? { id: userId } : await getCurrentUser();
   if (!user) return 0;
 
@@ -506,19 +506,22 @@ const awardMilestone = async (
   value?: number,
   level?: SunnahLevel
 ): Promise<void> => {
-  const { error, data } = await supabase.from('sunnah_milestones').upsert(
-    {
-      user_id: userId,
-      habit_id: habitId,
-      type,
-      value: value || null,
-      level: level || null,
-    },
-    {
-      onConflict: 'user_id,habit_id,type',
-      ignoreDuplicates: true,
-    }
-  ).select();
+  const { error, data } = await supabase
+    .from('sunnah_milestones')
+    .upsert(
+      {
+        user_id: userId,
+        habit_id: habitId,
+        type,
+        value: value || null,
+        level: level || null,
+      },
+      {
+        onConflict: 'user_id,habit_id,type',
+        ignoreDuplicates: true,
+      }
+    )
+    .select();
 
   if (error) {
     logger.error('Error awarding milestone:', error);

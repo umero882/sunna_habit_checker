@@ -5,7 +5,15 @@
  */
 
 import React, { ReactNode, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, ImageBackground, ScrollView, Animated, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  ScrollView,
+  Animated,
+  TouchableOpacity,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { theme } from '../../constants/theme';
@@ -98,11 +106,7 @@ export const OnboardingSlide: React.FC<OnboardingSlideProps> = ({
 
       {/* Skip Button - Top Right Corner */}
       {showSkip && onSkip && (
-        <TouchableOpacity
-          style={styles.skipButton}
-          onPress={onSkip}
-          activeOpacity={0.7}
-        >
+        <TouchableOpacity style={styles.skipButton} onPress={onSkip} activeOpacity={0.7}>
           <Text style={styles.skipButtonText}>{skipLabel}</Text>
         </TouchableOpacity>
       )}

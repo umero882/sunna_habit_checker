@@ -55,7 +55,7 @@ export const PrayerStatusHadith: React.FC<PrayerStatusHadithProps> = ({ hadith, 
       case 'on_time':
         return 'Virtue of Praying on Time';
       case 'delayed':
-        return 'Reminder: Don\'t Delay Prayer';
+        return "Reminder: Don't Delay Prayer";
       case 'missed':
         return 'The Severity of Missing Prayer';
       case 'qadaa':

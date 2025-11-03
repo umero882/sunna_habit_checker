@@ -22,11 +22,11 @@ const Tab = createBottomTabNavigator<MainTabParamList>();
 
 // Custom color scheme for each tab
 const tabColors = {
-  home: { active: '#10B981', inactive: '#6EE7B7' },      // Green - Growth & Life
-  prayers: { active: '#3B82F6', inactive: '#93C5FD' },   // Blue - Sky & Spirituality
-  sunnah: { active: '#F59E0B', inactive: '#FCD34D' },    // Amber - Light & Guidance
-  quran: { active: '#8B5CF6', inactive: '#C4B5FD' },     // Purple - Wisdom & Nobility
-  profile: { active: '#6B7280', inactive: '#D1D5DB' },   // Gray - Simplicity & Balance
+  home: { active: '#10B981', inactive: '#6EE7B7' }, // Green - Growth & Life
+  prayers: { active: '#3B82F6', inactive: '#93C5FD' }, // Blue - Sky & Spirituality
+  sunnah: { active: '#F59E0B', inactive: '#FCD34D' }, // Amber - Light & Guidance
+  quran: { active: '#8B5CF6', inactive: '#C4B5FD' }, // Purple - Wisdom & Nobility
+  profile: { active: '#6B7280', inactive: '#D1D5DB' }, // Gray - Simplicity & Balance
 };
 
 export const MainTabNavigator: React.FC = () => {
@@ -85,7 +85,7 @@ export const MainTabNavigator: React.FC = () => {
           tabBarInactiveTintColor: tabColors.home.inactive,
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? "home" : "home-outline"}
+              name={focused ? 'home' : 'home-outline'}
               size={26}
               color={focused ? tabColors.home.active : tabColors.home.inactive}
             />
@@ -123,7 +123,7 @@ export const MainTabNavigator: React.FC = () => {
           tabBarInactiveTintColor: tabColors.sunnah.inactive,
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? "sunny" : "sunny-outline"}
+              name={focused ? 'sunny' : 'sunny-outline'}
               size={26}
               color={focused ? tabColors.sunnah.active : tabColors.sunnah.inactive}
             />
@@ -142,7 +142,7 @@ export const MainTabNavigator: React.FC = () => {
           tabBarInactiveTintColor: tabColors.quran.inactive,
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? "book" : "book-outline"}
+              name={focused ? 'book' : 'book-outline'}
               size={26}
               color={focused ? tabColors.quran.active : tabColors.quran.inactive}
             />
@@ -161,7 +161,7 @@ export const MainTabNavigator: React.FC = () => {
           tabBarInactiveTintColor: tabColors.profile.inactive,
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? "person" : "person-outline"}
+              name={focused ? 'person' : 'person-outline'}
               size={26}
               color={focused ? tabColors.profile.active : tabColors.profile.inactive}
             />

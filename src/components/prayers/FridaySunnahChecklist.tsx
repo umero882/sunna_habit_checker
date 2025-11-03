@@ -26,15 +26,13 @@ export const FridaySunnahChecklist: React.FC<FridaySunnahChecklistProps> = ({
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
   const toggleItem = (itemId: string) => {
-    setCompletedItems((prev) =>
-      prev.includes(itemId)
-        ? prev.filter((id) => id !== itemId)
-        : [...prev, itemId]
+    setCompletedItems(prev =>
+      prev.includes(itemId) ? prev.filter(id => id !== itemId) : [...prev, itemId]
     );
   };
 
   const toggleExpand = (itemId: string) => {
-    setExpandedItem((prev) => (prev === itemId ? null : itemId));
+    setExpandedItem(prev => (prev === itemId ? null : itemId));
   };
 
   const handleSubmit = () => {
@@ -44,35 +42,24 @@ export const FridaySunnahChecklist: React.FC<FridaySunnahChecklistProps> = ({
   const completionPercentage = calculateFridaySunnahPercentage(completedItems);
 
   return (
-    <Modal
-      visible={visible}
-      transparent
-      animationType="fade"
-      onRequestClose={onCancel}
-    >
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
       <View style={styles.overlay}>
         <View style={styles.modalContainer}>
           {/* Header */}
           <View style={styles.header}>
             <Text style={styles.headerIcon}>🕌</Text>
             <Text style={styles.title}>Friday Blessings Checklist</Text>
-            <Text style={styles.subtitle}>
-              Which Sunnah practices did you complete today?
-            </Text>
+            <Text style={styles.subtitle}>Which Sunnah practices did you complete today?</Text>
           </View>
 
           {/* Progress Bar */}
           <View style={styles.progressContainer}>
             <View style={styles.progressBar}>
-              <View
-                style={[
-                  styles.progressFill,
-                  { width: `${completionPercentage}%` },
-                ]}
-              />
+              <View style={[styles.progressFill, { width: `${completionPercentage}%` }]} />
             </View>
             <Text style={styles.progressText}>
-              {completedItems.length}/{FRIDAY_SUNNAH_ITEMS.length} completed ({completionPercentage}%)
+              {completedItems.length}/{FRIDAY_SUNNAH_ITEMS.length} completed ({completionPercentage}
+              %)
             </Text>
           </View>
 
@@ -83,7 +70,7 @@ export const FridaySunnahChecklist: React.FC<FridaySunnahChecklistProps> = ({
             showsVerticalScrollIndicator={false}
             nestedScrollEnabled={true}
           >
-            {FRIDAY_SUNNAH_ITEMS.map((item) => {
+            {FRIDAY_SUNNAH_ITEMS.map(item => {
               const isChecked = completedItems.includes(item.id);
               const isExpanded = expandedItem === item.id;
 
@@ -91,10 +78,7 @@ export const FridaySunnahChecklist: React.FC<FridaySunnahChecklistProps> = ({
                 <View key={item.id} style={styles.itemContainer}>
                   {/* Checkbox and Title */}
                   <TouchableOpacity
-                    style={[
-                      styles.checkboxRow,
-                      isChecked && styles.checkboxRowChecked,
-                    ]}
+                    style={[styles.checkboxRow, isChecked && styles.checkboxRowChecked]}
                     onPress={() => toggleItem(item.id)}
                   >
                     <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
@@ -116,12 +100,8 @@ export const FridaySunnahChecklist: React.FC<FridaySunnahChecklistProps> = ({
                     style={styles.expandButton}
                     onPress={() => toggleExpand(item.id)}
                   >
-                    <Text style={styles.expandIcon}>
-                      {isExpanded ? '▼' : '▶'}
-                    </Text>
-                    <Text style={styles.expandText}>
-                      {isExpanded ? 'Hide' : 'Show'} Hadith
-                    </Text>
+                    <Text style={styles.expandIcon}>{isExpanded ? '▼' : '▶'}</Text>
+                    <Text style={styles.expandText}>{isExpanded ? 'Hide' : 'Show'} Hadith</Text>
                   </TouchableOpacity>
 
                   {/* Expanded Hadith Details */}
@@ -139,7 +119,8 @@ export const FridaySunnahChecklist: React.FC<FridaySunnahChecklistProps> = ({
                       <View style={styles.sourceContainer}>
                         <Text style={styles.sourceIcon}>📚</Text>
                         <Text style={styles.sourceText}>
-                          {item.hadith.source} {item.hadith.reference && `(${item.hadith.reference})`}
+                          {item.hadith.source}{' '}
+                          {item.hadith.reference && `(${item.hadith.reference})`}
                         </Text>
                       </View>
                     </View>
@@ -151,10 +132,7 @@ export const FridaySunnahChecklist: React.FC<FridaySunnahChecklistProps> = ({
 
           {/* Actions */}
           <View style={styles.actionsContainer}>
-            <TouchableOpacity
-              style={styles.cancelButton}
-              onPress={onCancel}
-            >
+            <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
               <Text style={styles.cancelButtonText}>Cancel</Text>
             </TouchableOpacity>
 

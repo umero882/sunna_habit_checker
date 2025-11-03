@@ -41,7 +41,7 @@ class QuranApiClient {
       const translationData: AlQuranCloudResponse = await translationResponse.json();
 
       // Get metadata from constants
-      const metadata = SURAHS.find((s) => s.number === surahNumber);
+      const metadata = SURAHS.find(s => s.number === surahNumber);
       if (!metadata) {
         logger.error(`Surah ${surahNumber} metadata not found`);
         return null;
@@ -97,7 +97,7 @@ class QuranApiClient {
         ? await transliterationResponse.json()
         : null;
 
-      const metadata = SURAHS.find((s) => s.number === surahNumber);
+      const metadata = SURAHS.find(s => s.number === surahNumber);
       if (!metadata) return null;
 
       const ayahs: Ayah[] = arabicData.data.ayahs.map((ayah, index) => ({
@@ -266,14 +266,15 @@ class QuranApiClient {
     edition: string = 'quran-uthmani',
     translation: string = 'en.sahih'
   ): Promise<Surah[]> {
-    const promises = surahNumbers.map((num) => this.getSurah(num, edition, translation));
+    const promises = surahNumbers.map(num => this.getSurah(num, edition, translation));
     const results = await Promise.allSettled(promises);
 
     return results
-      .filter((result): result is PromiseFulfilledResult<Surah> =>
-        result.status === 'fulfilled' && result.value !== null
+      .filter(
+        (result): result is PromiseFulfilledResult<Surah> =>
+          result.status === 'fulfilled' && result.value !== null
       )
-      .map((result) => result.value);
+      .map(result => result.value);
   }
 
   /**

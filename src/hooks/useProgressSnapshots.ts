@@ -40,7 +40,9 @@ interface WeeklyTrendData {
  * Fetch progress snapshots for the last N weeks
  */
 const fetchProgressSnapshots = async (weeksCount: number = 8): Promise<ProgressSnapshot[]> => {
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     throw new Error('User not authenticated');
@@ -69,7 +71,7 @@ const fetchProgressSnapshots = async (weeksCount: number = 8): Promise<ProgressS
     return [];
   }
 
-  return (data || []).map((snapshot) => ({
+  return (data || []).map(snapshot => ({
     id: snapshot.id,
     userId: snapshot.user_id,
     weekStart: snapshot.week_start,
@@ -87,7 +89,9 @@ const fetchProgressSnapshots = async (weeksCount: number = 8): Promise<ProgressS
  * Generate a snapshot for a specific week using database function
  */
 const generateSnapshot = async (weekStart: Date): Promise<ProgressSnapshot> => {
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     throw new Error('User not authenticated');
@@ -123,7 +127,7 @@ const generateSnapshot = async (weekStart: Date): Promise<ProgressSnapshot> => {
  * Transform snapshots into chart-friendly weekly trend data
  */
 const transformToWeeklyTrend = (snapshots: ProgressSnapshot[]): WeeklyTrendData[] => {
-  return snapshots.map((snapshot) => ({
+  return snapshots.map(snapshot => ({
     week: format(new Date(snapshot.weekStart), 'MMM d'),
     prayers: snapshot.prayersOnTime,
     quran: Math.round(snapshot.quranMinutes / 60), // Convert to hours for better chart scale
@@ -182,15 +186,11 @@ export const useProgressSnapshots = (weeksCount: number = 8) => {
         totalCharityEntries: snapshots.reduce((sum, s) => sum + s.charityEntries, 0),
         avgPrayersPerWeek:
           snapshots.length > 0
-            ? Math.round(
-                snapshots.reduce((sum, s) => sum + s.prayersOnTime, 0) / snapshots.length
-              )
+            ? Math.round(snapshots.reduce((sum, s) => sum + s.prayersOnTime, 0) / snapshots.length)
             : 0,
         avgQuranMinutesPerWeek:
           snapshots.length > 0
-            ? Math.round(
-                snapshots.reduce((sum, s) => sum + s.quranMinutes, 0) / snapshots.length
-              )
+            ? Math.round(snapshots.reduce((sum, s) => sum + s.quranMinutes, 0) / snapshots.length)
             : 0,
       }
     : null;

@@ -12,7 +12,11 @@ import * as Notifications from 'expo-notifications';
 import { OnboardingSlide, OnboardingButtons, ProgressIndicator } from '../../components/onboarding';
 import { useOnboarding } from '../../hooks/useOnboarding';
 import { useUserSettings } from '../../hooks/useUserSettings';
-import { trackPermissionRequested, trackPermissionGranted, trackPermissionDenied } from '../../services/analytics';
+import {
+  trackPermissionRequested,
+  trackPermissionGranted,
+  trackPermissionDenied,
+} from '../../services/analytics';
 import { theme } from '../../constants/theme';
 
 import { createLogger } from '../../utils/logger';
@@ -21,7 +25,8 @@ const logger = createLogger('PermissionsScreen');
 
 export const PermissionsScreen: React.FC = () => {
   const { t } = useTranslation();
-  const { goToNextStep, goToPreviousStep, skipCurrentStep, currentStepIndex, totalSteps } = useOnboarding();
+  const { goToNextStep, goToPreviousStep, skipCurrentStep, currentStepIndex, totalSteps } =
+    useOnboarding();
   const { updateSettings } = useUserSettings();
 
   const [locationEnabled, setLocationEnabled] = useState(false);
@@ -135,9 +140,15 @@ export const PermissionsScreen: React.FC = () => {
           </Text>
 
           <View style={styles.benefitsList}>
-            <BenefitItem text={t('onboarding.permissions.location.benefit1', 'Accurate prayer times')} />
-            <BenefitItem text={t('onboarding.permissions.location.benefit2', 'Auto-timezone detection')} />
-            <BenefitItem text={t('onboarding.permissions.location.benefit3', 'Local Qibla direction')} />
+            <BenefitItem
+              text={t('onboarding.permissions.location.benefit1', 'Accurate prayer times')}
+            />
+            <BenefitItem
+              text={t('onboarding.permissions.location.benefit2', 'Auto-timezone detection')}
+            />
+            <BenefitItem
+              text={t('onboarding.permissions.location.benefit3', 'Local Qibla direction')}
+            />
           </View>
         </View>
 
@@ -167,9 +178,15 @@ export const PermissionsScreen: React.FC = () => {
           </Text>
 
           <View style={styles.benefitsList}>
-            <BenefitItem text={t('onboarding.permissions.notifications.benefit1', 'Prayer time alerts')} />
-            <BenefitItem text={t('onboarding.permissions.notifications.benefit2', 'Daily habit reminders')} />
-            <BenefitItem text={t('onboarding.permissions.notifications.benefit3', 'Customizable quiet hours')} />
+            <BenefitItem
+              text={t('onboarding.permissions.notifications.benefit1', 'Prayer time alerts')}
+            />
+            <BenefitItem
+              text={t('onboarding.permissions.notifications.benefit2', 'Daily habit reminders')}
+            />
+            <BenefitItem
+              text={t('onboarding.permissions.notifications.benefit3', 'Customizable quiet hours')}
+            />
           </View>
         </View>
 

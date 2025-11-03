@@ -52,9 +52,7 @@ interface UsePrayerTimesOptions {
  *   asrMethod: 'Standard',
  * });
  */
-export const usePrayerTimes = (
-  options: UsePrayerTimesOptions = {}
-): UsePrayerTimesReturn => {
+export const usePrayerTimes = (options: UsePrayerTimesOptions = {}): UsePrayerTimesReturn => {
   const {
     calculationMethod = 'MuslimWorldLeague',
     asrMethod = 'Standard',
@@ -74,7 +72,7 @@ export const usePrayerTimes = (
   // Calculate prayer times when coordinates are available
   const calculateTimes = useCallback(() => {
     if (!coordinates) {
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         isLoading: locationLoading,
         error: locationError ? locationError.message : null,
@@ -93,7 +91,7 @@ export const usePrayerTimes = (
       });
 
       if (!times) {
-        setState((prev) => ({
+        setState(prev => ({
           ...prev,
           error: 'Failed to calculate prayer times',
           isLoading: false,
@@ -117,7 +115,7 @@ export const usePrayerTimes = (
         error: null,
       });
     } catch (error: any) {
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         error: error.message || 'Failed to calculate prayer times',
         isLoading: false,
@@ -140,7 +138,7 @@ export const usePrayerTimes = (
       if (state.prayerTimes) {
         const next = getNextPrayer(state.prayerTimes);
         if (next) {
-          setState((prev) => ({
+          setState(prev => ({
             ...prev,
             nextPrayer: {
               name: next.prayer,

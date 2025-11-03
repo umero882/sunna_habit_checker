@@ -184,7 +184,8 @@ export const SignUpScreen: React.FC<Props> = ({ navigation }) => {
             <Text style={styles.title}>Create Your Sunnah Habit Account 🌿</Text>
             <Text style={styles.subtitle}>
               Please fill in your details to begin tracking your Sunnah habits.{'\n'}
-              Your account will help you save progress, receive gentle reminders, and grow daily with barakah.
+              Your account will help you save progress, receive gentle reminders, and grow daily
+              with barakah.
             </Text>
           </View>
 
@@ -231,9 +232,7 @@ export const SignUpScreen: React.FC<Props> = ({ navigation }) => {
                 accessibilityRole="button"
                 accessibilityLabel="Select Country"
               >
-                <Text style={styles.countryPickerText}>
-                  {country || 'Select your country'}
-                </Text>
+                <Text style={styles.countryPickerText}>{country || 'Select your country'}</Text>
                 <Text style={styles.countryPickerArrow}>▼</Text>
               </TouchableOpacity>
               <CountryPicker

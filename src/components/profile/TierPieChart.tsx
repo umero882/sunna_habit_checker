@@ -53,7 +53,9 @@ export const TierPieChart: React.FC<TierPieChartProps> = ({ distribution }) => {
           <View style={[styles.colorBox, { backgroundColor: theme.colors.primary[300] }]} />
           <View style={styles.legendTextContainer}>
             <Text style={styles.legendLabel}>Basic Sunnah</Text>
-            <Text style={styles.legendValue}>{distribution.basic} ({basicPercent}%)</Text>
+            <Text style={styles.legendValue}>
+              {distribution.basic} ({basicPercent}%)
+            </Text>
           </View>
         </View>
 
@@ -61,7 +63,9 @@ export const TierPieChart: React.FC<TierPieChartProps> = ({ distribution }) => {
           <View style={[styles.colorBox, { backgroundColor: theme.colors.primary[500] }]} />
           <View style={styles.legendTextContainer}>
             <Text style={styles.legendLabel}>Companion Level</Text>
-            <Text style={styles.legendValue}>{distribution.companion} ({companionPercent}%)</Text>
+            <Text style={styles.legendValue}>
+              {distribution.companion} ({companionPercent}%)
+            </Text>
           </View>
         </View>
 
@@ -69,7 +73,9 @@ export const TierPieChart: React.FC<TierPieChartProps> = ({ distribution }) => {
           <View style={[styles.colorBox, { backgroundColor: theme.colors.primary[700] }]} />
           <View style={styles.legendTextContainer}>
             <Text style={styles.legendLabel}>Prophetic Level</Text>
-            <Text style={styles.legendValue}>{distribution.prophetic} ({propheticPercent}%)</Text>
+            <Text style={styles.legendValue}>
+              {distribution.prophetic} ({propheticPercent}%)
+            </Text>
           </View>
         </View>
       </View>

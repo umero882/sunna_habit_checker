@@ -106,11 +106,7 @@ export const ReflectionStrip: React.FC<ReflectionStripProps> = ({
       </View>
 
       {/* Journal Prompt */}
-      <TouchableOpacity
-        style={styles.journalPrompt}
-        onPress={onJournalPress}
-        activeOpacity={0.7}
-      >
+      <TouchableOpacity style={styles.journalPrompt} onPress={onJournalPress} activeOpacity={0.7}>
         <View style={styles.journalIcon}>
           <Ionicons name="book-outline" size={20} color={theme.colors.secondary[600]} />
         </View>

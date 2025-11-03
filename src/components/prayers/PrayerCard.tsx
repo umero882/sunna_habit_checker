@@ -142,7 +142,12 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({
   const completePrayerLog = (fridaySunnah?: string[], jamaahOverride?: boolean) => {
     if (selectedStatus) {
       // Use jamaahOverride if provided (passed directly from handleJamaahSelect), otherwise use state
-      const jamaahValue = jamaahOverride !== undefined ? jamaahOverride : (selectedJamaah !== null ? selectedJamaah : undefined);
+      const jamaahValue =
+        jamaahOverride !== undefined
+          ? jamaahOverride
+          : selectedJamaah !== null
+            ? selectedJamaah
+            : undefined;
 
       // Debug logging
       logger.debug('=== completePrayerLog DEBUG ===');
@@ -212,12 +217,7 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({
           {/* Status Indicator */}
           <View style={styles.statusContainer}>
             <View style={styles.statusInfo}>
-              <View
-                style={[
-                  styles.statusDot,
-                  { backgroundColor: getStatusColor(status) },
-                ]}
-              />
+              <View style={[styles.statusDot, { backgroundColor: getStatusColor(status) }]} />
               <Text style={[styles.statusText, !status && styles.statusTextMuted]}>
                 {getStatusLabel(status)}
               </Text>
@@ -225,17 +225,19 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({
 
             {/* Jamaah Badge - only show if prayer is logged and status is on_time */}
             {status === 'on_time' && jamaah !== undefined && (
-              <View style={[
-                styles.jamaahBadge,
-                jamaah ? styles.jamaahBadgeIn : styles.jamaahBadgeAlone
-              ]}>
-                <Text style={styles.jamaahBadgeIcon}>
-                  {jamaah ? '🕌' : '🏠'}
-                </Text>
-                <Text style={[
-                  styles.jamaahBadgeText,
-                  jamaah ? styles.jamaahBadgeTextIn : styles.jamaahBadgeTextAlone
-                ]}>
+              <View
+                style={[
+                  styles.jamaahBadge,
+                  jamaah ? styles.jamaahBadgeIn : styles.jamaahBadgeAlone,
+                ]}
+              >
+                <Text style={styles.jamaahBadgeIcon}>{jamaah ? '🕌' : '🏠'}</Text>
+                <Text
+                  style={[
+                    styles.jamaahBadgeText,
+                    jamaah ? styles.jamaahBadgeTextIn : styles.jamaahBadgeTextAlone,
+                  ]}
+                >
                   {jamaah ? 'Jamaah (27×)' : 'Alone (1×)'}
                 </Text>
               </View>
@@ -253,9 +255,7 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({
       >
         <Pressable style={styles.modalOverlay} onPress={() => setShowModal(false)}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>
-              Log {prayerNames[prayer]} Prayer
-            </Text>
+            <Text style={styles.modalTitle}>Log {prayerNames[prayer]} Prayer</Text>
 
             <View style={styles.statusOptions}>
               <TouchableOpacity
@@ -265,9 +265,7 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({
                 <View style={[styles.statusOptionDot, { backgroundColor: theme.colors.onTime }]} />
                 <View style={styles.statusOptionText}>
                   <Text style={styles.statusOptionTitle}>On Time</Text>
-                  <Text style={styles.statusOptionDescription}>
-                    Prayed within the time window
-                  </Text>
+                  <Text style={styles.statusOptionDescription}>Prayed within the time window</Text>
                 </View>
               </TouchableOpacity>
 
@@ -278,9 +276,7 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({
                 <View style={[styles.statusOptionDot, { backgroundColor: theme.colors.delayed }]} />
                 <View style={styles.statusOptionText}>
                   <Text style={styles.statusOptionTitle}>Delayed</Text>
-                  <Text style={styles.statusOptionDescription}>
-                    Prayed late but within time
-                  </Text>
+                  <Text style={styles.statusOptionDescription}>Prayed late but within time</Text>
                 </View>
               </TouchableOpacity>
 
@@ -291,9 +287,7 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({
                 <View style={[styles.statusOptionDot, { backgroundColor: theme.colors.missed }]} />
                 <View style={styles.statusOptionText}>
                   <Text style={styles.statusOptionTitle}>Missed</Text>
-                  <Text style={styles.statusOptionDescription}>
-                    Did not pray on time
-                  </Text>
+                  <Text style={styles.statusOptionDescription}>Did not pray on time</Text>
                 </View>
               </TouchableOpacity>
 
@@ -304,17 +298,12 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({
                 <View style={[styles.statusOptionDot, { backgroundColor: theme.colors.qadaa }]} />
                 <View style={styles.statusOptionText}>
                   <Text style={styles.statusOptionTitle}>Qadaa</Text>
-                  <Text style={styles.statusOptionDescription}>
-                    Making up a missed prayer
-                  </Text>
+                  <Text style={styles.statusOptionDescription}>Making up a missed prayer</Text>
                 </View>
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity
-              style={styles.cancelButton}
-              onPress={() => setShowModal(false)}
-            >
+            <TouchableOpacity style={styles.cancelButton} onPress={() => setShowModal(false)}>
               <Text style={styles.cancelButtonText}>Cancel</Text>
             </TouchableOpacity>
           </View>
@@ -330,9 +319,7 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({
       >
         <Pressable style={styles.modalOverlay} onPress={() => setShowJamaahModal(false)}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>
-              Where did you pray {prayerNames[prayer]}?
-            </Text>
+            <Text style={styles.modalTitle}>Where did you pray {prayerNames[prayer]}?</Text>
 
             <View style={styles.statusOptions}>
               {/* In Jamaah (Mosque) - 27x reward */}
@@ -404,11 +391,8 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({
           animationType="fade"
           onRequestClose={handleCloseHadithModal}
         >
-          <Pressable
-            style={styles.modalOverlay}
-            onPress={handleCloseHadithModal}
-          >
-            <Pressable onPress={(e) => e.stopPropagation()}>
+          <Pressable style={styles.modalOverlay} onPress={handleCloseHadithModal}>
+            <Pressable onPress={e => e.stopPropagation()}>
               <View style={styles.modalContent}>
                 {/* Hadith Counter */}
                 {allHadiths.length > 1 && (
@@ -419,28 +403,20 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({
                   </View>
                 )}
 
-                <PrayerStatusHadith
-                  hadith={displayedHadith}
-                  status={displayedStatus}
-                />
+                <PrayerStatusHadith hadith={displayedHadith} status={displayedStatus} />
 
                 {/* Action Buttons */}
                 <View style={styles.hadithActions}>
                   {allHadiths.length > 1 && (
-                    <TouchableOpacity
-                      style={styles.nextButton}
-                      onPress={handleNextHadith}
-                    >
-                      <Text style={styles.nextButtonText}>
-                        Next Hadith →
-                      </Text>
+                    <TouchableOpacity style={styles.nextButton} onPress={handleNextHadith}>
+                      <Text style={styles.nextButtonText}>Next Hadith →</Text>
                     </TouchableOpacity>
                   )}
 
                   <TouchableOpacity
                     style={[
                       styles.submitButton,
-                      allHadiths.length === 1 && styles.submitButtonFull
+                      allHadiths.length === 1 && styles.submitButtonFull,
                     ]}
                     onPress={handleCloseHadithModal}
                   >

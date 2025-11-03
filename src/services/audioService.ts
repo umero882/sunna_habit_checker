@@ -76,14 +76,18 @@ class QuranAudioService {
    */
   setCallbacks(callbacks: AudioPlayerCallbacks): () => void {
     this.callbacksList.push(callbacks);
-    logger.debug(`📝 audioService: Added callbacks (total subscribers: ${this.callbacksList.length})`);
+    logger.debug(
+      `📝 audioService: Added callbacks (total subscribers: ${this.callbacksList.length})`
+    );
 
     // Return unsubscribe function
     return () => {
       const index = this.callbacksList.indexOf(callbacks);
       if (index > -1) {
         this.callbacksList.splice(index, 1);
-        logger.debug(`📝 audioService: Removed callbacks (total subscribers: ${this.callbacksList.length})`);
+        logger.debug(
+          `📝 audioService: Removed callbacks (total subscribers: ${this.callbacksList.length})`
+        );
       }
     };
   }
@@ -158,7 +162,8 @@ class QuranAudioService {
 
     const positionMillis = (this.player.currentTime || 0) * 1000;
     const durationMillis = (this.player.duration || 0) * 1000;
-    const didJustFinish = this.player.isLoaded && !this.player.playing && positionMillis >= durationMillis - 100;
+    const didJustFinish =
+      this.player.isLoaded && !this.player.playing && positionMillis >= durationMillis - 100;
 
     return {
       isLoaded: this.player.isLoaded,
@@ -249,7 +254,9 @@ class QuranAudioService {
       this.currentAyah = ayahNumber;
 
       // Notify ayah change to all subscribers
-      logger.debug(`📢 audioService: Notifying ${this.callbacksList.length} subscribers of ayah change to ${ayahNumber}`);
+      logger.debug(
+        `📢 audioService: Notifying ${this.callbacksList.length} subscribers of ayah change to ${ayahNumber}`
+      );
       this.callbacksList.forEach(callbacks => {
         callbacks.onAyahChange?.(ayahNumber);
       });
@@ -492,7 +499,9 @@ class QuranAudioService {
     // Full Surah audio files are not available from our current API
     // We use verse-by-verse streaming instead which doesn't require downloads
     if (!this.hasLoggedDownloadMessage) {
-      logger.debug(`ℹ️  Full Surah downloads not supported. Audio plays verse-by-verse (no download needed)`);
+      logger.debug(
+        `ℹ️  Full Surah downloads not supported. Audio plays verse-by-verse (no download needed)`
+      );
       this.hasLoggedDownloadMessage = true;
     }
     return false;
@@ -501,10 +510,7 @@ class QuranAudioService {
   /**
    * Get cached audio path
    */
-  private async getCachedAudioPath(
-    surahNumber: number,
-    reciter: string
-  ): Promise<string | null> {
+  private async getCachedAudioPath(surahNumber: number, reciter: string): Promise<string | null> {
     try {
       const cacheDir = `${FileSystem.cacheDirectory}quran_audio/`;
       const filePath = `${cacheDir}${reciter}_${surahNumber}.mp3`;
@@ -618,10 +624,7 @@ class QuranAudioService {
   /**
    * Get download progress for a Surah
    */
-  async getDownloadProgress(
-    surahNumber: number,
-    reciter: string = 'ar.alafasy'
-  ): Promise<number> {
+  async getDownloadProgress(surahNumber: number, reciter: string = 'ar.alafasy'): Promise<number> {
     // This would require implementing a download manager with progress tracking
     // Simplified version just checks if downloaded
     const isCached = await this.isSurahCached(surahNumber, reciter);

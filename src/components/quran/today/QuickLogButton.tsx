@@ -69,7 +69,7 @@ export const QuickLogButton: React.FC<QuickLogButtonProps> = ({ userId, onLogCom
       return;
     }
 
-    const selectedSurah = SURAHS.find((s) => s.number === formData.surahNumber);
+    const selectedSurah = SURAHS.find(s => s.number === formData.surahNumber);
     if (!selectedSurah) {
       Alert.alert('Error', 'Invalid Surah selected');
       return;
@@ -91,9 +91,7 @@ export const QuickLogButton: React.FC<QuickLogButtonProps> = ({ userId, onLogCom
         from_ayah: fromAyahNum,
         to_ayah: toAyahNum,
         pages_read: formData.pagesRead ? parseFloat(formData.pagesRead) : undefined,
-        duration_minutes: formData.durationMinutes
-          ? parseInt(formData.durationMinutes)
-          : undefined,
+        duration_minutes: formData.durationMinutes ? parseInt(formData.durationMinutes) : undefined,
       });
 
       Alert.alert('Success', 'Reading logged successfully!');
@@ -108,17 +106,13 @@ export const QuickLogButton: React.FC<QuickLogButtonProps> = ({ userId, onLogCom
   };
 
   const getSelectedSurah = () => {
-    return SURAHS.find((s) => s.number === formData.surahNumber);
+    return SURAHS.find(s => s.number === formData.surahNumber);
   };
 
   return (
     <>
       {/* Quick Log Button */}
-      <TouchableOpacity
-        style={styles.quickLogButton}
-        onPress={handleOpenModal}
-        activeOpacity={0.7}
-      >
+      <TouchableOpacity style={styles.quickLogButton} onPress={handleOpenModal} activeOpacity={0.7}>
         <Text style={styles.quickLogIcon}>+</Text>
         <Text style={styles.quickLogText}>Log Reading</Text>
       </TouchableOpacity>
@@ -148,7 +142,7 @@ export const QuickLogButton: React.FC<QuickLogButtonProps> = ({ userId, onLogCom
                   <TouchableOpacity
                     style={styles.selectorButton}
                     onPress={() =>
-                      setFormData((prev) => ({
+                      setFormData(prev => ({
                         ...prev,
                         surahNumber: Math.max(1, prev.surahNumber - 1),
                       }))
@@ -166,7 +160,7 @@ export const QuickLogButton: React.FC<QuickLogButtonProps> = ({ userId, onLogCom
                   <TouchableOpacity
                     style={styles.selectorButton}
                     onPress={() =>
-                      setFormData((prev) => ({
+                      setFormData(prev => ({
                         ...prev,
                         surahNumber: Math.min(114, prev.surahNumber + 1),
                       }))
@@ -184,8 +178,8 @@ export const QuickLogButton: React.FC<QuickLogButtonProps> = ({ userId, onLogCom
                   <TextInput
                     style={styles.input}
                     value={formData.fromAyah}
-                    onChangeText={(text) =>
-                      setFormData((prev) => ({
+                    onChangeText={text =>
+                      setFormData(prev => ({
                         ...prev,
                         fromAyah: text.replace(/[^0-9]/g, ''), // Only allow digits
                       }))
@@ -200,8 +194,8 @@ export const QuickLogButton: React.FC<QuickLogButtonProps> = ({ userId, onLogCom
                   <TextInput
                     style={styles.input}
                     value={formData.toAyah}
-                    onChangeText={(text) =>
-                      setFormData((prev) => ({
+                    onChangeText={text =>
+                      setFormData(prev => ({
                         ...prev,
                         toAyah: text.replace(/[^0-9]/g, ''), // Only allow digits
                       }))
@@ -216,15 +210,12 @@ export const QuickLogButton: React.FC<QuickLogButtonProps> = ({ userId, onLogCom
               <View style={styles.formRow}>
                 <View style={[styles.formGroup, styles.formGroupHalf]}>
                   <Text style={styles.label}>
-                    Pages Read{' '}
-                    <Text style={styles.optionalLabel}>(optional)</Text>
+                    Pages Read <Text style={styles.optionalLabel}>(optional)</Text>
                   </Text>
                   <TextInput
                     style={styles.input}
                     value={formData.pagesRead}
-                    onChangeText={(text) =>
-                      setFormData((prev) => ({ ...prev, pagesRead: text }))
-                    }
+                    onChangeText={text => setFormData(prev => ({ ...prev, pagesRead: text }))}
                     keyboardType="decimal-pad"
                     placeholder="0.5"
                   />
@@ -232,15 +223,12 @@ export const QuickLogButton: React.FC<QuickLogButtonProps> = ({ userId, onLogCom
 
                 <View style={[styles.formGroup, styles.formGroupHalf]}>
                   <Text style={styles.label}>
-                    Duration{' '}
-                    <Text style={styles.optionalLabel}>(min)</Text>
+                    Duration <Text style={styles.optionalLabel}>(min)</Text>
                   </Text>
                   <TextInput
                     style={styles.input}
                     value={formData.durationMinutes}
-                    onChangeText={(text) =>
-                      setFormData((prev) => ({ ...prev, durationMinutes: text }))
-                    }
+                    onChangeText={text => setFormData(prev => ({ ...prev, durationMinutes: text }))}
                     keyboardType="number-pad"
                     placeholder="15"
                   />
@@ -250,9 +238,7 @@ export const QuickLogButton: React.FC<QuickLogButtonProps> = ({ userId, onLogCom
               {/* Info Card */}
               {activePlan && (
                 <View style={styles.infoCard}>
-                  <Text style={styles.infoText}>
-                    Active Plan: {activePlan.name}
-                  </Text>
+                  <Text style={styles.infoText}>Active Plan: {activePlan.name}</Text>
                   <Text style={styles.infoSubtext}>
                     This reading will count toward your plan progress
                   </Text>

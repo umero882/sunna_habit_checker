@@ -37,7 +37,6 @@ export const CurrentReadingCard: React.FC<CurrentReadingCardProps> = ({ onResume
     }
   }, [isFocused]);
 
-
   const loadLastPosition = async () => {
     try {
       const lastPosition = await quranDb.getReadingProgress();
@@ -49,7 +48,9 @@ export const CurrentReadingCard: React.FC<CurrentReadingCardProps> = ({ onResume
           ayahNumber: lastPosition.lastAyah,
           timestamp: Date.now(), // Use current time since timestamp not stored in SQLite
         });
-        logger.debug(`✓ CurrentReadingCard: Displaying Surah ${lastPosition.lastSurah}, Ayah ${lastPosition.lastAyah}`);
+        logger.debug(
+          `✓ CurrentReadingCard: Displaying Surah ${lastPosition.lastSurah}, Ayah ${lastPosition.lastAyah}`
+        );
       } else {
         logger.debug('ℹ CurrentReadingCard: No reading progress found');
       }
@@ -69,7 +70,7 @@ export const CurrentReadingCard: React.FC<CurrentReadingCardProps> = ({ onResume
 
   const getSurahInfo = () => {
     if (!position) return null;
-    return SURAHS.find((s) => s.number === position.surahNumber);
+    return SURAHS.find(s => s.number === position.surahNumber);
   };
 
   const getTimeAgo = () => {
@@ -160,11 +161,7 @@ export const CurrentReadingCard: React.FC<CurrentReadingCardProps> = ({ onResume
       )}
 
       {/* Resume Button */}
-      <TouchableOpacity
-        style={styles.resumeButton}
-        onPress={handleResume}
-        activeOpacity={0.7}
-      >
+      <TouchableOpacity style={styles.resumeButton} onPress={handleResume} activeOpacity={0.7}>
         <Text style={styles.resumeButtonText}>Resume Reading</Text>
         <Text style={styles.resumeButtonIcon}>→</Text>
       </TouchableOpacity>

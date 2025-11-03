@@ -22,15 +22,8 @@ import { createLogger } from '../../utils/logger';
 const logger = createLogger('QiblaScreen');
 
 export const QiblaScreen: React.FC = () => {
-  const {
-    qiblaData,
-    isLoading,
-    error,
-    accuracy,
-    hasPermission,
-    requestPermission,
-    calibrate,
-  } = useQiblaDirection();
+  const { qiblaData, isLoading, error, accuracy, hasPermission, requestPermission, calibrate } =
+    useQiblaDirection();
 
   const [showCalibrationGuide, setShowCalibrationGuide] = useState(false);
 
@@ -87,7 +80,13 @@ export const QiblaScreen: React.FC = () => {
   // Show permission request
   if (!hasPermission) {
     return (
-      <View style={[styles.container, styles.centerContent, { backgroundColor: theme.colors.background.primary }]}>
+      <View
+        style={[
+          styles.container,
+          styles.centerContent,
+          { backgroundColor: theme.colors.background.primary },
+        ]}
+      >
         <Ionicons name="location-outline" size={64} color={theme.colors.text.tertiary} />
         <Text style={[styles.permissionTitle, { color: theme.colors.text.primary }]}>
           Location Permission Required
@@ -100,9 +99,7 @@ export const QiblaScreen: React.FC = () => {
           onPress={requestPermission}
         >
           <Ionicons name="location" size={20} color="#FFFFFF" />
-          <Text style={[styles.permissionButtonText, { color: '#FFFFFF' }]}>
-            Grant Permission
-          </Text>
+          <Text style={[styles.permissionButtonText, { color: '#FFFFFF' }]}>Grant Permission</Text>
         </TouchableOpacity>
       </View>
     );
@@ -111,7 +108,13 @@ export const QiblaScreen: React.FC = () => {
   // Show loading state
   if (isLoading) {
     return (
-      <View style={[styles.container, styles.centerContent, { backgroundColor: theme.colors.background.primary }]}>
+      <View
+        style={[
+          styles.container,
+          styles.centerContent,
+          { backgroundColor: theme.colors.background.primary },
+        ]}
+      >
         <ActivityIndicator size="large" color={theme.colors.primary[600]} />
         <Text style={[styles.loadingText, { color: theme.colors.text.secondary }]}>
           Calculating Qibla direction...
@@ -123,22 +126,22 @@ export const QiblaScreen: React.FC = () => {
   // Show error state
   if (error) {
     return (
-      <View style={[styles.container, styles.centerContent, { backgroundColor: theme.colors.background.primary }]}>
+      <View
+        style={[
+          styles.container,
+          styles.centerContent,
+          { backgroundColor: theme.colors.background.primary },
+        ]}
+      >
         <Ionicons name="alert-circle-outline" size={64} color={theme.colors.error} />
-        <Text style={[styles.errorTitle, { color: theme.colors.text.primary }]}>
-          Error
-        </Text>
-        <Text style={[styles.errorText, { color: theme.colors.text.secondary }]}>
-          {error}
-        </Text>
+        <Text style={[styles.errorTitle, { color: theme.colors.text.primary }]}>Error</Text>
+        <Text style={[styles.errorText, { color: theme.colors.text.secondary }]}>{error}</Text>
         <TouchableOpacity
           style={[styles.retryButton, { backgroundColor: theme.colors.primary[600] }]}
           onPress={requestPermission}
         >
           <Ionicons name="refresh" size={20} color="#FFFFFF" />
-          <Text style={[styles.retryButtonText, { color: '#FFFFFF' }]}>
-            Try Again
-          </Text>
+          <Text style={[styles.retryButtonText, { color: '#FFFFFF' }]}>Try Again</Text>
         </TouchableOpacity>
       </View>
     );
@@ -147,7 +150,13 @@ export const QiblaScreen: React.FC = () => {
   // Show compass (main view)
   if (!qiblaData) {
     return (
-      <View style={[styles.container, styles.centerContent, { backgroundColor: theme.colors.background.primary }]}>
+      <View
+        style={[
+          styles.container,
+          styles.centerContent,
+          { backgroundColor: theme.colors.background.primary },
+        ]}
+      >
         <Text style={[styles.noDataText, { color: theme.colors.text.secondary }]}>
           No Qibla data available
         </Text>

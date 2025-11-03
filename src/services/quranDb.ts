@@ -93,13 +93,7 @@ class QuranDatabaseService {
         `INSERT OR REPLACE INTO cached_surahs
          (number, metadata, ayahs, translation, cached_at)
          VALUES (?, ?, ?, ?, ?)`,
-        [
-          number,
-          JSON.stringify(metadata),
-          JSON.stringify(ayahs),
-          translation,
-          Date.now(),
-        ]
+        [number, JSON.stringify(metadata), JSON.stringify(ayahs), translation, Date.now()]
       );
 
       logger.debug(`Surah ${number} cached successfully`);
@@ -177,7 +171,7 @@ class QuranDatabaseService {
         `SELECT number FROM cached_surahs ORDER BY number`
       );
 
-      return results.map((r) => r.number);
+      return results.map(r => r.number);
     } catch (error) {
       logger.error('Failed to get cached surah numbers:', error);
       return [];
@@ -193,10 +187,7 @@ class QuranDatabaseService {
     const cutoffTime = Date.now() - daysOld * 24 * 60 * 60 * 1000;
 
     try {
-      await this.db.runAsync(
-        `DELETE FROM cached_surahs WHERE cached_at < ?`,
-        [cutoffTime]
-      );
+      await this.db.runAsync(`DELETE FROM cached_surahs WHERE cached_at < ?`, [cutoffTime]);
 
       logger.debug(`Cleared cache older than ${daysOld} days`);
     } catch (error) {
@@ -264,10 +255,7 @@ class QuranDatabaseService {
     if (!this.db) throw new Error('Database not initialized');
 
     try {
-      await this.db.runAsync(
-        `DELETE FROM local_bookmarks WHERE id = ?`,
-        [id]
-      );
+      await this.db.runAsync(`DELETE FROM local_bookmarks WHERE id = ?`, [id]);
 
       logger.debug(`Bookmark removed: ${id}`);
     } catch (error) {
@@ -311,7 +299,9 @@ class QuranDatabaseService {
         [surahNumber, ayahNumber, Date.now()]
       );
 
-      logger.debug(`✅ Reading progress saved successfully: Surah ${surahNumber}, Ayah ${ayahNumber}`);
+      logger.debug(
+        `✅ Reading progress saved successfully: Surah ${surahNumber}, Ayah ${ayahNumber}`
+      );
 
       // Verify the save
       const verification = await this.db.getFirstAsync<{
@@ -320,7 +310,9 @@ class QuranDatabaseService {
       }>(`SELECT last_surah, last_ayah FROM reading_progress WHERE id = 1`);
 
       if (verification) {
-        logger.debug(`✓ Verified in DB: Surah ${verification.last_surah}, Ayah ${verification.last_ayah}`);
+        logger.debug(
+          `✓ Verified in DB: Surah ${verification.last_surah}, Ayah ${verification.last_ayah}`
+        );
       }
     } catch (error) {
       logger.error('❌ Failed to save reading progress:', error);
@@ -412,12 +404,8 @@ class QuranDatabaseService {
 
     try {
       const [surahsResult, bookmarksResult, sizeInfo] = await Promise.all([
-        this.db.getFirstAsync<{ count: number }>(
-          `SELECT COUNT(*) as count FROM cached_surahs`
-        ),
-        this.db.getFirstAsync<{ count: number }>(
-          `SELECT COUNT(*) as count FROM local_bookmarks`
-        ),
+        this.db.getFirstAsync<{ count: number }>(`SELECT COUNT(*) as count FROM cached_surahs`),
+        this.db.getFirstAsync<{ count: number }>(`SELECT COUNT(*) as count FROM local_bookmarks`),
         this.getCacheSize(),
       ]);
 

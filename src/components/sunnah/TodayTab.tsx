@@ -48,8 +48,7 @@ export const TodayTab: React.FC<TodayTabProps> = ({ onHabitLogged }) => {
   // Calculate daily progress
   const completedCount = recommendedHabits.filter(h => h.todayLog).length;
   const totalCount = recommendedHabits.length;
-  const completionPercentage =
-    totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+  const completionPercentage = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
   // Handle habit logging
   const handleLog = useCallback(
@@ -163,9 +162,7 @@ export const TodayTab: React.FC<TodayTabProps> = ({ onHabitLogged }) => {
               {
                 width: `${completionPercentage}%`,
                 backgroundColor:
-                  completionPercentage === 100
-                    ? theme.colors.success
-                    : theme.colors.primary[600],
+                  completionPercentage === 100 ? theme.colors.success : theme.colors.primary[600],
               },
             ]}
           />
@@ -189,8 +186,8 @@ export const TodayTab: React.FC<TodayTabProps> = ({ onHabitLogged }) => {
           {completedCount === 0
             ? 'Start your day by logging these Sunnah practices'
             : completionPercentage === 100
-            ? 'All done for today! Keep up the good work'
-            : `${totalCount - completedCount} more to go`}
+              ? 'All done for today! Keep up the good work'
+              : `${totalCount - completedCount} more to go`}
         </Text>
 
         {recommendedHabits.length === 0 ? (
@@ -225,10 +222,7 @@ export const TodayTab: React.FC<TodayTabProps> = ({ onHabitLogged }) => {
           </Text>
           <View style={styles.habitsList}>
             {allHabits
-              .filter(
-                h =>
-                  !recommendedHabits.find(rh => rh.id === h.id) && !h.todayLog
-              )
+              .filter(h => !recommendedHabits.find(rh => rh.id === h.id) && !h.todayLog)
               .slice(0, 3)
               .map(habit => (
                 <SunnahCard

@@ -5,20 +5,16 @@
 
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
-import {
-  ReciterTimingData,
-  AyahTiming,
-  WordSegment,
-} from '../types/wordTiming';
+import { ReciterTimingData, AyahTiming, WordSegment } from '../types/wordTiming';
 
 import { createLogger } from '../utils/logger';
 
 const logger = createLogger('wordTimingServiceSimple');
 
-
 const DB_NAME = 'quran-timing.db';
 // Host the database file somewhere accessible (GitHub releases, your server, etc.)
-const DB_DOWNLOAD_URL = 'https://github.com/YOUR_USERNAME/YOUR_REPO/releases/download/v1.0.0/quran-timing.db';
+const DB_DOWNLOAD_URL =
+  'https://github.com/YOUR_USERNAME/YOUR_REPO/releases/download/v1.0.0/quran-timing.db';
 
 class WordTimingService {
   private db: SQLite.SQLiteDatabase | null = null;

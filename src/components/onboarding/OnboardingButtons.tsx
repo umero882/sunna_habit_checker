@@ -70,15 +70,8 @@ export const OnboardingButtons: React.FC<OnboardingButtonsProps> = ({
               activeOpacity={0.7}
               disabled={isLoading}
             >
-              <Ionicons
-                name="arrow-back"
-                size={20}
-                color={textColor}
-                style={styles.backIcon}
-              />
-              <Text style={[styles.secondaryButtonText, { color: textColor }]}>
-                {backLabel}
-              </Text>
+              <Ionicons name="arrow-back" size={20} color={textColor} style={styles.backIcon} />
+              <Text style={[styles.secondaryButtonText, { color: textColor }]}>{backLabel}</Text>
             </TouchableOpacity>
           ) : (
             <View style={{ flex: 0.4 }} />
@@ -93,10 +86,7 @@ export const OnboardingButtons: React.FC<OnboardingButtonsProps> = ({
               disabled={isLoading}
             >
               {isLoading ? (
-                <ActivityIndicator
-                  size="small"
-                  color={primaryButtonText}
-                />
+                <ActivityIndicator size="small" color={primaryButtonText} />
               ) : (
                 <>
                   <Text style={[styles.primaryButtonText, { color: primaryButtonText }]}>

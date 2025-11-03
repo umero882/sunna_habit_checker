@@ -110,7 +110,7 @@ export const SunnahCard: React.FC<SunnahCardProps> = ({
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
               <Ionicons
-                name={habit.isPinned ? "pin" : "pin-outline"}
+                name={habit.isPinned ? 'pin' : 'pin-outline'}
                 size={20}
                 color={habit.isPinned ? theme.colors.secondary[600] : theme.colors.text.tertiary}
               />
@@ -118,12 +118,7 @@ export const SunnahCard: React.FC<SunnahCardProps> = ({
           )}
 
           {isLogged && (
-            <View
-              style={[
-                styles.completeBadge,
-                { backgroundColor: LEVEL_COLORS[currentLevel!] },
-              ]}
-            >
+            <View style={[styles.completeBadge, { backgroundColor: LEVEL_COLORS[currentLevel!] }]}>
               <Ionicons name="checkmark" size={16} color="white" />
             </View>
           )}
@@ -140,10 +135,7 @@ export const SunnahCard: React.FC<SunnahCardProps> = ({
         {isLogged && (
           <View style={styles.levelDisplay}>
             <View
-              style={[
-                styles.levelBadge,
-                { backgroundColor: `${LEVEL_COLORS[currentLevel!]}15` },
-              ]}
+              style={[styles.levelBadge, { backgroundColor: `${LEVEL_COLORS[currentLevel!]}15` }]}
             >
               <Text style={[styles.levelText, { color: LEVEL_COLORS[currentLevel!] }]}>
                 {LEVEL_LABELS[currentLevel!]} Level
@@ -175,7 +167,7 @@ export const SunnahCard: React.FC<SunnahCardProps> = ({
         onRequestClose={() => setShowModal(false)}
       >
         <Pressable style={styles.modalOverlay} onPress={() => setShowModal(false)}>
-          <Pressable style={styles.modalContent} onPress={(e) => e.stopPropagation()}>
+          <Pressable style={styles.modalContent} onPress={e => e.stopPropagation()}>
             <ScrollView showsVerticalScrollIndicator={false}>
               {/* Header */}
               <View style={styles.modalHeader}>
@@ -183,10 +175,7 @@ export const SunnahCard: React.FC<SunnahCardProps> = ({
                   <Text style={styles.modalIcon}>{habit.icon || '✨'}</Text>
                 </View>
                 <Text style={styles.modalTitle}>{habit.name}</Text>
-                <TouchableOpacity
-                  style={styles.closeButton}
-                  onPress={() => setShowModal(false)}
-                >
+                <TouchableOpacity style={styles.closeButton} onPress={() => setShowModal(false)}>
                   <Ionicons name="close" size={24} color={theme.colors.text.secondary} />
                 </TouchableOpacity>
               </View>
@@ -218,20 +207,12 @@ export const SunnahCard: React.FC<SunnahCardProps> = ({
                   onPress={() => handleLevelSelect('basic')}
                 >
                   <View style={styles.levelOptionHeader}>
-                    <View
-                      style={[styles.levelDot, { backgroundColor: LEVEL_COLORS.basic }]}
-                    />
-                    <Text
-                      style={[styles.levelOptionTitle, { color: LEVEL_COLORS.basic }]}
-                    >
+                    <View style={[styles.levelDot, { backgroundColor: LEVEL_COLORS.basic }]} />
+                    <Text style={[styles.levelOptionTitle, { color: LEVEL_COLORS.basic }]}>
                       Basic Level
                     </Text>
                     {selectedLevel === 'basic' && (
-                      <Ionicons
-                        name="checkmark-circle"
-                        size={20}
-                        color={LEVEL_COLORS.basic}
-                      />
+                      <Ionicons name="checkmark-circle" size={20} color={LEVEL_COLORS.basic} />
                     )}
                   </View>
                   <Text style={styles.levelOptionDescription}>{habit.tier_basic}</Text>
@@ -249,28 +230,15 @@ export const SunnahCard: React.FC<SunnahCardProps> = ({
                   onPress={() => handleLevelSelect('companion')}
                 >
                   <View style={styles.levelOptionHeader}>
-                    <View
-                      style={[styles.levelDot, { backgroundColor: LEVEL_COLORS.companion }]}
-                    />
-                    <Text
-                      style={[
-                        styles.levelOptionTitle,
-                        { color: LEVEL_COLORS.companion },
-                      ]}
-                    >
+                    <View style={[styles.levelDot, { backgroundColor: LEVEL_COLORS.companion }]} />
+                    <Text style={[styles.levelOptionTitle, { color: LEVEL_COLORS.companion }]}>
                       Companion Level
                     </Text>
                     {selectedLevel === 'companion' && (
-                      <Ionicons
-                        name="checkmark-circle"
-                        size={20}
-                        color={LEVEL_COLORS.companion}
-                      />
+                      <Ionicons name="checkmark-circle" size={20} color={LEVEL_COLORS.companion} />
                     )}
                   </View>
-                  <Text style={styles.levelOptionDescription}>
-                    {habit.tier_companion}
-                  </Text>
+                  <Text style={styles.levelOptionDescription}>{habit.tier_companion}</Text>
                 </TouchableOpacity>
 
                 {/* Prophetic Level */}
@@ -285,28 +253,15 @@ export const SunnahCard: React.FC<SunnahCardProps> = ({
                   onPress={() => handleLevelSelect('prophetic')}
                 >
                   <View style={styles.levelOptionHeader}>
-                    <View
-                      style={[styles.levelDot, { backgroundColor: LEVEL_COLORS.prophetic }]}
-                    />
-                    <Text
-                      style={[
-                        styles.levelOptionTitle,
-                        { color: LEVEL_COLORS.prophetic },
-                      ]}
-                    >
+                    <View style={[styles.levelDot, { backgroundColor: LEVEL_COLORS.prophetic }]} />
+                    <Text style={[styles.levelOptionTitle, { color: LEVEL_COLORS.prophetic }]}>
                       Prophetic Level
                     </Text>
                     {selectedLevel === 'prophetic' && (
-                      <Ionicons
-                        name="checkmark-circle"
-                        size={20}
-                        color={LEVEL_COLORS.prophetic}
-                      />
+                      <Ionicons name="checkmark-circle" size={20} color={LEVEL_COLORS.prophetic} />
                     )}
                   </View>
-                  <Text style={styles.levelOptionDescription}>
-                    {habit.tier_prophetic}
-                  </Text>
+                  <Text style={styles.levelOptionDescription}>{habit.tier_prophetic}</Text>
                 </TouchableOpacity>
               </View>
 
@@ -341,9 +296,7 @@ export const SunnahCard: React.FC<SunnahCardProps> = ({
                 disabled={!selectedLevel}
               >
                 <Text style={styles.confirmButtonText}>
-                  {selectedLevel
-                    ? `Log ${LEVEL_LABELS[selectedLevel]} Level`
-                    : 'Select a Level'}
+                  {selectedLevel ? `Log ${LEVEL_LABELS[selectedLevel]} Level` : 'Select a Level'}
                 </Text>
               </TouchableOpacity>
 

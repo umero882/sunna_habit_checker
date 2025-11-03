@@ -99,10 +99,13 @@ export const useQuranReader = ({
   /**
    * Navigate to specific ayah
    */
-  const goToAyah = useCallback((ayahNumber: number) => {
-    logger.debug(`🔄 goToAyah called: ayahNumber=${ayahNumber}, currentAyah=${currentAyah}`);
-    setCurrentAyah(ayahNumber);
-  }, [currentAyah]);
+  const goToAyah = useCallback(
+    (ayahNumber: number) => {
+      logger.debug(`🔄 goToAyah called: ayahNumber=${ayahNumber}, currentAyah=${currentAyah}`);
+      setCurrentAyah(ayahNumber);
+    },
+    [currentAyah]
+  );
 
   /**
    * Save reading progress

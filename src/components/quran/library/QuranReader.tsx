@@ -59,26 +59,14 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
   onAyahLongPress,
   onSurahChange,
 }) => {
-  const {
-    surah,
-    isLoading,
-    isCached,
-    currentAyah,
-    goToAyah,
-    saveProgress,
-  } = useQuranReader({
+  const { surah, isLoading, isCached, currentAyah, goToAyah, saveProgress } = useQuranReader({
     surahNumber,
     translation: 'en.sahih',
     includeTransliteration: false,
     autoCache: true,
   });
 
-  const {
-    bookmarks,
-    isBookmarked,
-    addBookmark,
-    removeBookmark,
-  } = useBookmarks(userId);
+  const { bookmarks, isBookmarked, addBookmark, removeBookmark } = useBookmarks(userId);
 
   const { logReading, activePlan } = useReadingPlan(userId || '');
 
@@ -123,7 +111,9 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
       const pagesRead = calculatePagesRead(surahNumber, startAyah, endAyah);
 
       try {
-        logger.debug(`⏰ Periodic log: Surah ${surahNumber}, Ayahs ${startAyah}-${endAyah}, ${pagesRead} pages, ${durationMinutes} min`);
+        logger.debug(
+          `⏰ Periodic log: Surah ${surahNumber}, Ayahs ${startAyah}-${endAyah}, ${pagesRead} pages, ${durationMinutes} min`
+        );
         await logReading({
           surah_number: surahNumber,
           from_ayah: startAyah,
@@ -169,7 +159,9 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
             return updated;
           });
           setReciterForTiming(reciter);
-          logger.debug(`⏱️ Loaded timing data for Surah ${surahNumber}:${playingAyah} - ${timing.segments.length} words`);
+          logger.debug(
+            `⏱️ Loaded timing data for Surah ${surahNumber}:${playingAyah} - ${timing.segments.length} words`
+          );
         } else {
           logger.debug(`⏱️ No timing data for Surah ${surahNumber}:${playingAyah}`);
         }
@@ -184,7 +176,9 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
   // Scroll to initial ayah when surah loads
   useEffect(() => {
     if (surah && initialAyah > 1) {
-      logger.debug(`🎯 Resume: Attempting to scroll to ayah ${initialAyah} in surah ${surahNumber}`);
+      logger.debug(
+        `🎯 Resume: Attempting to scroll to ayah ${initialAyah} in surah ${surahNumber}`
+      );
       goToAyah(initialAyah);
 
       // Use multiple timeouts to ensure scrolling happens after FlatList renders
@@ -215,7 +209,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
       const durationMinutes = Math.floor((Date.now() - sessionStartTime.current) / (1000 * 60));
 
       // Only log if user spent at least 30 seconds reading
-      if (durationMinutes < 1 && (Date.now() - sessionStartTime.current) < 30000) {
+      if (durationMinutes < 1 && Date.now() - sessionStartTime.current < 30000) {
         logger.debug('⏱️ Session too short to log (< 30 seconds)');
         return;
       }
@@ -225,7 +219,11 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
 
       // Only log if user read at least 1 ayah beyond what was already logged
       if (endAyah <= lastLoggedAyah.current) {
-        logger.debug('📖 No new progress to log (already logged up to ayah', lastLoggedAyah.current, ')');
+        logger.debug(
+          '📖 No new progress to log (already logged up to ayah',
+          lastLoggedAyah.current,
+          ')'
+        );
         return;
       }
 
@@ -240,7 +238,9 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
       const pagesRead = calculatePagesRead(surahNumber, actualStartAyah, endAyah);
 
       try {
-        logger.debug(`📝 Unmount: Logging NEW progress Surah ${surahNumber}, Ayahs ${actualStartAyah}-${endAyah}, ${pagesRead} pages, ${durationMinutes} min`);
+        logger.debug(
+          `📝 Unmount: Logging NEW progress Surah ${surahNumber}, Ayahs ${actualStartAyah}-${endAyah}, ${pagesRead} pages, ${durationMinutes} min`
+        );
 
         await logReading({
           surah_number: surahNumber,
@@ -281,11 +281,14 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
         currentAyahRef.current = firstVisibleAyah;
 
         // Save progress with the correct ayah number
-        quranDb.saveReadingProgress(surahNumber, firstVisibleAyah)
+        quranDb
+          .saveReadingProgress(surahNumber, firstVisibleAyah)
           .then(() => {
-            logger.debug(`✅ Scroll: Saved progress Surah ${surahNumber}, Ayah ${firstVisibleAyah}`);
+            logger.debug(
+              `✅ Scroll: Saved progress Surah ${surahNumber}, Ayah ${firstVisibleAyah}`
+            );
           })
-          .catch((err) => {
+          .catch(err => {
             logger.error('❌ Failed to save progress on scroll:', err);
           });
       }
@@ -298,7 +301,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
 
   const scrollToAyah = (ayahNumber: number) => {
     if (surah && flatListRef.current) {
-      const index = surah.ayahs.findIndex((a) => a.number === ayahNumber);
+      const index = surah.ayahs.findIndex(a => a.number === ayahNumber);
       if (index >= 0) {
         try {
           flatListRef.current.scrollToIndex({
@@ -384,9 +387,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
         {/* Bismillah for all surahs except At-Tawbah (9) */}
         {surahNumber !== 1 && surahNumber !== 9 && (
           <View style={styles.bismillahContainer}>
-            <Text style={styles.bismillahText}>
-              بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-            </Text>
+            <Text style={styles.bismillahText}>بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</Text>
           </View>
         )}
 
@@ -415,12 +416,8 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
 
     return (
       <View style={styles.footerContainer}>
-        <Text style={styles.footerText}>
-          End of {surah.name}
-        </Text>
-        <Text style={styles.footerSubtext}>
-          {surah.numberOfAyahs} verses
-        </Text>
+        <Text style={styles.footerText}>End of {surah.name}</Text>
+        <Text style={styles.footerSubtext}>{surah.numberOfAyahs} verses</Text>
       </View>
     );
   };
@@ -452,7 +449,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
         ref={flatListRef}
         data={surah.ayahs}
         renderItem={renderAyahItem}
-        keyExtractor={(item) => item.number.toString()}
+        keyExtractor={item => item.number.toString()}
         ListHeaderComponent={renderHeader}
         ListFooterComponent={renderFooter}
         contentContainerStyle={styles.listContent}
@@ -464,7 +461,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
         windowSize={10}
         removeClippedSubviews={true}
         updateCellsBatchingPeriod={100}
-        onScrollToIndexFailed={(info) => {
+        onScrollToIndexFailed={info => {
           // Fallback for scroll failures
           logger.warn(`⚠️ Scroll failed for index ${info.index}, retrying...`);
           const wait = new Promise(resolve => setTimeout(resolve, 500));
@@ -490,7 +487,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
         surahNumber={surahNumber}
         currentAyah={currentAyah}
         userId={userId}
-        onAyahChange={(ayahNumber) => {
+        onAyahChange={ayahNumber => {
           // Keep track of recently played ayahs for smooth transitions
           setRecentlyPlayedAyahs(prev => {
             const updated = new Set(prev);
@@ -512,7 +509,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
           // Update session tracking for audio playback
           sessionEndAyah.current = ayahNumber;
         }}
-        onPositionChange={(positionMs) => {
+        onPositionChange={positionMs => {
           // Update word highlighting based on timing data
           if (playingAyah && ayahTimings.has(playingAyah)) {
             const timing = ayahTimings.get(playingAyah)!;
@@ -537,18 +534,25 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
 
           // Log the current reading session
           if (userId && activePlan) {
-            const durationMinutes = Math.floor((Date.now() - sessionStartTime.current) / (1000 * 60));
+            const durationMinutes = Math.floor(
+              (Date.now() - sessionStartTime.current) / (1000 * 60)
+            );
             const startAyah = Math.min(sessionStartAyah.current, sessionEndAyah.current);
             const endAyah = Math.max(sessionStartAyah.current, sessionEndAyah.current);
 
             // Only log if there's new progress beyond what was already logged
-            if ((durationMinutes >= 1 || (Date.now() - sessionStartTime.current) >= 30000) && endAyah > lastLoggedAyah.current) {
+            if (
+              (durationMinutes >= 1 || Date.now() - sessionStartTime.current >= 30000) &&
+              endAyah > lastLoggedAyah.current
+            ) {
               // Calculate pages read only for the NEW ayahs (not already logged)
               const actualStartAyah = Math.max(startAyah, lastLoggedAyah.current + 1);
               const pagesRead = calculatePagesRead(surahNumber, actualStartAyah, endAyah);
 
               try {
-                logger.debug(`📝 Surah complete: Logging NEW progress Surah ${surahNumber}, Ayahs ${actualStartAyah}-${endAyah}, ${pagesRead} pages`);
+                logger.debug(
+                  `📝 Surah complete: Logging NEW progress Surah ${surahNumber}, Ayahs ${actualStartAyah}-${endAyah}, ${pagesRead} pages`
+                );
                 await logReading({
                   surah_number: surahNumber,
                   from_ayah: actualStartAyah,

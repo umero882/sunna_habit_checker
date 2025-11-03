@@ -16,7 +16,6 @@ import { createLogger } from './logger';
 
 const logger = createLogger('prayerPerformance');
 
-
 export interface DailyPerformance {
   /** Total score out of 5 (e.g., 4.5) */
   score: number;
@@ -73,10 +72,7 @@ const getPrayerPoints = (status: PrayerStatus): number => {
  * @param jamaah - Whether prayer was in congregation
  * @returns Daily prayer points earned
  */
-const getDailyPrayerPoints = (
-  status: PrayerStatus,
-  jamaah: boolean = false
-): number => {
+const getDailyPrayerPoints = (status: PrayerStatus, jamaah: boolean = false): number => {
   // Only count prayers that were performed (not missed)
   if (status === 'missed') {
     return 0;
@@ -163,13 +159,13 @@ export const getPerformanceIcon = (status: PerformanceStatus): string => {
  */
 export const calculateDailyPerformance = (logs: PrayerLog[]): DailyPerformance => {
   // Filter to only include the 5 obligatory prayers (exclude optional prayers like witr, duha, tahajjud)
-  const obligatoryPrayers = logs.filter((log) =>
+  const obligatoryPrayers = logs.filter(log =>
     ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].includes(log.prayer)
   );
 
   // Remove duplicates - keep only the latest log for each prayer
   const uniquePrayers = obligatoryPrayers.reduce((acc, log) => {
-    const existing = acc.find((l) => l.prayer === log.prayer);
+    const existing = acc.find(l => l.prayer === log.prayer);
     if (!existing) {
       acc.push(log);
     } else {
@@ -205,7 +201,7 @@ export const calculateDailyPerformance = (logs: PrayerLog[]): DailyPerformance =
   let totalDailyPrayerPoints = 0;
 
   // Process each prayer log (only unique obligatory prayers)
-  uniquePrayers.forEach((log) => {
+  uniquePrayers.forEach(log => {
     // Update breakdown
     switch (log.status) {
       case 'on_time':

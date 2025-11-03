@@ -16,12 +16,7 @@ interface PlanCardProps {
   onToggleActive?: () => void;
 }
 
-export const PlanCard: React.FC<PlanCardProps> = ({
-  plan,
-  onPress,
-  onDelete,
-  onToggleActive,
-}) => {
+export const PlanCard: React.FC<PlanCardProps> = ({ plan, onPress, onDelete, onToggleActive }) => {
   const getModeLabel = (mode: string): string => {
     switch (mode) {
       case 'pages':
@@ -95,9 +90,7 @@ export const PlanCard: React.FC<PlanCardProps> = ({
             <Text style={styles.progressText}>
               {plan.completed} / {plan.total_target}
             </Text>
-            <Text style={styles.progressPercentage}>
-              {Math.round(progressPercentage)}%
-            </Text>
+            <Text style={styles.progressPercentage}>{Math.round(progressPercentage)}%</Text>
           </View>
           <View style={styles.progressBarContainer}>
             <View
@@ -129,7 +122,7 @@ export const PlanCard: React.FC<PlanCardProps> = ({
           {!plan.active && (
             <TouchableOpacity
               style={styles.actionButton}
-              onPress={(e) => {
+              onPress={e => {
                 e.stopPropagation();
                 onToggleActive?.();
               }}
@@ -139,14 +132,12 @@ export const PlanCard: React.FC<PlanCardProps> = ({
           )}
           <TouchableOpacity
             style={[styles.actionButton, styles.deleteButton]}
-            onPress={(e) => {
+            onPress={e => {
               e.stopPropagation();
               onDelete?.();
             }}
           >
-            <Text style={[styles.actionButtonText, styles.deleteButtonText]}>
-              Delete
-            </Text>
+            <Text style={[styles.actionButtonText, styles.deleteButtonText]}>Delete</Text>
           </TouchableOpacity>
         </View>
       )}

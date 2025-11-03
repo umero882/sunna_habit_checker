@@ -56,7 +56,9 @@ export const RootNavigator: React.FC = () => {
     });
 
     // Listen for auth changes
-    const { data: { subscription } } = onAuthStateChange(async (event, session) => {
+    const {
+      data: { subscription },
+    } = onAuthStateChange(async (event, session) => {
       setIsAuthenticated(!!session);
 
       // Check onboarding and location permission when user signs in
@@ -118,23 +120,15 @@ export const RootNavigator: React.FC = () => {
           // Auth Stack
           <>
             <Stack.Screen name="Welcome" options={{ headerShown: false }}>
-              {(props) => (
+              {props => (
                 <WelcomeScreen
                   onSignIn={() => props.navigation.navigate('SignIn' as any)}
                   onSignUp={() => props.navigation.navigate('SignUp' as any)}
                 />
               )}
             </Stack.Screen>
-            <Stack.Screen
-              name="SignIn"
-              component={SignInScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SignUp"
-              component={SignUpScreen}
-              options={{ headerShown: false }}
-            />
+            <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
             <Stack.Screen
               name="ResetPassword"
               component={ResetPasswordScreen}
@@ -143,11 +137,15 @@ export const RootNavigator: React.FC = () => {
           </>
         ) : !hasCompletedOnboarding ? (
           // Onboarding Stack (after authentication, before main app)
-          <Stack.Screen name="Onboarding" component={OnboardingNavigator} options={{ headerShown: false }} />
+          <Stack.Screen
+            name="Onboarding"
+            component={OnboardingNavigator}
+            options={{ headerShown: false }}
+          />
         ) : !hasLocationPermission && locationPermissionChecked ? (
           // Location Permission Screen (legacy, may be removed if included in onboarding)
           <Stack.Screen name="LocationPermission" options={{ headerShown: false }}>
-            {(props) => (
+            {props => (
               <LocationPermissionScreen
                 onComplete={handleLocationPermissionComplete}
                 onSkip={handleLocationPermissionComplete}
