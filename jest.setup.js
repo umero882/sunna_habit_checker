@@ -1,3 +1,25 @@
+// Polyfill for structuredClone (needed for Jest in Node < 17)
+if (typeof global.structuredClone === 'undefined') {
+  global.structuredClone = (obj) => {
+    return JSON.parse(JSON.stringify(obj));
+  };
+}
+
+// Mock Expo's winter runtime globals
+global.__ExpoImportMetaRegistry = {
+  resolve: jest.fn((name) => undefined),
+  register: jest.fn(),
+};
+
+// Mock require.resolve for Expo modules
+const originalResolve = require.resolve;
+require.resolve = function (id, options) {
+  if (id.includes('expo')) {
+    return id;
+  }
+  return originalResolve(id, options);
+};
+
 // Mock AsyncStorage
 jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock')
@@ -11,15 +33,12 @@ jest.mock('expo-secure-store', () => ({
 }));
 
 // Mock @expo/vector-icons
-jest.mock('@expo/vector-icons', () => {
-  const { Text } = require('react-native');
-  return {
-    Ionicons: Text,
-    MaterialIcons: Text,
-    FontAwesome: Text,
-    Feather: Text,
-  };
-});
+jest.mock('@expo/vector-icons', () => ({
+  Ionicons: 'Ionicons',
+  MaterialIcons: 'MaterialIcons',
+  FontAwesome: 'FontAwesome',
+  Feather: 'Feather',
+}));
 
 // Mock expo-localization
 jest.mock('expo-localization', () => ({
@@ -68,5 +87,76 @@ jest.mock('@react-navigation/native', () => {
       params: {},
     }),
     useFocusEffect: jest.fn(),
+  };
+});
+
+// Mock expo-file-system
+jest.mock('expo-file-system', () => ({
+  documentDirectory: 'file:///mock/documents/',
+  cacheDirectory: 'file:///mock/cache/',
+  Paths: {
+    document: 'file:///mock/documents/',
+    cache: 'file:///mock/cache/',
+  },
+  File: jest.fn().mockImplementation((path, name) => ({
+    uri: `${path}${name}`,
+    write: jest.fn().mockResolvedValue(undefined),
+    delete: jest.fn().mockResolvedValue(undefined),
+    size: Promise.resolve(1000),
+  })),
+}));
+
+// Mock expo-sqlite
+jest.mock('expo-sqlite', () => ({
+  openDatabaseSync: jest.fn(() => ({
+    execAsync: jest.fn().mockResolvedValue([]),
+    getAllAsync: jest.fn().mockResolvedValue([]),
+    getFirstAsync: jest.fn().mockResolvedValue(null),
+    runAsync: jest.fn().mockResolvedValue({ changes: 1, lastInsertRowId: 1 }),
+    closeAsync: jest.fn().mockResolvedValue(undefined),
+  })),
+}));
+
+// Mock expo-asset
+jest.mock('expo-asset', () => ({
+  Asset: {
+    fromModule: jest.fn(() => ({
+      downloadAsync: jest.fn().mockResolvedValue(undefined),
+      localUri: 'file:///mock/asset.db',
+    })),
+  },
+}));
+
+// Mock lucide-react-native
+jest.mock('lucide-react-native', () => {
+  const React = require('react');
+  const MockIcon = () => React.createElement('View', null, 'Icon');
+  return new Proxy(
+    {},
+    {
+      get: () => MockIcon,
+    }
+  );
+});
+
+// Mock React Query
+jest.mock('@tanstack/react-query', () => {
+  const actualReactQuery = jest.requireActual('@tanstack/react-query');
+  return {
+    ...actualReactQuery,
+    useQuery: jest.fn((options) => ({
+      data: undefined,
+      isLoading: false,
+      isError: false,
+      error: null,
+      refetch: jest.fn(),
+    })),
+    useMutation: jest.fn(() => ({
+      mutate: jest.fn(),
+      mutateAsync: jest.fn(),
+      isLoading: false,
+      isError: false,
+      error: null,
+    })),
   };
 });

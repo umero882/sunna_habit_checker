@@ -1,7 +1,12 @@
 module.exports = function (api) {
+  const isTest = api.env('test');
   api.cache(true);
+
   return {
-    presets: ['babel-preset-expo'],
+    presets: [
+      'babel-preset-expo',
+      ...(isTest ? ['@babel/preset-flow'] : []),
+    ],
     plugins: [
       [
         'module-resolver',
