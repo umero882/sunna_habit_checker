@@ -1,0 +1,153 @@
+node_modules/react-native-country-codes-picker/index.tsx(61,50): error TS2503: Cannot find namespace 'JSX'.
+node_modules/react-native-country-codes-picker/index.tsx(62,64): error TS2503: Cannot find namespace 'JSX'.
+node_modules/react-native-country-codes-picker/index.tsx(342,64): error TS2503: Cannot find namespace 'JSX'.
+node_modules/react-native-country-codes-picker/index.tsx(343,50): error TS2503: Cannot find namespace 'JSX'.
+src/components/common/HeaderLogoutButton.tsx(13,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/onboarding/OnboardingScreenContainer.tsx(29,9): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: LinearGradientProps): LinearGradient', gave the following error.
+    Type 'string[]' is not assignable to type 'readonly [ColorValue, ColorValue, ...ColorValue[]]'.
+      Source provides no match for required element at position 0 in target.
+  Overload 2 of 2, '(props: LinearGradientProps, context: any): LinearGradient', gave the following error.
+    Type 'string[]' is not assignable to type 'readonly [ColorValue, ColorValue, ...ColorValue[]]'.
+      Source provides no match for required element at position 0 in target.
+src/components/onboarding/OnboardingSlide.tsx(93,9): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: LinearGradientProps): LinearGradient', gave the following error.
+    Type 'string[]' is not assignable to type 'readonly [ColorValue, ColorValue, ...ColorValue[]]'.
+      Source provides no match for required element at position 0 in target.
+  Overload 2 of 2, '(props: LinearGradientProps, context: any): LinearGradient', gave the following error.
+    Type 'string[]' is not assignable to type 'readonly [ColorValue, ColorValue, ...ColorValue[]]'.
+      Source provides no match for required element at position 0 in target.
+src/components/prayers/PrayerCard.tsx(16,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/profile/EditProfileModal.tsx(22,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/profile/ExportDataModal.tsx(20,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/profile/ProfileHeader.tsx(13,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/profile/ProfileHeader.tsx(78,24): error TS2339: Property 'text' does not exist on type 'GreetingData'.
+src/components/profile/ProfileHeader.tsx(81,21): error TS2339: Property 'phone' does not exist on type 'UserProfile'.
+src/components/profile/ProfileHeader.tsx(82,52): error TS2339: Property 'phone' does not exist on type 'UserProfile'.
+src/components/quran/bookmarks/BookmarksListView.tsx(19,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/quran/library/ProgressBar.tsx(86,5): error TS2345: Argument of type '{ container: { width: "100%"; }; labelContainer: { flexDirection: "row"; justifyContent: "space-between"; alignItems: "center"; marginBottom: number; }; labelText: { fontSize: number; color: string; fontWeight: "500"; }; percentageText: { ...; }; track: { ...; }; fill: { ...; }; standalonePercentage: { ...; }; }' is not assignable to parameter of type '{ container: { width: "100%"; }; labelContainer: { flexDirection: "row"; justifyContent: "space-between"; alignItems: "center"; marginBottom: number; }; labelText: { fontSize: number; color: string; fontWeight: "500"; }; percentageText: { ...; }; track: { ...; }; fill: { ...; }; standalonePercentage: { ...; }; } & N...'.
+  Property 'fill' is incompatible with index signature.
+    Object literal may only specify known properties, and 'transition' does not exist in type 'ViewStyle | TextStyle | ImageStyle'.
+src/components/quran/library/QuranReader.tsx(20,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/quran/planner/CreatePlanModal.tsx(21,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/quran/today/CurrentReadingCard.tsx(13,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/quran/today/DailyGoalCard.tsx(14,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/quran/today/QuickLogButton.tsx(21,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/sunnah/LibraryTab.tsx(22,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/components/sunnah/TodayTab.tsx(20,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/hooks/usePrayerLogs.ts(64,24): error TS2554: Expected 1 arguments, but got 0.
+src/hooks/usePrayerTimes.ts(249,11): error TS2367: This comparison appears to be unintentional because the types 'string' and 'number' have no overlap.
+src/hooks/useProfile.ts(141,5): error TS2339: Property 'streaks' does not exist on type '{ stats: PrayerStatsData | null; isLoading: boolean; error: string | null; refresh: () => Promise<void>; }'.
+src/hooks/useProfile.ts(147,5): error TS2339: Property 'streaks' does not exist on type '{ stats: SunnahStatsData | null; isLoading: boolean; error: string | null; refresh: () => Promise<void>; }'.
+src/hooks/useProfile.ts(153,5): error TS2339: Property 'streak' does not exist on type 'UseQuranProgressReturn'.
+src/hooks/useProfile.ts(161,41): error TS2339: Property 'monthlyStats' does not exist on type 'PrayerStatsData'.
+src/hooks/useProfile.ts(162,41): error TS2339: Property 'monthlyStats' does not exist on type 'PrayerStatsData'.
+src/hooks/useProfile.ts(168,38): error TS2339: Property 'totalPages' does not exist on type 'QuranProgress'.
+src/hooks/useProfile.ts(170,42): error TS2339: Property 'plansCompleted' does not exist on type 'QuranProgress'.
+src/hooks/useProfile.ts(173,44): error TS2339: Property 'totalCompleted' does not exist on type 'SunnahStatsData'.
+src/hooks/useProfile.ts(175,46): error TS2339: Property 'categoriesCount' does not exist on type 'SunnahStatsData'.
+src/hooks/useProfile.ts(176,46): error TS2551: Property 'milestonesCount' does not exist on type 'SunnahStatsData'. Did you mean 'milestones'?
+src/hooks/useQuranAudio.ts(90,7): error TS2448: Block-scoped variable 'handlePlaybackStatusUpdate' used before its declaration.
+src/hooks/useQuranAudio.ts(90,7): error TS2454: Variable 'handlePlaybackStatusUpdate' is used before being assigned.
+src/hooks/useQuranAudio.ts(90,35): error TS2448: Block-scoped variable 'handleAyahChange' used before its declaration.
+src/hooks/useQuranAudio.ts(90,35): error TS2454: Variable 'handleAyahChange' is used before being assigned.
+src/hooks/useQuranAudio.ts(90,53): error TS2448: Block-scoped variable 'handleWordChange' used before its declaration.
+src/hooks/useQuranAudio.ts(90,53): error TS2454: Variable 'handleWordChange' is used before being assigned.
+src/hooks/useQuranAudio.ts(90,71): error TS2448: Block-scoped variable 'handlePlaybackEnd' used before its declaration.
+src/hooks/useQuranAudio.ts(90,71): error TS2454: Variable 'handlePlaybackEnd' is used before being assigned.
+src/hooks/useQuranAudio.ts(90,90): error TS2448: Block-scoped variable 'handleError' used before its declaration.
+src/hooks/useQuranAudio.ts(90,90): error TS2454: Variable 'handleError' is used before being assigned.
+src/hooks/useSunnahHabits.ts(66,24): error TS2554: Expected 1 arguments, but got 0.
+src/hooks/useUserSettings.ts(9,10): error TS2614: Module '"../services/i18n"' has no exported member 'changeLanguage'. Did you mean to use 'import changeLanguage from "../services/i18n"' instead?
+src/navigation/OnboardingNavigator.tsx(30,9): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: Omit<StackNavigatorProps, "id" | "children" | "layout" | "initialRouteName" | "screenListeners" | "screenOptions" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & DefaultRouterOptions<...> & { ...; } & { ...; }, context?: any): string | ... 8 more ... | undefined', gave the following error.
+    Object literal may only specify known properties, and 'animationEnabled' does not exist in type 'StackNavigationOptions | ((props: { route: RouteProp<OnboardingStackParamList, keyof OnboardingStackParamList>; navigation: StackNavigationProp<...> | ... 6 more ... | StackNavigationProp<...>; theme: Theme; }) => StackNavigationOptions)'.
+  Overload 2 of 2, '(props: Omit<StackNavigatorProps, "id" | "children" | "layout" | "initialRouteName" | "screenListeners" | "screenOptions" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & DefaultRouterOptions<...> & { ...; } & { ...; }): string | ... 8 more ... | undefined', gave the following error.
+    Object literal may only specify known properties, and 'animationEnabled' does not exist in type 'StackNavigationOptions | ((props: { route: RouteProp<OnboardingStackParamList, keyof OnboardingStackParamList>; navigation: StackNavigationProp<...> | ... 6 more ... | StackNavigationProp<...>; theme: Theme; }) => StackNavigationOptions)'.
+src/navigation/RootNavigator.tsx(118,27): error TS2322: Type '"Welcome"' is not assignable to type 'keyof RootStackParamList'.
+src/navigation/RootNavigator.tsx(127,15): error TS2322: Type '"SignIn"' is not assignable to type 'keyof RootStackParamList'.
+src/navigation/RootNavigator.tsx(128,15): error TS2322: Type 'FC<Props>' is not assignable to type 'ScreenComponentType<RootStackParamList, keyof RootStackParamList> | undefined'.
+  Type 'FunctionComponent<Props>' is not assignable to type 'FunctionComponent<{}>'.
+    Type '{}' is missing the following properties from type 'Props': navigation, route
+src/navigation/RootNavigator.tsx(132,15): error TS2322: Type '"SignUp"' is not assignable to type 'keyof RootStackParamList'.
+src/navigation/RootNavigator.tsx(133,15): error TS2322: Type 'FC<Props>' is not assignable to type 'ScreenComponentType<RootStackParamList, keyof RootStackParamList> | undefined'.
+  Type 'FunctionComponent<Props>' is not assignable to type 'FunctionComponent<{}>'.
+    Type '{}' is missing the following properties from type 'Props': navigation, route
+src/navigation/RootNavigator.tsx(137,15): error TS2322: Type '"ResetPassword"' is not assignable to type 'keyof RootStackParamList'.
+src/navigation/RootNavigator.tsx(138,15): error TS2322: Type 'FC<Props>' is not assignable to type 'ScreenComponentType<RootStackParamList, keyof RootStackParamList> | undefined'.
+  Type 'FunctionComponent<Props>' is not assignable to type 'FunctionComponent<{}>'.
+    Type '{}' is missing the following properties from type 'Props': navigation, route
+src/navigation/RootNavigator.tsx(147,25): error TS2322: Type '"LocationPermission"' is not assignable to type 'keyof RootStackParamList'.
+src/screens/__tests__/HomeScreen.test.tsx(98,13): error TS2339: Property 'container' does not exist on type '{ rerender: (component: ReactElement<unknown, string | JSXElementConstructor<any>>) => void; rerenderAsync: (component: ReactElement<unknown, string | JSXElementConstructor<any>>) => Promise<...>; ... 69 more ...; findAllByText: FindAllByQuery<...>; }'.
+src/screens/auth/SignUpScreen.tsx(28,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/screens/home/TodayScreen.tsx(21,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/screens/home/TodayScreen.tsx(213,3): error TS2322: Type '{ height?: "100vh" | undefined; maxHeight?: "100vh" | undefined; flex: number; backgroundColor: string; }' is not assignable to type 'ViewStyle | TextStyle | ImageStyle'.
+  Type '{ height?: "100vh" | undefined; maxHeight?: "100vh" | undefined; flex: number; backgroundColor: string; }' is not assignable to type 'ImageStyle'.
+    Types of property 'height' are incompatible.
+      Type '"100vh" | undefined' is not assignable to type 'DimensionValue | undefined'.
+        Type '"100vh"' is not assignable to type 'DimensionValue | undefined'.
+src/screens/HomeScreen.tsx(107,25): error TS2769: No overload matches this call.
+  Argument of type '[any]' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(options: never): void', gave the following error.
+    Argument of type 'any' is not assignable to parameter of type 'never'.
+src/screens/HomeScreen.tsx(119,25): error TS2769: No overload matches this call.
+  Argument of type '[any]' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(options: never): void', gave the following error.
+    Argument of type 'any' is not assignable to parameter of type 'never'.
+src/screens/HomeScreen.tsx(124,25): error TS2769: No overload matches this call.
+  Argument of type '[any]' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(options: never): void', gave the following error.
+    Argument of type 'any' is not assignable to parameter of type 'never'.
+src/screens/HomeScreen.tsx(133,25): error TS2769: No overload matches this call.
+  Argument of type '[any]' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(options: never): void', gave the following error.
+    Argument of type 'any' is not assignable to parameter of type 'never'.
+src/screens/HomeScreen.tsx(137,25): error TS2769: No overload matches this call.
+  Argument of type '[any]' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(options: never): void', gave the following error.
+    Argument of type 'any' is not assignable to parameter of type 'never'.
+src/screens/HomeScreen.tsx(227,52): error TS2769: No overload matches this call.
+  Argument of type '[any]' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(options: never): void', gave the following error.
+    Argument of type 'any' is not assignable to parameter of type 'never'.
+src/screens/HomeScreen.tsx(228,56): error TS2769: No overload matches this call.
+  Argument of type '[any]' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(options: never): void', gave the following error.
+    Argument of type 'any' is not assignable to parameter of type 'never'.
+src/screens/HomeScreen.tsx(229,52): error TS2769: No overload matches this call.
+  Argument of type '[any]' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(options: never): void', gave the following error.
+    Argument of type 'any' is not assignable to parameter of type 'never'.
+src/screens/HomeScreen.tsx(230,50): error TS2769: No overload matches this call.
+  Argument of type '[any]' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(options: never): void', gave the following error.
+    Argument of type 'any' is not assignable to parameter of type 'never'.
+src/screens/HomeScreen.tsx(232,48): error TS2769: No overload matches this call.
+  Argument of type '[any]' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(options: never): void', gave the following error.
+    Argument of type 'any' is not assignable to parameter of type 'never'.
+src/screens/onboarding/CompletionScreen.tsx(14,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/screens/onboarding/LocationPermissionScreen.tsx(13,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/screens/onboarding/PermissionsScreen.tsx(18,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/screens/onboarding/QuranPreferencesScreen.tsx(16,30): error TS2307: Cannot find module '../utils/logger' or its corresponding type declarations.
+src/screens/ProfileScreen.tsx(434,32): error TS2339: Property 'phone' does not exist on type 'UserProfile'.
+src/services/notificationScheduler.ts(182,9): error TS2322: Type '{ type: "date"; date: Date; }' is not assignable to type 'NotificationTriggerInput'.
+  Types of property 'type' are incompatible.
+    Type '"date"' is not assignable to type 'SchedulableTriggerInputTypes | undefined'.
+src/services/notificationScheduler.ts(236,9): error TS2322: Type '{ type: "date"; date: Date; }' is not assignable to type 'NotificationTriggerInput'.
+  Types of property 'type' are incompatible.
+    Type '"date"' is not assignable to type 'SchedulableTriggerInputTypes | undefined'.
+src/services/notificationScheduler.ts(292,7): error TS2322: Type '{ type: "date"; date: Date; }' is not assignable to type 'NotificationTriggerInput'.
+  Types of property 'type' are incompatible.
+    Type '"date"' is not assignable to type 'SchedulableTriggerInputTypes | undefined'.
+src/services/notificationScheduler.ts(328,7): error TS2322: Type '{ type: "calendar"; weekday: number; hour: number; minute: number; repeats: true; }' is not assignable to type 'NotificationTriggerInput'.
+  Types of property 'type' are incompatible.
+    Type '"calendar"' is not assignable to type 'SchedulableTriggerInputTypes | undefined'.
+src/services/prayerTimes.ts(27,56): error TS2749: 'CalculationMethod' refers to a value, but is being used as a type here. Did you mean 'typeof CalculationMethod'?
+src/services/prayerTimes.ts(145,27): error TS2749: 'Prayer' refers to a value, but is being used as a type here. Did you mean 'typeof Prayer'?
+src/services/wordTimingServiceSimple.ts(42,38): error TS2339: Property 'documentDirectory' does not exist on type 'typeof import("C:/Users/umera/sunnah-habit-checker/node_modules/expo-file-system/build/index")'.
+src/services/wordTimingServiceSimple.ts(43,37): error TS2339: Property 'documentDirectory' does not exist on type 'typeof import("C:/Users/umera/sunnah-habit-checker/node_modules/expo-file-system/build/index")'.
+supabase/functions/generate-pdf-report/index.ts(8,23): error TS2307: Cannot find module 'https://deno.land/std@0.168.0/http/server.ts' or its corresponding type declarations.
+supabase/functions/generate-pdf-report/index.ts(9,30): error TS2307: Cannot find module 'https://esm.sh/@supabase/supabase-js@2' or its corresponding type declarations.
+supabase/functions/generate-pdf-report/index.ts(17,14): error TS7006: Parameter 'req' implicitly has an 'any' type.
+supabase/functions/generate-pdf-report/index.ts(88,31): error TS18046: 'error' is of type 'unknown'.

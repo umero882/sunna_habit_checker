@@ -1,0 +1,18 @@
+<svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+  <!-- Notification icon must be monochrome (white on transparent) for Android -->
+  <!-- Simple crescent moon and checkmark design -->
+
+  <!-- Crescent moon -->
+  <g transform="translate(48, 30)">
+    <path d="M -10 -15 Q -15 0 -10 15 Q -5 0 -10 -15 Z"
+          fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="0" cy="-6" r="6" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Checkmark -->
+  <g transform="translate(48, 68)">
+    <path d="M -15 -5 L -5 5 L 15 -15"
+          stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"
+          stroke-linejoin="round" fill="none"/>
+  </g>
+</svg>

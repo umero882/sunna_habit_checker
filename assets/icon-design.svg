@@ -1,0 +1,52 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2E7D32;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4CAF50;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect x="0" y="0" width="1024" height="1024" rx="180" fill="url(#bgGradient)"/>
+
+  <!-- Crescent moon (Islamic symbol) -->
+  <g filter="url(#shadow)">
+    <path d="M 400 200 Q 350 350 400 500 Q 450 350 400 200 Z"
+          fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="round"/>
+    <circle cx="460" cy="250" r="60" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Open book (Quran) at center -->
+  <g filter="url(#shadow)" transform="translate(512, 520)">
+    <!-- Book pages -->
+    <rect x="-160" y="-80" width="150" height="180" rx="8" fill="#FFFFFF" opacity="0.95"/>
+    <rect x="10" y="-80" width="150" height="180" rx="8" fill="#FFFFFF" opacity="0.95"/>
+
+    <!-- Book binding -->
+    <rect x="-10" y="-85" width="20" height="190" fill="#1B5E20"/>
+
+    <!-- Text lines on pages -->
+    <line x1="-140" y1="-50" x2="-30" y2="-50" stroke="#2E7D32" stroke-width="4" opacity="0.6"/>
+    <line x1="-140" y1="-20" x2="-30" y2="-20" stroke="#2E7D32" stroke-width="4" opacity="0.6"/>
+    <line x1="-140" y1="10" x2="-30" y2="10" stroke="#2E7D32" stroke-width="4" opacity="0.6"/>
+    <line x1="-140" y1="40" x2="-30" y2="40" stroke="#2E7D32" stroke-width="4" opacity="0.6"/>
+
+    <line x1="30" y1="-50" x2="140" y2="-50" stroke="#2E7D32" stroke-width="4" opacity="0.6"/>
+    <line x1="30" y1="-20" x2="140" y2="-20" stroke="#2E7D32" stroke-width="4" opacity="0.6"/>
+    <line x1="30" y1="10" x2="140" y2="10" stroke="#2E7D32" stroke-width="4" opacity="0.6"/>
+    <line x1="30" y1="40" x2="140" y2="40" stroke="#2E7D32" stroke-width="4" opacity="0.6"/>
+  </g>
+
+  <!-- Checkmark badge (habit completion) -->
+  <g transform="translate(750, 750)">
+    <circle cx="0" cy="0" r="120" fill="#FFFFFF" filter="url(#shadow)"/>
+    <circle cx="0" cy="0" r="100" fill="#4CAF50"/>
+    <path d="M -40 0 L -10 40 L 50 -40"
+          stroke="#FFFFFF" stroke-width="20" stroke-linecap="round"
+          stroke-linejoin="round" fill="none"/>
+  </g>
+</svg>

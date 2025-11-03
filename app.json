@@ -1,30 +1,72 @@
 {
   "expo": {
-    "name": "sunnah-habit-checker",
+    "name": "Sunnah Habit Checker",
     "slug": "sunnah-habit-checker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sunnahhabits.app",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We need your location to calculate accurate prayer times based on your geographical position.",
+        "NSLocationAlwaysUsageDescription": "We need your location to send you prayer time notifications.",
+        "NSUserTrackingUsageDescription": "This identifier will be used to deliver personalized notifications to you.",
+        "NSPhotoLibraryUsageDescription": "We need access to your photo library to let you choose a profile picture.",
+        "NSCameraUsageDescription": "We need access to your camera to let you take a profile picture."
+      }
     },
     "android": {
+      "package": "com.sunnahhabits.app",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#4CAF50"
       },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE",
+        "CAMERA",
+        "READ_MEDIA_IMAGES",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-sqlite",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#4CAF50",
+          "sounds": [
+            "./assets/sounds/notification.wav"
+          ]
+        }
+      ],
+      "expo-audio"
+    ],
+    "assetBundlePatterns": [
+      "assets/**"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "YOUR_EAS_PROJECT_ID_HERE"
+      }
+    },
+    "owner": "your-expo-username"
   }
 }

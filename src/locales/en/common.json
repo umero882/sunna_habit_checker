@@ -1,0 +1,313 @@
+{
+  "app": {
+    "name": "Sunnah Habit Checker",
+    "tagline": "Build consistent, sincere daily habits"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "done": "Done",
+    "next": "Next",
+    "back": "Back",
+    "skip": "Skip",
+    "confirm": "Confirm",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "retry": "Retry",
+    "continue": "Continue"
+  },
+  "auth": {
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "forgotPassword": "Forgot Password?",
+    "backToSignIn": "Back to Sign In",
+    "signOut": "Sign Out",
+    "signIn": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to continue tracking your Sunnah habits",
+      "button": "Sign In",
+      "link": "Sign In",
+      "noAccount": "Don't have an account?"
+    },
+    "signUp": {
+      "title": "Create Account",
+      "subtitle": "Start your journey to consistent Sunnah habits",
+      "button": "Sign Up",
+      "link": "Sign Up",
+      "hasAccount": "Already have an account?",
+      "success": {
+        "title": "Account Created!",
+        "message": "Please check your email to verify your account."
+      }
+    },
+    "resetPassword": {
+      "title": "Reset Password",
+      "subtitle": "Enter your email to receive a password reset link",
+      "button": "Send Reset Link",
+      "success": {
+        "title": "Email Sent!",
+        "message": "Check your email for instructions to reset your password."
+      }
+    },
+    "errors": {
+      "fillAllFields": "Please fill in all fields",
+      "invalidEmail": "Please enter a valid email address",
+      "passwordTooShort": "Password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "Assalamu Alaikum, {{name}}!",
+      "description": "Build consistent daily habits following the Sunnah of Prophet Muhammad ﷺ",
+      "subtitle": "Let's set up your spiritual journey",
+      "next": "Let's Begin",
+      "feature1": "Track Prayers",
+      "feature2": "Read Quran",
+      "feature3": "Build Habits"
+    },
+    "prayer": {
+      "title": "Never Miss a Prayer",
+      "description": "Track your 5 daily prayers with accurate times based on your location",
+      "feature1": "On-time, delayed, and missed tracking",
+      "feature2": "Jamaah (congregation) prayers",
+      "feature3": "Prayer streaks and calendar",
+      "feature4": "Smart prayer reminders"
+    },
+    "quran": {
+      "title": "Connect with the Quran Daily",
+      "description": "Read, listen, and track your Quran progress with beautiful recitation",
+      "feature1": "Audio recitation with word highlighting",
+      "feature2": "Reading plans (Juz, Khatma)",
+      "feature3": "Bookmarks and progress tracking",
+      "feature4": "Multiple translations & reciters"
+    },
+    "sunnah": {
+      "title": "Build Prophetic Habits",
+      "description": "Follow the Sunnah with daily habits, benchmarks, and personalized tracking",
+      "feature1": "Daily habits & Adhkar tracking",
+      "feature2": "3-tier benchmark system",
+      "feature3": "Charity & good deeds log",
+      "feature4": "Progress insights & analytics"
+    },
+    "permissions": {
+      "title": "Allow Permissions",
+      "description": "To provide the best experience, we need a few permissions",
+      "privacy": "Your privacy is important. You can change these settings anytime in the app.",
+      "location": {
+        "title": "Location Access",
+        "description": "Required for accurate prayer times based on your location",
+        "benefit1": "Accurate prayer times",
+        "benefit2": "Auto-timezone detection",
+        "benefit3": "Local Qibla direction"
+      },
+      "notifications": {
+        "title": "Notifications",
+        "description": "Get gentle reminders for prayers and daily habits",
+        "benefit1": "Prayer time alerts",
+        "benefit2": "Daily habit reminders",
+        "benefit3": "Customizable quiet hours"
+      }
+    },
+    "prayerSettings": {
+      "title": "Prayer Time Settings",
+      "description": "Choose your calculation method and madhab for accurate prayer times",
+      "methodTitle": "Calculation Method",
+      "madhhabTitle": "Madhhab (Asr Calculation)",
+      "info": "You can change these settings anytime from your profile"
+    },
+    "quranPreferences": {
+      "title": "Quran Preferences",
+      "description": "Customize your Quran reading experience",
+      "reciterTitle": "Choose Reciter",
+      "goalTitle": "Daily Reading Goal",
+      "info": "These are just starting points. Adjust anytime based on your pace!"
+    },
+    "complete": {
+      "title": "Alhamdulillah!",
+      "description": "You're all set to begin your spiritual journey",
+      "button": "Start Your Journey",
+      "tipsTitle": "Quick Tips to Get Started",
+      "tip1Title": "Log Your First Prayer",
+      "tip1Description": "Track your prayers to build a consistent habit",
+      "tip2Title": "Start Your Quran Journey",
+      "tip2Description": "Even a few verses daily makes a difference",
+      "tip3Title": "Add Daily Adhkar",
+      "tip3Description": "Morning and evening remembrance of Allah",
+      "quote": "The most beloved deeds to Allah are those done consistently, even if they are small.",
+      "quoteSource": "- Prophet Muhammad ﷺ"
+    }
+  },
+  "prayers": {
+    "fajr": "Fajr",
+    "sunrise": "Sunrise",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Isha",
+    "witr": "Witr",
+    "duha": "Duha",
+    "tahajjud": "Tahajjud",
+    "nextPrayer": "Next Prayer",
+    "timeRemaining": "Time Remaining",
+    "prayerTimes": "Prayer Times",
+    "logPrayer": "Log Prayer",
+    "status": {
+      "on_time": "On Time",
+      "delayed": "Delayed",
+      "missed": "Missed",
+      "qadaa": "Made Up (Qada)"
+    },
+    "location": {
+      "home": "Home",
+      "masjid": "Masjid",
+      "work": "Work",
+      "other": "Other"
+    },
+    "jamaah": "In Congregation (Jama'ah)",
+    "stats": {
+      "onTimeRate": "On-Time Rate",
+      "jamaahCount": "Jama'ah Count",
+      "currentStreak": "Current Streak",
+      "qadaaBacklog": "Qada' Backlog"
+    }
+  },
+  "habits": {
+    "title": "Habits",
+    "addHabit": "Add Habit",
+    "myHabits": "My Habits",
+    "completed": "Completed",
+    "pending": "Pending",
+    "streak": "{{count}} day streak",
+    "streak_plural": "{{count}} day streak",
+    "types": {
+      "adhkar": "Adhkar & Supplications",
+      "reading": "Qur'an Reading",
+      "charity": "Charity & Good Deeds",
+      "fasting": "Fasting",
+      "custom": "Custom Habit"
+    },
+    "adhkar": {
+      "morning": "Morning Adhkar",
+      "evening": "Evening Adhkar",
+      "afterPrayer": "After Prayer",
+      "sleep": "Before Sleep",
+      "counter": "Counter",
+      "completed": "Completed {{current}}/{{total}}"
+    },
+    "quran": {
+      "readingPlan": "Reading Plan",
+      "pagesRead": "Pages Read",
+      "targetPerDay": "Target per Day",
+      "progress": "Progress",
+      "logReading": "Log Reading",
+      "pages": "{{count}} page",
+      "pages_plural": "{{count}} pages",
+      "verses": "{{count}} verse",
+      "verses_plural": "{{count}} verses",
+      "minutes": "{{count}} minute",
+      "minutes_plural": "{{count}} minutes"
+    },
+    "charity": {
+      "logCharity": "Log Charity",
+      "amount": "Amount",
+      "type": {
+        "money": "Monetary",
+        "time": "Time/Service",
+        "kind_deed": "Kind Deed"
+      },
+      "beneficiary": "Beneficiary (optional)",
+      "makePrivate": "Keep Private",
+      "weeklyTotal": "This Week"
+    }
+  },
+  "home": {
+    "title": "Today",
+    "assalamuAlaikum": "As-salamu alaykum",
+    "quickLog": "Quick Log",
+    "whatsNext": "What's Next",
+    "sunnahTip": "Sunnah Tip",
+    "reflection": "Daily Reflection"
+  },
+  "overview": {
+    "title": "Overview",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month",
+    "prayerHeatmap": "Prayer Heatmap",
+    "insights": "Insights",
+    "topHabits": "Top Habits",
+    "suggestedFocus": "Suggested Focus"
+  },
+  "settings": {
+    "title": "Settings",
+    "account": "Account",
+    "preferences": "Preferences",
+    "prayer": "Prayer",
+    "notifications": "Notifications",
+    "privacy": "Privacy & Security",
+    "data": "Data",
+    "about": "About",
+    "language": "Language",
+    "theme": "Theme",
+    "hijriDate": "Show Hijri Date",
+    "barakahPoints": "Barakah Points (Educational)",
+    "quietHours": "Quiet Hours",
+    "exportData": "Export Data",
+    "deleteAccount": "Delete Account",
+    "version": "Version"
+  },
+  "benchmarks": {
+    "title": "Sunnah Benchmarks",
+    "disclaimer": "These are guidance notes from Qur'an and Sunnah, not judgments of one's standing with Allah.",
+    "viewSource": "View Source",
+    "pinToHome": "Pin to Home"
+  },
+  "points": {
+    "title": "Barakah Points",
+    "disclaimer": "Real reward is with Allah alone. Points are an educational visualization, not a promise.",
+    "weeklyTotal": "This Week",
+    "breakdown": "Breakdown",
+    "prayers": "Prayers",
+    "adhkar": "Adhkar",
+    "quran": "Qur'an",
+    "charity": "Charity",
+    "other": "Other"
+  },
+  "notifications": {
+    "prayerTime": "It's time for {{prayer}}",
+    "prayerSoon": "{{prayer}} in {{minutes}} minutes",
+    "habitReminder": "Don't forget: {{habit}}",
+    "streakSaver": "Keep your {{day}} day streak alive!"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "passwordsDoNotMatch": "Passwords do not match"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "unauthorized": "Please sign in to continue.",
+    "notFound": "Resource not found.",
+    "serverError": "Server error. Please try again later."
+  },
+  "dates": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow",
+    "thisWeek": "This Week",
+    "lastWeek": "Last Week",
+    "thisMonth": "This Month",
+    "hijri": "Hijri"
+  }
+}

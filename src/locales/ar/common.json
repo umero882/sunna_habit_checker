@@ -1,0 +1,283 @@
+{
+  "app": {
+    "name": "متتبع عادات السنة",
+    "tagline": "بناء عادات يومية متسقة ومخلصة"
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "done": "تم",
+    "next": "التالي",
+    "back": "رجوع",
+    "skip": "تخطي",
+    "confirm": "تأكيد",
+    "close": "إغلاق",
+    "loading": "جارٍ التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "retry": "إعادة المحاولة",
+    "continue": "متابعة"
+  },
+  "auth": {
+    "signIn": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "signOut": "تسجيل الخروج",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "createAccount": "إنشاء حساب",
+    "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+    "dontHaveAccount": "ليس لديك حساب؟",
+    "signInWithGoogle": "تسجيل الدخول باستخدام Google",
+    "signInWithApple": "تسجيل الدخول باستخدام Apple",
+    "orContinueWith": "أو تابع باستخدام"
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "السلام عليكم، {{name}}!",
+      "description": "ابنِ عادات يومية متسقة باتباع سنة النبي محمد ﷺ",
+      "subtitle": "لنبدأ في إعداد رحلتك الروحانية",
+      "next": "لنبدأ",
+      "feature1": "تتبع الصلوات",
+      "feature2": "قراءة القرآن",
+      "feature3": "بناء العادات"
+    },
+    "prayer": {
+      "title": "لا تفوت أي صلاة",
+      "description": "تتبع صلواتك الخمس اليومية بأوقات دقيقة بناءً على موقعك",
+      "feature1": "تتبع الصلاة في وقتها أو متأخرة أو فائتة",
+      "feature2": "صلاة الجماعة",
+      "feature3": "سلسلة الصلاة والتقويم",
+      "feature4": "تذكيرات الصلاة الذكية"
+    },
+    "quran": {
+      "title": "تواصل مع القرآن يومياً",
+      "description": "اقرأ واستمع وتتبع تقدمك في القرآن بتلاوة جميلة",
+      "feature1": "التلاوة الصوتية مع تمييز الكلمات",
+      "feature2": "خطط القراءة (جزء، ختمة)",
+      "feature3": "إشارات مرجعية وتتبع التقدم",
+      "feature4": "ترجمات وقراء متعددون"
+    },
+    "sunnah": {
+      "title": "ابنِ عادات نبوية",
+      "description": "اتبع السنة بعادات يومية ومعايير وتتبع شخصي",
+      "feature1": "تتبع العادات اليومية والأذكار",
+      "feature2": "نظام المعايير الثلاثية",
+      "feature3": "سجل الصدقات والأعمال الصالحة",
+      "feature4": "رؤى التقدم والتحليلات"
+    },
+    "permissions": {
+      "title": "السماح بالأذونات",
+      "description": "لتوفير أفضل تجربة، نحتاج إلى بعض الأذونات",
+      "privacy": "خصوصيتك مهمة. يمكنك تغيير هذه الإعدادات في أي وقت في التطبيق.",
+      "location": {
+        "title": "الوصول إلى الموقع",
+        "description": "مطلوب لأوقات الصلاة الدقيقة بناءً على موقعك",
+        "benefit1": "أوقات صلاة دقيقة",
+        "benefit2": "الكشف التلقائي عن المنطقة الزمنية",
+        "benefit3": "اتجاه القبلة المحلي"
+      },
+      "notifications": {
+        "title": "الإشعارات",
+        "description": "احصل على تذكيرات لطيفة للصلوات والعادات اليومية",
+        "benefit1": "تنبيهات أوقات الصلاة",
+        "benefit2": "تذكيرات العادات اليومية",
+        "benefit3": "ساعات هادئة قابلة للتخصيص"
+      }
+    },
+    "prayerSettings": {
+      "title": "إعدادات وقت الصلاة",
+      "description": "اختر طريقة الحساب والمذهب لأوقات صلاة دقيقة",
+      "methodTitle": "طريقة الحساب",
+      "madhhabTitle": "المذهب (حساب العصر)",
+      "info": "يمكنك تغيير هذه الإعدادات في أي وقت من ملفك الشخصي"
+    },
+    "quranPreferences": {
+      "title": "تفضيلات القرآن",
+      "description": "خصص تجربة قراءة القرآن الخاصة بك",
+      "reciterTitle": "اختر القارئ",
+      "goalTitle": "هدف القراءة اليومي",
+      "info": "هذه مجرد نقاط بداية. اضبط في أي وقت بناءً على وتيرتك!"
+    },
+    "complete": {
+      "title": "الحمد لله!",
+      "description": "أنت جاهز لبدء رحلتك الروحانية",
+      "button": "ابدأ رحلتك",
+      "tipsTitle": "نصائح سريعة للبدء",
+      "tip1Title": "سجل صلاتك الأولى",
+      "tip1Description": "تتبع صلواتك لبناء عادة متسقة",
+      "tip2Title": "ابدأ رحلة القرآن",
+      "tip2Description": "حتى بضع آيات يومياً تُحدث فرقاً",
+      "tip3Title": "أضف الأذكار اليومية",
+      "tip3Description": "ذكر الله في الصباح والمساء",
+      "quote": "أحب الأعمال إلى الله أدومها وإن قل.",
+      "quoteSource": "- النبي محمد ﷺ"
+    }
+  },
+  "prayers": {
+    "fajr": "الفجر",
+    "sunrise": "الشروق",
+    "dhuhr": "الظهر",
+    "asr": "العصر",
+    "maghrib": "المغرب",
+    "isha": "العشاء",
+    "witr": "الوتر",
+    "duha": "الضحى",
+    "tahajjud": "التهجد",
+    "nextPrayer": "الصلاة القادمة",
+    "timeRemaining": "الوقت المتبقي",
+    "prayerTimes": "أوقات الصلاة",
+    "logPrayer": "تسجيل الصلاة",
+    "status": {
+      "on_time": "في الوقت المحدد",
+      "delayed": "متأخر",
+      "missed": "فائت",
+      "qadaa": "قضاء"
+    },
+    "location": {
+      "home": "المنزل",
+      "masjid": "المسجد",
+      "work": "العمل",
+      "other": "آخر"
+    },
+    "jamaah": "في الجماعة",
+    "stats": {
+      "onTimeRate": "معدل الوقت المحدد",
+      "jamaahCount": "عدد الجماعة",
+      "currentStreak": "السلسلة الحالية",
+      "qadaaBacklog": "قضاء متراكم"
+    }
+  },
+  "habits": {
+    "title": "العادات",
+    "addHabit": "إضافة عادة",
+    "myHabits": "عاداتي",
+    "completed": "مكتمل",
+    "pending": "قيد الانتظار",
+    "streak": "سلسلة {{count}} يوم",
+    "streak_plural": "سلسلة {{count}} يوم",
+    "types": {
+      "adhkar": "الأذكار والأدعية",
+      "reading": "قراءة القرآن",
+      "charity": "الصدقة والأعمال الصالحة",
+      "fasting": "الصيام",
+      "custom": "عادة مخصصة"
+    },
+    "adhkar": {
+      "morning": "أذكار الصباح",
+      "evening": "أذكار المساء",
+      "afterPrayer": "بعد الصلاة",
+      "sleep": "قبل النوم",
+      "counter": "العداد",
+      "completed": "مكتمل {{current}}/{{total}}"
+    },
+    "quran": {
+      "readingPlan": "خطة القراءة",
+      "pagesRead": "الصفحات المقروءة",
+      "targetPerDay": "الهدف اليومي",
+      "progress": "التقدم",
+      "logReading": "تسجيل القراءة",
+      "pages": "{{count}} صفحة",
+      "pages_plural": "{{count}} صفحة",
+      "verses": "{{count}} آية",
+      "verses_plural": "{{count}} آية",
+      "minutes": "{{count}} دقيقة",
+      "minutes_plural": "{{count}} دقيقة"
+    },
+    "charity": {
+      "logCharity": "تسجيل الصدقة",
+      "amount": "المبلغ",
+      "type": {
+        "money": "نقدي",
+        "time": "وقت/خدمة",
+        "kind_deed": "عمل صالح"
+      },
+      "beneficiary": "المستفيد (اختياري)",
+      "makePrivate": "اجعلها خاصة",
+      "weeklyTotal": "هذا الأسبوع"
+    }
+  },
+  "home": {
+    "title": "اليوم",
+    "assalamuAlaikum": "السلام عليكم",
+    "quickLog": "تسجيل سريع",
+    "whatsNext": "ما التالي",
+    "sunnahTip": "نصيحة من السنة",
+    "reflection": "تأمل يومي"
+  },
+  "overview": {
+    "title": "نظرة عامة",
+    "thisWeek": "هذا الأسبوع",
+    "thisMonth": "هذا الشهر",
+    "prayerHeatmap": "خريطة الصلاة الحرارية",
+    "insights": "رؤى",
+    "topHabits": "أفضل العادات",
+    "suggestedFocus": "التركيز المقترح"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "account": "الحساب",
+    "preferences": "التفضيلات",
+    "prayer": "الصلاة",
+    "notifications": "الإشعارات",
+    "privacy": "الخصوصية والأمان",
+    "data": "البيانات",
+    "about": "حول",
+    "language": "اللغة",
+    "theme": "المظهر",
+    "hijriDate": "عرض التاريخ الهجري",
+    "barakahPoints": "نقاط البركة (تعليمي)",
+    "quietHours": "ساعات الهدوء",
+    "exportData": "تصدير البيانات",
+    "deleteAccount": "حذف الحساب",
+    "version": "الإصدار"
+  },
+  "benchmarks": {
+    "title": "معايير السنة",
+    "disclaimer": "هذه ملاحظات إرشادية من القرآن والسنة، وليست أحكامًا على مكانة المرء عند الله.",
+    "viewSource": "عرض المصدر",
+    "pinToHome": "تثبيت في الرئيسية"
+  },
+  "points": {
+    "title": "نقاط البركة",
+    "disclaimer": "الأجر الحقيقي عند الله وحده. النقاط هي تصور تعليمي، وليست وعدًا.",
+    "weeklyTotal": "هذا الأسبوع",
+    "breakdown": "التفصيل",
+    "prayers": "الصلوات",
+    "adhkar": "الأذكار",
+    "quran": "القرآن",
+    "charity": "الصدقة",
+    "other": "أخرى"
+  },
+  "notifications": {
+    "prayerTime": "حان وقت {{prayer}}",
+    "prayerSoon": "{{prayer}} بعد {{minutes}} دقيقة",
+    "habitReminder": "لا تنس: {{habit}}",
+    "streakSaver": "حافظ على سلسلتك التي تبلغ {{day}} يوم!"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "invalidEmail": "الرجاء إدخال بريد إلكتروني صالح",
+    "passwordTooShort": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+    "passwordsDoNotMatch": "كلمات المرور غير متطابقة"
+  },
+  "errors": {
+    "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "network": "خطأ في الشبكة. يرجى التحقق من الاتصال.",
+    "unauthorized": "يرجى تسجيل الدخول للمتابعة.",
+    "notFound": "المورد غير موجود.",
+    "serverError": "خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقًا."
+  },
+  "dates": {
+    "today": "اليوم",
+    "yesterday": "أمس",
+    "tomorrow": "غدًا",
+    "thisWeek": "هذا الأسبوع",
+    "lastWeek": "الأسبوع الماضي",
+    "thisMonth": "هذا الشهر",
+    "hijri": "هجري"
+  }
+}
